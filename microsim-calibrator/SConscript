@@ -1,0 +1,8 @@
+Import('env')
+Import('microsim_simulator')
+src_subdirs = []
+sources = Glob('*.cpp')
+for ss in src_subdirs:
+    sources = sources + Glob('%s/*.cpp' % ss)
+microsim_calibrator = env.StaticLibrary('microsim-calibrator',  sources + microsim_simulator)
+Return('microsim_calibrator')

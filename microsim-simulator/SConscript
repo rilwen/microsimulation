@@ -1,0 +1,7 @@
+Import('env')
+src_subdirs = ['dispatcher', 'feature_provider', 'history', 'operator', 'predicate', 'relative_risk', 'observer', 'initialiser', 'migration', 'hazard_rate_multiplier_provider']
+sources = Glob('*.cpp')
+for ss in src_subdirs:
+    sources = sources + Glob('%s/*.cpp' % ss)
+microsim_simulator = env.StaticLibrary('microsim-simulator',  sources)
+Return('microsim_simulator')

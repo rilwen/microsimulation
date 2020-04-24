@@ -1,0 +1,3 @@
+Import('env')
+microsim_core = env.StaticLibrary('microsim-uk', Glob('*.cpp') + Glob('ethnicity/*.cpp'))
+Return('microsim_core')

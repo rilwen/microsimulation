@@ -1,0 +1,3 @@
+Import('env')
+core = env.StaticLibrary('core', Glob('*.cpp') + Glob('*.c'))
+Return('core')

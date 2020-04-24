@@ -1,0 +1,13 @@
+Import('env')
+Import('microsim_simulator')
+Import('microsim_calibrator')
+Import('microsim_core')
+Import('microsim_uk')
+Import('core')
+Import('OTHER_LIBS')
+penv = env.Clone()
+penv.Append(LIBS= [OTHER_LIBS])
+def microsim_runner(name):
+    return penv.Program(name, [File(name + '.cpp'), File('main.cpp')] + microsim_calibrator + microsim_simulator + microsim_uk + microsim_core + core)
+brexit = microsim_runner('brexit')
+integration_test2 = microsim_runner('integration_test2')
