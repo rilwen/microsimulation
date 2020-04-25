@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "core/user_arguments.hpp"
 #include "microsim-simulator/simulator.hpp"
 
