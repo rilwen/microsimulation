@@ -7,24 +7,24 @@ namespace averisera {
     namespace microsim {
         class Feature;
         
-        /*! Common settings related to procreation modelling */
+        /** Common settings related to procreation modelling */
         namespace Procreation {
-            /*! Variable for conception event details */
+            /** Variable for conception event details */
             const std::string& CONCEPTION();
 
-            /*! Variable for pregnancy event */
+            /** Variable for pregnancy event */
             const std::string& PREGNANCY_EVENT();
 
-			/*! Conception modelling feature */
+			/** Conception modelling feature */
             const Feature& CONCEPTION_FEATURE();
 
-            /*! Child generation feature */
+            /** Child generation feature */
             const Feature& CHILD_GENERATION();
 
-            /*! Pregnancy modelling feature */
+            /** Pregnancy modelling feature */
             const Feature& PREGNANCY_FEATURE();
 
-            /*! Birth feature */
+            /** Birth feature */
             const Feature& BIRTH_FEATURE();
         }
     }

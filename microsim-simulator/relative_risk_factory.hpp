@@ -8,17 +8,17 @@
 namespace averisera {
     namespace microsim {
         namespace RelativeRiskFactory {
-            /*! \see RelativeRiskConstant */
+            /** @see RelativeRiskConstant */
             template <class A> std::unique_ptr<const RelativeRisk<A>> make_constant(RelativeRiskValueUnbound value) {
                 return std::unique_ptr<const RelativeRisk<A>>(new RelativeRiskConstant<A>(value));
             }
 
-            /*! \see RelativeRiskRange1D */
+            /** @see RelativeRiskRange1D */
             template <class A> std::unique_ptr<const RelativeRisk<A>> make_range_1d(std::shared_ptr<const typename RelativeRiskRange1D<A>::functor_t> functor, const std::vector<double>& thresholds, const std::vector<RelativeRiskValueUnbound>& values) {
                 return std::unique_ptr<const RelativeRisk<A>>(new RelativeRiskRange1D<A>(functor, thresholds, values));
             }
 
-            /*! \see RelativeRiskFromDispatcher */
+            /** @see RelativeRiskFromDispatcher */
             template <class A> std::unique_ptr<const RelativeRisk<A>> make_from_dispatcher(std::shared_ptr<const Dispatcher<A, RelativeRiskValueUnbound>> dispatcher) {
                 return std::unique_ptr<const RelativeRisk<A>>(new RelativeRiskFromDispatcher<A>(dispatcher));
             }

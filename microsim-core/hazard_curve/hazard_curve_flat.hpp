@@ -11,11 +11,11 @@
 
 namespace averisera {
     namespace microsim {
-        /*! \brief Hazard curve with constant hazard rate. */
+        /** @brief Hazard curve with constant hazard rate. */
         class HazardCurveFlat: public HazardCurve {
         public:
-            /*!
-            \param rate >= 0
+            /**
+            @param rate >= 0
             */
             HazardCurveFlat(double rate)
             : _rate(rate)
@@ -54,8 +54,8 @@ namespace averisera {
                 return _rate;
             }
             
-            /*!
-            \param rate >= 0
+            /**
+            @param rate >= 0
             */
             void set_rate(double rate) {
                 assert(rate >= 0);

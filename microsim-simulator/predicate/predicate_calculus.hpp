@@ -1,7 +1,7 @@
 #ifndef __AVERISERA_MICROSIM_PREDICATE_CALCULUS_H
 #define __AVERISERA_MICROSIM_PREDICATE_CALCULUS_H
 
-/*! Defines both PredAnd and PredOr */
+/** Defines both PredAnd and PredOr */
 
 #include "core/preconditions.hpp"
 #include <algorithm>
@@ -13,13 +13,13 @@
 
 namespace averisera {
     namespace microsim {
-        /*! \brief Logical product of two predicates
+        /** @brief Logical product of two predicates
 		*/
 		template <class T> class PredAnd: public Predicate < T > {
 		public:
-			/*!
-			\param[in] predicates list of predicates
-			\throw std::domain_error If any predicate is null or predicates.empty()
+			/**
+			@param[in] predicates list of predicates
+			@throw std::domain_error If any predicate is null or predicates.empty()
 			*/
 			PredAnd(std::initializer_list<std::shared_ptr<const Predicate<T>>> predicates) 
 				: _predicates(predicates), _always_true(is_always_true()), _always_true_out_of_context(is_always_true_out_of_context())				
@@ -31,9 +31,9 @@ namespace averisera {
 				});
 			}
 
-            /*!
-			\param[in] predicates vector of predicates
-			\throw std::domain_error If any predicate is null
+            /**
+			@param[in] predicates vector of predicates
+			@throw std::domain_error If any predicate is null
 			*/
 			PredAnd(const std::vector<std::shared_ptr<const Predicate<T>>>& predicates) 
 				: _predicates(predicates), _always_true(is_always_true()), _always_true_out_of_context(is_always_true_out_of_context())
@@ -45,9 +45,9 @@ namespace averisera {
 				});
 			}
 
-            /*! Move constructor
-              \param[in] predicates List of predicates
-              \throw std::domain_error If any predicate is null
+            /** Move constructor
+              @param[in] predicates List of predicates
+              @throw std::domain_error If any predicate is null
 			*/
             PredAnd(std::vector<std::shared_ptr<const Predicate<T>>>&& predicates) {
 				check_that(!predicates.empty(), "PredAnd: no predicates");
@@ -139,13 +139,13 @@ namespace averisera {
             }
 		};
 
-        /*! \brief Logical sum of two predicates
+        /** @brief Logical sum of two predicates
          */
 		template <class T> class PredOr : public Predicate<T> {
 		public:
-            /*!
-			\param[in] predicates list of predicates
-			\throw std::domain_error If any predicate is null
+            /**
+			@param[in] predicates list of predicates
+			@throw std::domain_error If any predicate is null
 			*/
 			PredOr(std::initializer_list<std::shared_ptr<const Predicate<T>>> predicates) 
 				: _predicates(predicates), _always_true(is_always_true()), _always_true_out_of_context(is_always_true_out_of_context())
@@ -157,9 +157,9 @@ namespace averisera {
 				});
 			}
 
-			/*!
-              \param[in] predicates List of predicates
-              \throw std::domain_error If any predicate is null
+			/**
+              @param[in] predicates List of predicates
+              @throw std::domain_error If any predicate is null
 			*/
 			PredOr(const std::vector<std::shared_ptr<const Predicate<T>>>& predicates)
 				: _predicates(predicates), _always_true(is_always_true()), _always_true_out_of_context(is_always_true_out_of_context())
@@ -171,9 +171,9 @@ namespace averisera {
 					});
                 }
 
-            /*! Move constructor
-              \param[in] predicates List of predicates
-              \throw std::domain_error If any predicate is null
+            /** Move constructor
+              @param[in] predicates List of predicates
+              @throw std::domain_error If any predicate is null
 			*/
             PredOr(std::vector<std::shared_ptr<const Predicate<T>>>&& predicates) {
 				check_that(!predicates.empty(), "PredOr: no predicates");
@@ -267,13 +267,13 @@ namespace averisera {
 			bool require_alive_;
 		};
 
-        /*! \brief Logical negation of a predicate
+        /** @brief Logical negation of a predicate
 		*/
 		template <class T> class PredNot : public Predicate < T > {
 		public:
-			/*!
-			\param[in] pred Predicate
-			\throw std::domain_error If param is null
+			/**
+			@param[in] pred Predicate
+			@throw std::domain_error If param is null
 			*/
 			PredNot(std::shared_ptr<const Predicate<T>> pred)
 				: _pred(pred)

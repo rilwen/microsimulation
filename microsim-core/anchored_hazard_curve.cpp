@@ -325,7 +325,7 @@ namespace averisera {
 			}
 		}
 
-        /*! AnchoredHazardCurve constructed from data described with periods */
+        /** AnchoredHazardCurve constructed from data described with periods */
         class AnchoredHazardCurveFromPeriods: public AnchoredHazardCurve {
         public:
 			AnchoredHazardCurveFromPeriods(Date start,
@@ -396,7 +396,7 @@ namespace averisera {
 			const std::vector<HazardRateMultiplier> _multipliers;
         };
 
-        /*! AnchoredHazardCurve constructed from data described with absolute dates */
+        /** AnchoredHazardCurve constructed from data described with absolute dates */
         class AnchoredHazardCurveFromDates: public AnchoredHazardCurve {
         public:
 			AnchoredHazardCurveFromDates(Date start,

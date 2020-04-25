@@ -5,23 +5,23 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Simple HistoryUser implementation which stores a vector of requirements */
+        /** Simple HistoryUser implementation which stores a vector of requirements */
         template <class T> class HistoryUserSimple: public HistoryUser<T> {
         public:
             using typename HistoryUser<T>::use_req_t;
             using typename HistoryUser<T>::use_reqvec_t;
 
-            /*! Create a single history user */
+            /** Create a single history user */
             HistoryUserSimple(const std::string& name)
                 : HistoryUserSimple(use_reqvec_t(1, name)) {
             }
 
-            /*! Create a user for multiple histories -- most general case */
+            /** Create a user for multiple histories -- most general case */
             HistoryUserSimple(use_reqvec_t&& requirements) noexcept
                 : _requirements(std::move(requirements)) {
             }
 
-            /*! Insert names
+            /** Insert names
             */
             template <class SI> HistoryUserSimple(SI names_begin, const SI names_end) {
                 while (names_begin != names_end) {
@@ -30,7 +30,7 @@ namespace averisera {
                 }
             }
 
-			/*! Move constructor */
+			/** Move constructor */
 			HistoryUserSimple(HistoryUserSimple&& other) noexcept
 				: _requirements(std::move(other._requirements)) {
 				other._requirements.clear();

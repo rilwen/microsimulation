@@ -10,9 +10,9 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! StitchedMarkovModel with a simple schedule
+		/** StitchedMarkovModel with a simple schedule
 
-		\tparam S State class (unsigned int type)
+		@tparam S State class (unsigned int type)
 		*/
 		template <class S = unsigned int> class StitchedMarkovModelWithSchedule {
 		public:
@@ -20,11 +20,11 @@ namespace averisera {
 			typedef typename model_type::state_type state_type;
 			//typedef StitchedMarkovModel::time_type time_type;
 
-			/*!
-			\param base Base models
-			\param period Period of the models
-			\param start_date Date when the 1st model is initialised
-			\param cache_end_date First date for which we do not cache the extrapolated state probabilities & CDF
+			/**
+			@param base Base models
+			@param period Period of the models
+			@param start_date Date when the 1st model is initialised
+			@param cache_end_date First date for which we do not cache the extrapolated state probabilities & CDF
 			*/
 			StitchedMarkovModelWithSchedule(const model_type& base, Period period, Date start_date, Date cache_end_date);
 
@@ -59,7 +59,7 @@ namespace averisera {
 
 			Eigen::VectorXd calc_state_distribution(Date d) const;
 
-			/*! Draw state from distribution returned by calc_state_distribution(d) 
+			/** Draw state from distribution returned by calc_state_distribution(d) 
 			*/
 			state_type draw_future_state(Date d, double u) const;
 		private:

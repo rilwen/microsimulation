@@ -11,33 +11,33 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Initialiser which bootstraps a population from a set of Actor objects. */
+        /** Initialiser which bootstraps a population from a set of Actor objects. */
         class InitialiserBootstrapping : public Initialiser {
         public:  
-			/*! Used to sample persons */
+			/** Used to sample persons */
 			class PersonDataSampler {
 			public:
 				virtual ~PersonDataSampler() {}
 
-				/*! Return sample size */
+				/** Return sample size */
 				virtual size_t sample_size() const = 0;
 
-				/*! Return idx-th person from the sample
-				\param idx idx < sample_size() */
+				/** Return idx-th person from the sample
+				@param idx idx < sample_size() */
 				virtual const PersonData& sample_person(size_t idx) const = 0;
 
-				/*! Find index of person with given ID or throw std::out_of_range if no such ID in sample */
+				/** Find index of person with given ID or throw std::out_of_range if no such ID in sample */
 				virtual size_t find_by_id(Actor::id_t id) const = 0;
 			};
 
-            /*!
-            \param sample_persons Sample of PersonData objects to draw from. Cannot be empty.
-            \throw std::domain_error
+            /**
+            @param sample_persons Sample of PersonData objects to draw from. Cannot be empty.
+            @throw std::domain_error
             */
             InitialiserBootstrapping(std::unique_ptr<PersonDataSampler>&& person_data_sampler);
 
-            /*! \param sample_persons Sample of PersonData objects to draw from. Cannot be empty.
-            \param person_perturbations Vector of perturbations to apply to each bootstrapped PersonData object. Elements cannot be null.
+            /** @param sample_persons Sample of PersonData objects to draw from. Cannot be empty.
+            @param person_perturbations Vector of perturbations to apply to each bootstrapped PersonData object. Elements cannot be null.
             */
             InitialiserBootstrapping(std::unique_ptr<PersonDataSampler>&& person_data_sampler, std::vector<std::unique_ptr<const DataPerturbation<PersonData>>>&& person_perturbations);
 
@@ -61,11 +61,11 @@ namespace averisera {
 				std::vector<PersonData> sample_persons_;
 			};
 
-			/*! Stores references to Person sample and ImmutableContext. Converts Person to PersonData on demand. */
+			/** Stores references to Person sample and ImmutableContext. Converts Person to PersonData on demand. */
 			class PersonDataSamplerFromPersons : public PersonDataSampler {
 			public:
-				/*! \param sample_persons Non-empty vector of pointers to Person objects, sorted by ID 
-				\throw std::domain_error If sample_persons is empty */
+				/** @param sample_persons Non-empty vector of pointers to Person objects, sorted by ID 
+				@throw std::domain_error If sample_persons is empty */
 				PersonDataSamplerFromPersons(const std::vector<std::shared_ptr<Person>>& sample_persons, const ImmutableContext& imm_ctx);
 
 				size_t sample_size() const override {
@@ -89,12 +89,12 @@ namespace averisera {
 				return person_data_sampler_->sample_person(idx);
 			}
 
-			/*! Find PersonData with given ID or throw std::out_of_range if no such ID in sample */
+			/** Find PersonData with given ID or throw std::out_of_range if no such ID in sample */
 			size_t find_by_id(Actor::id_t id) const {
 				return person_data_sampler_->find_by_id(id);
 			}
 
-            /*! Add copy of person at the back of added_persons. Break all mother/child links. */
+            /** Add copy of person at the back of added_persons. Break all mother/child links. */
             static void add_copy(std::vector<PersonData>& added_persons, const PersonData& person, const Contexts& ctx);
         private:
 			std::unique_ptr<PersonDataSampler> person_data_sampler_;            

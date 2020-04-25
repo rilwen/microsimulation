@@ -12,16 +12,16 @@ namespace averisera {
         
         class Actor;
         
-        /*! Enforces a multidimensional distribution of several variables
+        /** Enforces a multidimensional distribution of several variables
          * 
-         * \tparam T Derived from Actor
+         * @tparam T Derived from Actor
          */
         template <class T> class OperatorEnforcerMulti: public Operator<T> {
             //static_assert(std::is_base_of<Actor, T>::value, "T must be derived from Actor");
         public:
-            /*! 
-              \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-              \throw std::domain_error If predicate or any of the distributions is null. If variable is empty. If variables.size() != distributions[i].dim() for any i, or if variables.size() != history_factories.size(). If any history factory is null.
+            /** 
+              @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+              @throw std::domain_error If predicate or any of the distributions is null. If variable is empty. If variables.size() != distributions[i].dim() for any i, or if variables.size() != history_factories.size(). If any history factory is null.
              */
             OperatorEnforcerMulti(const std::vector<std::string>& variables, std::shared_ptr<const Predicate<T>> predicate, const std::vector<std::shared_ptr<const MultivariateDistribution>>& distributions,
                                   const std::vector<HistoryFactory::factory_t>& history_factories, std::unique_ptr<Schedule>&& schedule);
@@ -32,7 +32,7 @@ namespace averisera {
             
             void apply(const std::vector<std::shared_ptr<T>>& selected, const Contexts& contexts) const override;
 
-            /*! Dimension of the enforced distributions */
+            /** Dimension of the enforced distributions */
             unsigned int dim() const {
                 return static_cast<unsigned int>(_variables.size());
             }

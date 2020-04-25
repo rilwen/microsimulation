@@ -12,13 +12,13 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Way to encoude RelativeRiskValue with Type == SCALABLE without using dates */
+        /** Way to encoude RelativeRiskValue with Type == SCALABLE without using dates */
         struct RelativeRiskValueUnbound {
-            /*! Create default value with 1.0 value */
+            /** Create default value with 1.0 value */
             RelativeRiskValueUnbound();
 
             /*
-              \throw std::domain_error If value < 0 or period <= 0
+              @throw std::domain_error If value < 0 or period <= 0
             */
             RelativeRiskValueUnbound(double v, Period p);
 
@@ -28,10 +28,10 @@ namespace averisera {
             Period period;
         };
 	
-        /*! Relative risk of some event */       
+        /** Relative risk of some event */       
         template <class A> class RelativeRisk: public Functor<A, RelativeRiskValue> {
         public:
-            /*! Returns scalable RelativeRiskValue by default */
+            /** Returns scalable RelativeRiskValue by default */
             RelativeRiskValue operator()(const A& arg, const Contexts& ctx) const override {
                 const Date begin = ctx.asof();
                 const RelativeRiskValueUnbound ru = calc_relative_risk_unbound(arg, ctx);

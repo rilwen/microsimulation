@@ -6,13 +6,13 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Dispatcher which always returns the default value */
+        /** Dispatcher which always returns the default value */
         template <class A, class H> class DispatcherConstant: public Dispatcher<A, H> {
         public:
-            /*!
-             * \param[in] dflt Default value to return
-             * \param[in] pred Predicate
-             * \throw std::domain_error If pred is null
+            /**
+             * @param[in] dflt Default value to return
+             * @param[in] pred Predicate
+             * @throw std::domain_error If pred is null
              */
             DispatcherConstant(H dflt, std::shared_ptr<const Predicate<A>> pred)
             : _dflt(dflt), _pred(pred) {
@@ -37,7 +37,7 @@ namespace averisera {
                 return _pred;
             }
 
-			/*! For testing */
+			/** For testing */
 			const H& value() const {
 				return _dflt;
 			}

@@ -11,15 +11,15 @@ namespace averisera {
     class Distribution;
     
     namespace microsim {
-        /*! OperatorIndividual which increments the variable by drawing the delta from a distribution.
+        /** OperatorIndividual which increments the variable by drawing the delta from a distribution.
          * Non-instantaneous.
-		 * \tparam T derived from Actor
+		 * @tparam T derived from Actor
          */
         template <class T> class OperatorIncrementer: public OperatorIndividual<T> {
             //static_assert(std::is_base_of<Actor, T>::value, "T must be derived from Actor");
         public:
-            /*! \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule. 
-              \throw std::domain_error If predicate or any of the distributions is null. If variable is empty.
+            /** @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule. 
+              @throw std::domain_error If predicate or any of the distributions is null. If variable is empty.
              */
             OperatorIncrementer(const std::string& variable, std::shared_ptr<const Predicate<T>> predicate, const std::vector<std::shared_ptr<const Distribution>>& distributions,
                                 std::unique_ptr<Schedule>&& schedule);
@@ -28,7 +28,7 @@ namespace averisera {
                 return *_predicate;
             }
             
-            /*! \throw std::out_of_range If not enough distributions */
+            /** @throw std::out_of_range If not enough distributions */
             void apply(const std::shared_ptr<T>& obj, const Contexts& contexts) const override;
 
             bool active(Date date) const override {

@@ -17,90 +17,90 @@ namespace averisera {
         template <class T> class Predicate;        
 		enum class Sex : uint8_t;
 
-		/*! \brief Functions to make predicates.
+		/** @brief Functions to make predicates.
 
          */
 		namespace PredicateFactory {
-            /*! \see PredAnd */
+            /** @see PredAnd */
 			template <class T> std::unique_ptr<const Predicate<T>> make_and(std::initializer_list<std::shared_ptr<const Predicate<T>>> predicates);
 
-			/*! \see PredAnd */
+			/** @see PredAnd */
 			template <class T> std::unique_ptr<const Predicate<T>> make_and(std::unique_ptr<const Predicate<T>>&& p1, std::unique_ptr<const Predicate<T>>&& p2);
 
-			/*! \see PredAnd */
+			/** @see PredAnd */
 			template <class T> std::unique_ptr<const Predicate<T>> make_and(std::shared_ptr<const Predicate<T>> p1, std::shared_ptr<const Predicate<T>> p2) {
 				return make_and({ p1, p2 });
 			}
 
-            /*! \see PredOr */
+            /** @see PredOr */
 			template <class T> std::unique_ptr<const Predicate<T>> make_or(std::initializer_list<std::shared_ptr<const Predicate<T>>> predicates);
 
-            /*! \see PredOr */
+            /** @see PredOr */
 			template <class T> std::unique_ptr<const Predicate<T>> make_or(const std::vector<std::shared_ptr<const Predicate<T>>>& predicates);
 
-            /*! \see PredOr */
+            /** @see PredOr */
 			template <class T> std::unique_ptr<const Predicate<T>> make_or(std::vector<std::shared_ptr<const Predicate<T>>>&& predicates);
 			
-            /*! \see PredNot */
+            /** @see PredNot */
 			template <class T> std::unique_ptr<const Predicate<T>> make_not(std::shared_ptr<const Predicate<T>> pred);
 
-			/*! \see PredNot */
+			/** @see PredNot */
 			template <class T> std::unique_ptr<const Predicate<T>> make_not(std::unique_ptr<const Predicate<T>>&& pred) {
 				return make_not(std::shared_ptr<const Predicate<T>>(std::move(pred)));
 			}
 
-            /*! \see PredYearOfBirth */
+            /** @see PredYearOfBirth */
 			std::unique_ptr<const Predicate<Person>> make_year_of_birth(int min_year, int max_year, bool alive = true);
 
-            /*! \see PredAge */
+            /** @see PredAge */
             std::unique_ptr<const Predicate<Person>> make_age(unsigned int min_age, unsigned int max_age, bool alive = true);
 
-			/*! \see PredAge */
+			/** @see PredAge */
 			std::unique_ptr<const Predicate<Person>> make_min_age(unsigned int min_age, bool alive = true);
 
-			/*! \see PredAge */
+			/** @see PredAge */
 			std::unique_ptr<const Predicate<Person>> make_max_age(unsigned int max_age, bool alive = true);
 
-            /*! \see PredEthnicity */
+            /** @see PredEthnicity */
 			std::unique_ptr<const Predicate<Person>> make_ethnicity(PersonAttributes::ethnicity_t from, PersonAttributes::ethnicity_t to, bool alive);
 
-			/*! \see PredEthnicity */
+			/** @see PredEthnicity */
 			std::unique_ptr<const Predicate<Person>> make_ethnicity(std::unordered_set<PersonAttributes::ethnicity_t>&& allowed, bool alive);
 
-			/*! \see PredEthnicity */
+			/** @see PredEthnicity */
 			std::unique_ptr<const Predicate<Person>> make_ethnicity(const std::unordered_set<PersonAttributes::ethnicity_t>& allowed, bool alive);
 
-            /*! \see PredSex */
+            /** @see PredSex */
 			std::unique_ptr<const Predicate<Person>> make_sex(Sex sex, bool alive = true);
 
-			/*! \see PredSex 
+			/** @see PredSex 
 			Returns a shared pointer to save memory
 			*/
 			std::shared_ptr<const Predicate<Person>> make_sex_shared(Sex sex, bool alive);
 
-            /*! \see PredAlive */
+            /** @see PredAlive */
             std::unique_ptr<const Predicate<Person>> make_alive();
 
-            /*! \see PredPregnancy */
+            /** @see PredPregnancy */
             std::unique_ptr<const Predicate<Person>> make_pregnancy(Pregnancy::State state, bool alive, bool at_start);
 
-			/*! \see PredImmigrationDate */
+			/** @see PredImmigrationDate */
 			std::unique_ptr<const Predicate<Person>> make_immigration_date(Date from, Date to, bool allow_non_immigrants, bool require_alive);
                         
-            /*! Make a Predicate which always returns true 
-            \see PredTrue
+            /** Make a Predicate which always returns true 
+            @see PredTrue
             */
             template <class T> std::unique_ptr<const Predicate<T>> make_true();
 
-            /*! \see PredVariableRange */
+            /** @see PredVariableRange */
             template <class T, class V> std::unique_ptr<const Predicate<T>> make_variable_range(const std::string& variable, V min, V max, bool accept_missing = false);            
 
-			/*! \see PredAsof */
+			/** @see PredAsof */
 			template <class T> std::unique_ptr<const Predicate<T>> make_asof(Date begin, Date end);
 
-			/*! Make a predicate selecting a person from a cohort
-			\param alive If true, select only alive persons
-			\param min_age Minimum age (0 for no minimum)
+			/** Make a predicate selecting a person from a cohort
+			@param alive If true, select only alive persons
+			@param min_age Minimum age (0 for no minimum)
 			*/
 			std::unique_ptr<const Predicate<Person>> make_cohort(const std::map<std::string, std::shared_ptr<const Predicate<Person>>> ethnic_predicates, Cohort::yob_ethn_sex_cohort_type cohort, bool alive, unsigned int min_age);
 		}

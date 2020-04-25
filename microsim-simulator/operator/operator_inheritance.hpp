@@ -21,35 +21,35 @@ namespace averisera {
         class Person;
         template <class T> class Predicate;        
 
-        /*! Operator which implements the inheritance of one or more variables from the mother.
+        /** Operator which implements the inheritance of one or more variables from the mother.
          */
         class OperatorInheritance: public Operator<Person> {
         public:
-            /*! Where in time the mother's distribution is taken from */
+            /** Where in time the mother's distribution is taken from */
             class ReferenceDateType {
             public:
                 virtual ~ReferenceDateType();
 
-                /*! Return the reference date, from which parent's data affect the child via inheritance */
+                /** Return the reference date, from which parent's data affect the child via inheritance */
                 virtual Date reference_date(const Person& parent, const Person& child, const Contexts& ctx) const = 0;
 
-                static const std::shared_ptr<const ReferenceDateType> CONCEPTION; /*!< Return conception date */
-                static const std::shared_ptr<const ReferenceDateType> BIRTH; /*!< Return birth date */
+                static const std::shared_ptr<const ReferenceDateType> CONCEPTION; /**< Return conception date */
+                static const std::shared_ptr<const ReferenceDateType> BIRTH; /**< Return birth date */
             };          
             
-            /*!
-              \param variables Names of inherited, correlated variables (size = N)
-              \param predicate Operator predicate
-              \param mother_distributions Distributions of N variables for the mother as of the date of birth of the child. Each row corresponds
+            /**
+              @param variables Names of inherited, correlated variables (size = N)
+              @param predicate Operator predicate
+              @param mother_distributions Distributions of N variables for the mother as of the date of birth of the child. Each row corresponds
               to a simulation date.
-              \param child_distributions Distributions of N variables for the child at the age when we set the variables. Each row corresponds
+              @param child_distributions Distributions of N variables for the child at the age when we set the variables. Each row corresponds
               to a simulation date.
-              \param copulas Copulas linking mother and child distributions, with dim = 2 * N. First N copula factors are mother
+              @param copulas Copulas linking mother and child distributions, with dim = 2 * N. First N copula factors are mother
               variables, followed by N child variables. Each copula corresponds to a simulation date.
-              \param date_offset Index of the first simulation date when the operator is going to be applied.
-              \param ref_date_type Reference date type
-              \param history_factories Vector of history factories
-              \throws std::domain_error If dimensions do not match or a pointer is null
+              @param date_offset Index of the first simulation date when the operator is going to be applied.
+              @param ref_date_type Reference date type
+              @param history_factories Vector of history factories
+              @throws std::domain_error If dimensions do not match or a pointer is null
              */
             OperatorInheritance(const std::vector<std::string>& variables, std::shared_ptr<const Predicate<Person>> predicate,
                                 const Array2D<std::shared_ptr<const Distribution>>& mother_distributions,

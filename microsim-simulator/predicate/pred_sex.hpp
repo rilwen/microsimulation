@@ -12,11 +12,11 @@ namespace averisera {
 		class Person;
 		enum class Sex: uint8_t;
 
-		/*! Select Person with given sex
+		/** Select Person with given sex
 		*/
 		class PredSex : public Predicate < Person > {
 		public:
-            /*! \param[in] Person must be alive */
+            /** @param[in] Person must be alive */
 			PredSex(Sex sex, bool alive = true);
 			bool select(const Person& obj, const Contexts& contexts) const override;
 			bool select_alive(const Person& obj, const Contexts& contexts) const override {

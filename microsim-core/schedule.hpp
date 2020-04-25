@@ -18,99 +18,99 @@ namespace averisera {
         struct ScheduleDefinition;
         
         
-        /*! \brief Describes the schedule of a simulation */
+        /** @brief Describes the schedule of a simulation */
         class Schedule {
         public:
-            typedef SchedulePeriod period_t; /*!< Period type */
+            typedef SchedulePeriod period_t; /**< Period type */
             typedef std::vector<period_t>::const_iterator const_iterator;
 			typedef size_t index_t;
             
-            /*! Empty schedule */
+            /** Empty schedule */
             Schedule();
 
             Schedule(const Schedule&) = default;
 
-            /*! Move constructor */
+            /** Move constructor */
             Schedule(Schedule&& other) noexcept;
             
-            /*! Construct a schedule from a definition.
-             * \throw std::domain_error If schedule definition is invalid.
+            /** Construct a schedule from a definition.
+             * @throw std::domain_error If schedule definition is invalid.
              */
             explicit Schedule(const ScheduleDefinition& definition);
 
-            /*! Quick and dirty schedule from a series of dates. If passed vector of size 1, 
+            /** Quick and dirty schedule from a series of dates. If passed vector of size 1, 
               constructs a 1-period Schedule with start = end.
-              \throw std::domain_error If dates is empty or dates are not strictly increasing
+              @throw std::domain_error If dates is empty or dates are not strictly increasing
              */
             explicit Schedule(const std::vector<Date>& dates);
             
-            /*! Verify that the ScheduleDefinition is valid. */
+            /** Verify that the ScheduleDefinition is valid. */
             static bool valid(const ScheduleDefinition& definition);
             
-            /*! Const iterator to first period */
+            /** Const iterator to first period */
             const_iterator begin() const {
                 return _periods.begin();
             }
             
-            /*! Const iterator to one past last period */
+            /** Const iterator to one past last period */
             const_iterator end() const {
                 return _periods.end();
             }
             
-            /*! Number of periods */
+            /** Number of periods */
             index_t size() const {
                 return _size;
             }
 
-            /*! Number of dates */
+            /** Number of dates */
             index_t nbr_dates() const {
                 return _nbr_dates;
             }
             
-            /*! Start date of the schedule */
+            /** Start date of the schedule */
             Date start_date() const {
                 return _periods.front().begin;
             }
             
-            /*! End date of the schedule */
+            /** End date of the schedule */
             Date end_date() const {
                 return _periods.back().end;
             }
             
-            /*! Return a period
-             * \param[in] idx Period index
+            /** Return a period
+             * @param[in] idx Period index
              */
             const period_t& operator[](index_t idx) const {				
 				assert(idx < _periods.size());
                 return _periods[idx];
             }
             
-            /*! Return i-th date, where 0 <= i <= size() 
+            /** Return i-th date, where 0 <= i <= size() 
              * Does not check the index value for speed.
              */
             Date date(index_t idx) const;
 
-            /*! Is the schedule empty? */
+            /** Is the schedule empty? */
             bool empty() const {
                 return _periods.empty();
             }
 
-            /*! Return the index of this date in the schedule.              
-              \throw std::out_of_range If the date is not in the schedule */
+            /** Return the index of this date in the schedule.              
+              @throw std::out_of_range If the date is not in the schedule */
             index_t index(Date date) const;
 
-			/*! Return such i that date(i) <= d < date(i + 1) or throw std::out_of_range if not found */
+			/** Return such i that date(i) <= d < date(i + 1) or throw std::out_of_range if not found */
 			index_t find_containing_period(Date d) const;
 
-            /*! Is the date in the schedule? */
+            /** Is the date in the schedule? */
             bool contains(Date date) const;
 
-            /*! Is every date in other schedule contained in this? */
+            /** Is every date in other schedule contained in this? */
             bool contains(const Schedule& other) const;
 
 			bool operator==(const Schedule& other) const;
 
-            /*! Return a vector of years in which the schedule has simulation dates. */
+            /** Return a vector of years in which the schedule has simulation dates. */
             template <class YearType> std::vector<YearType> get_years() const {
 				const size_t max_nbr_years = static_cast<size_t>(end_date().year() - start_date().year());
                 std::vector<YearType> years;
@@ -120,7 +120,7 @@ namespace averisera {
 				return years;
             }
 
-			/*! Return a vector of years in which the schedule has simulation dates. */
+			/** Return a vector of years in which the schedule has simulation dates. */
 			template <class YearType> void get_years(std::vector<YearType>& years) const {
 				for (index_t i = 0; i < nbr_dates(); ++i) {
 					const YearType y = static_cast<YearType>(date(i).year());
@@ -130,7 +130,7 @@ namespace averisera {
 				}				
 			}
 
-			/*! Given a vector of years Y0, Y1, ... extend it back in time by adding Y0-how_much, Y0-how_much+1, ... in front */
+			/** Given a vector of years Y0, Y1, ... extend it back in time by adding Y0-how_much, Y0-how_much+1, ... in front */
 			template <class YearType, class I> static std::vector<YearType> extend_back(const std::vector<YearType>& years, const I how_much) {
 				check_that(!years.empty(), "Years vector is empty");
 				std::vector<YearType> new_years(years.size() + how_much);

@@ -19,17 +19,17 @@ namespace averisera {
 			return get_switch_date(year, 4);
 		}*/
 
-		static const Date COMMON_TRACK_START = get_switch_date(1953, 12); /*!< First DOB at which females and males share common SPA */
+		static const Date COMMON_TRACK_START = get_switch_date(1953, 12); /**< First DOB at which females and males share common SPA */
 
 		typedef TimeSeries<Date, Date> date_date_series_type;
 		typedef TimeSeries<Date, Period> date_age_series_type;
 
-		/*!
-		\param start_x Start of X range (inclusive)
-		\param end_x End of X range (exclusive)
-		\param start_y Start of Y range (inclusive)
-		\param delta_x X range step
-		\param delta_y Y range step
+		/**
+		@param start_x Start of X range (inclusive)
+		@param end_x End of X range (exclusive)
+		@param start_y Start of Y range (inclusive)
+		@param delta_x X range step
+		@param delta_y Y range step
 		*/
 		static date_date_series_type make_linear_series(const Date start_x, const Date end_x, const Date start_y, const Period delta_x, const Period delta_y) {
 			Date x = start_x;
@@ -57,16 +57,16 @@ namespace averisera {
 
 		static const Period DELTA_DOB = Period::months(1);
 
-		/*! Make scale for linear SPA (date-based) increase 
-		\param multiplier How many months the retirement date increases per 1 month of date of birth increase */
+		/** Make scale for linear SPA (date-based) increase 
+		@param multiplier How many months the retirement date increases per 1 month of date of birth increase */
 		static date_date_series_type make_spa_scale(const Date start_dob, const Date end_dob, const Date start_spa, unsigned int multiplier) {
 			assert(multiplier);
 			const Period delta_spa = Period::months(multiplier);
 			return make_linear_series(start_dob, end_dob, start_spa, DELTA_DOB, delta_spa);
 		}
 
-		/*! Make scale for linear SPA (age-based) increase
-		\param multiplier How many months the retirement age increases per 1 month of date of birth increase */
+		/** Make scale for linear SPA (age-based) increase
+		@param multiplier How many months the retirement age increases per 1 month of date of birth increase */
 		static date_age_series_type make_spa_scale(const Date start_dob, const Date end_dob, const Period start_spa, unsigned int multiplier) {
 			assert(multiplier);
 			const Period delta_spa = Period::months(multiplier);

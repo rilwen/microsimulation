@@ -8,17 +8,17 @@ namespace averisera {
     namespace microsim {
         template <class A> class Predicate;
 
-        /*!
+        /**
         Dispatches argument to the first value whose predicate selects it.
         */
         template <class A, class H> class DispatcherGroup : public Dispatcher<A, H> {
         public:
-            /*! \param[in] predicates Vector of value predicates. All pointers must be non-null. Non-zero size. Predicates are referenced from first to last, the first one which
+            /** @param[in] predicates Vector of value predicates. All pointers must be non-null. Non-zero size. Predicates are referenced from first to last, the first one which
             matches is used to choose the returned value.
-            \param[in] values Equal size to predicates.
-            \param[in] requires Vector of required features.
-            * \param[in] group_predicate Optional Predicate for the whole operator group. It should be functionally equivalent to logical sum of the predicates of member operators.            
-            * \throw std::domain_error If predicates or values is empty, any pointer in predicates is null or predicates.size() != values.size()
+            @param[in] values Equal size to predicates.
+            @param[in] requires Vector of required features.
+            * @param[in] group_predicate Optional Predicate for the whole operator group. It should be functionally equivalent to logical sum of the predicates of member operators.            
+            * @throw std::domain_error If predicates or values is empty, any pointer in predicates is null or predicates.size() != values.size()
             */
             DispatcherGroup(const std::vector<std::shared_ptr<const Predicate<A>>>& predicates, const std::vector<H>& values, const FeatureUser<Feature>::feature_set_t& requires, std::shared_ptr<const Predicate<A>> group_predicate = nullptr);
 

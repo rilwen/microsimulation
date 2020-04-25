@@ -11,13 +11,13 @@ namespace averisera {
 	namespace microsim {
 		class Person;
 
-		/*! Select Person with ethnicity belonging to some set of values.
+		/** Select Person with ethnicity belonging to some set of values.
 		*/
 		class PredEthnicity : public Predicate < Person > {
 		public:
 			typedef PersonAttributes::ethnicity_t ethnicity_type;
 
-            /* \param[in] alive Person must be alive  */
+            /* @param[in] alive Person must be alive  */
 			PredEthnicity(bool alive);
 
 			bool select(const Person& obj, const Contexts& contexts) const override;
@@ -40,10 +40,10 @@ namespace averisera {
 
 			bool life_signs_ok(const Person& obj, const Contexts& contexts) const;
 
-			/*! Return sorted vector of selected ethnic group indices as int values */
+			/** Return sorted vector of selected ethnic group indices as int values */
 			virtual std::vector<int> get_group_indices() const = 0;
 
-			/*! Suffix naming the method of ethnicity selection */
+			/** Suffix naming the method of ethnicity selection */
 			virtual const char* get_name_suffix() const = 0;
 		};
 	}

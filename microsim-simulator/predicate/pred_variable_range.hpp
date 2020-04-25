@@ -9,18 +9,18 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Predicate selecting Actor implementations with a variable within a range. 
-        \tparam T Derived from Actor 
-        \tparam V Value class (double or int) */
+        /** Predicate selecting Actor implementations with a variable within a range. 
+        @tparam T Derived from Actor 
+        @tparam V Value class (double or int) */
         template <class T, class V = double> class PredVariableRange : public Predicate<T> {
             //static_assert(std::is_base_of<Actor, T>::value, "T must be derived from Actor");
         public:
-            /*!
-            \param variable Variable name
-            \param min Lower end of the range (inclusive)
-            \param max Upper end of the range (inclusive)
-            \param accept_missing Should objects with value unset be selected
-            \throw std::domain_error If min > max or variable is empty
+            /**
+            @param variable Variable name
+            @param min Lower end of the range (inclusive)
+            @param max Upper end of the range (inclusive)
+            @param accept_missing Should objects with value unset be selected
+            @throw std::domain_error If min > max or variable is empty
             */
             PredVariableRange(const std::string& variable, V min, V max, bool accept_missing = false);
 

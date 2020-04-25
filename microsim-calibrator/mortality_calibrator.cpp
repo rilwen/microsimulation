@@ -48,7 +48,7 @@ namespace averisera {
 				return extrapolate_rate(rate, Date(yr_src, 1, 1), Date(static_cast<Date::year_type>(yr_src + 1), 1, 1), Date(yr_dst, 1, 1), Date(static_cast<Date::year_type>(yr_dst + 1), 1, 1));
 			}
 
-			/*!
+			/**
 			All rates in mortality_rates should have the same group == year of birth
 			*/
 			static std::unique_ptr<AnchoredHazardCurve> from_mortality_rates(std::shared_ptr<const Daycount> daycount, const std::vector<cohort_mortality_rate_t>& mortality_rates) {

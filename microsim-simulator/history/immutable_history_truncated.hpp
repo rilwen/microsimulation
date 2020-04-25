@@ -6,13 +6,13 @@
 
 namespace averisera {
     namespace microsim {
-	/*! \brief ImmutableHistory containing all events up to and including a certain date from another history.
+	/** @brief ImmutableHistory containing all events up to and including a certain date from another history.
       For temporary use (stores a reference to original history).
 	 */
 	class ImmutableHistoryTruncated: public ImmutableHistory {
 	public:
-	    /*! \param[in] original Original history before truncation. Only reference is stored.
-	      \param[in] end Truncation date
+	    /** @param[in] original Original history before truncation. Only reference is stored.
+	      @param[in] end Truncation date
 	    */
 	    ImmutableHistoryTruncated(const ImmutableHistory& original, Date end);
 

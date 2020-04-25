@@ -9,16 +9,16 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Relative risk calculated based on the range of another property */
+        /** Relative risk calculated based on the range of another property */
         template <class A> class RelativeRiskRange1D : public RelativeRisk<A> {
         public:
             typedef Functor<A, double> functor_t;
 
-            /*!
-            \param[in] functor Maps arguments to values over the range
-            \param[in] thresholds Vector of thresholds between ranges.
-            \param[in] values Relative risk values for each range
-            \throw std::domain_error If functor is null. If thresholds are not strictly increasing. If values.size() != thresholds.size() + 1. If any rel. risk value is negative.
+            /**
+            @param[in] functor Maps arguments to values over the range
+            @param[in] thresholds Vector of thresholds between ranges.
+            @param[in] values Relative risk values for each range
+            @throw std::domain_error If functor is null. If thresholds are not strictly increasing. If values.size() != thresholds.size() + 1. If any rel. risk value is negative.
             */
             RelativeRiskRange1D(std::shared_ptr<const functor_t> functor, const std::vector<double>& thresholds, const std::vector<RelativeRiskValueUnbound>& values);
 

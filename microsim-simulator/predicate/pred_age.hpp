@@ -10,13 +10,13 @@ namespace averisera {
     namespace microsim {
         class Person;
         
-        /*! \brief Selects Person which has age (in years) within a given range (inclusive on both sides). */
+        /** @brief Selects Person which has age (in years) within a given range (inclusive on both sides). */
         class PredAge: public Predicate<Person> {
         public:
-            /*! \param[in] min_age Minimum age
-             * \param[in] max_age Maximum age
-             \param[in] alive Person must be alive
-             * \throw std::domain_error If min_age > max_age
+            /** @param[in] min_age Minimum age
+             * @param[in] max_age Maximum age
+             @param[in] alive Person must be alive
+             * @throw std::domain_error If min_age > max_age
              */
             PredAge(unsigned int min_age, unsigned int max_age, bool alive = true);
             

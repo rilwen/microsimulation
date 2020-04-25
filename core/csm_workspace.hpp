@@ -129,7 +129,7 @@ namespace averisera {
 			weights(n_weights),
 			p(n_p),
 			state_indices(memory + 1),
-			state_multi_index(memory + 1, this->dim)
+			state_multi_index(memory + 1, n_dim)
 		{
 			if (memory) {
 				prev_state_distr.resize(this->state_dim);

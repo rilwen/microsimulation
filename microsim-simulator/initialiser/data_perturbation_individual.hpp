@@ -3,7 +3,7 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! DataPerturbation which acts on individual data objects */
+		/** DataPerturbation which acts on individual data objects */
 		template <class AD> class DataPerturbationIndividual: public DataPerturbation<AD> {
 		public:
 			void apply(std::vector<AD>& datas, const Contexts& ctx) const override {

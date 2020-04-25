@@ -13,14 +13,14 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Operator composed of a group of operators and a Dispatcher which chooses the correct one for every argument.
+        /** Operator composed of a group of operators and a Dispatcher which chooses the correct one for every argument.
          */
         template <class T> class OperatorGroup: public Operator<T>, public HistoryGeneratorSimple<T> {
         public:
             typedef Dispatcher<T, unsigned int> dispatcher_t;
-            /*! \param[in] operators Operators. 
-             *  \param[in] dispatcher Dispatcher used to choose appropriate operator
-             * \throw std::domain_error If operators is empty, any pointer in it is empty or operators have different values of provides(),
+            /** @param[in] operators Operators. 
+             *  @param[in] dispatcher Dispatcher used to choose appropriate operator
+             * @throw std::domain_error If operators is empty, any pointer in it is empty or operators have different values of provides(),
              * requires() or is_instantaneous(). Also if dispatcher is null.
              */
             OperatorGroup(const std::vector<std::shared_ptr<const Operator<T>>>& operators, std::shared_ptr<dispatcher_t> dispatcher);
@@ -31,7 +31,7 @@ namespace averisera {
                 return *_dispatcher->predicate();
             }           
 
-            /*! Validate that operators are consistent. Used by other classes too. */
+            /** Validate that operators are consistent. Used by other classes too. */
             static void validate(const std::vector<std::shared_ptr<const Operator<T>>>& operators);
 
 			const std::string& name() const override {

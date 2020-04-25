@@ -10,16 +10,16 @@
 
 namespace averisera {
     namespace microsim {
-        /*! For each argument calculate a real quantity and map to the appropriate range */
+        /** For each argument calculate a real quantity and map to the appropriate range */
         template <class T> class DispatcherRange1D: public Dispatcher<T, unsigned int> {
         public:
             typedef double range_value_t;
             typedef Functor<T, range_value_t> functor_t;
             
-            /*!
-             * \param[in] functor Maps arguments to values over the range
-             * \param[in] thresholds Vector of thresholds between ranges.
-             * \throw std::domain_error If functor is null. If thresholds are not strictly increasing.        
+            /**
+             * @param[in] functor Maps arguments to values over the range
+             * @param[in] thresholds Vector of thresholds between ranges.
+             * @throw std::domain_error If functor is null. If thresholds are not strictly increasing.        
              */
             DispatcherRange1D(std::shared_ptr<const functor_t> functor, const std::vector<double>& thresholds)
                 : _functor(functor), _thresholds(thresholds),
@@ -36,7 +36,7 @@ namespace averisera {
                 }
             }
             
-            /*! Return the index of the range, assuming that each range is [ thresholds[i-1], thresholds[i] ). */
+            /** Return the index of the range, assuming that each range is [ thresholds[i-1], thresholds[i] ). */
             unsigned int dispatch(const T& obj, const Contexts& contexts) const override {
                 const double x = (*_functor)(obj, contexts);
                 const auto it = std::upper_bound(_thresholds.begin(), _thresholds.end(), x);

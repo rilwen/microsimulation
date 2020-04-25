@@ -17,9 +17,9 @@
 
 namespace averisera {
     namespace microsim {
-        /* \brief History backed by a TimeSeries
+        /* @brief History backed by a TimeSeries
          * 
-         * \tparam V Value type: double, float or integer type
+         * @tparam V Value type: double, float or integer type
          */
         template <class V> class HistoryTimeSeries : public History {
 //            static_assert(std::is_same<double, typename std::enable_if<std::is_floating_point<V>::value, V>::type

@@ -5,14 +5,14 @@
 namespace averisera {
     class Distribution;
     namespace microsim {
-        /*! Perturbs X returning 
+        /** Perturbs X returning 
           X' = X * exp(P)
           where P has given distribution. */
         template <class AD> class PerturbHistoryValuesDoubleLogarithmic: public PerturbHistoryValuesDouble<AD> {
         public:
-            /*! \param distr Perturbation distribution
-              \throw std::domain_error If distr is null.
-              \see PerturbHistoryValuesDouble
+            /** @param distr Perturbation distribution
+              @throw std::domain_error If distr is null.
+              @see PerturbHistoryValuesDouble
             */
             PerturbHistoryValuesDoubleLogarithmic(const std::string& variable_name, double lower_bound, double upper_bound, std::unique_ptr<const Distribution>&& distr);
         private:

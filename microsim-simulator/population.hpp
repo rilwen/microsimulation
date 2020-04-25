@@ -20,7 +20,7 @@ namespace averisera {
             template <> const std::vector<Actor::shared_ptr<Person>>& get_members(const Population& population);
         }
         
-        /*! \brief Simulated population
+        /** @brief Simulated population
          * 
          * Holds the entire population 
          */
@@ -30,18 +30,18 @@ namespace averisera {
             Population(const Population&) = delete;
             Population& operator=(const Population&) = delete;
 
-            /*! Move constructor */
+            /** Move constructor */
             Population(Population&& other);
 
             /* Import Person objects from PersonData. Moves as much data as possible to save memory. 
 			Sorted added Person objects by ID in ascending order
-            \param keep_ids If false, reset IDs.    
-			\param immigration This is immigration
+            @param keep_ids If false, reset IDs.    
+			@param immigration This is immigration
 			*/
             void import_data(PopulationData& data, const Contexts& ctx, bool keep_ids, bool immigration);
             
-            /*! Get person with given ID.
-             * \return null if not found
+            /** Get person with given ID.
+             * @return null if not found
 */
             Actor::shared_ptr<Person> get_person(Actor::id_t id) const;
             
@@ -49,59 +49,59 @@ namespace averisera {
                 return _persons;
             }
 
-			/*! Return a vector with pointers to persons who are alive at asof date. */
+			/** Return a vector with pointers to persons who are alive at asof date. */
 			std::vector<Actor::shared_ptr<Person>> live_persons(Date asof) const;
 
-            /*! For templated access to members */
+            /** For templated access to members */
             template <class T> const std::vector<std::shared_ptr<T>>& members() const {
                 return get_members<T>(*this);
             }
 
-            /*! Merge in elements of the other population
-              \throw std::logic_error If populations have two same persons or with the same IDs
+            /** Merge in elements of the other population
+              @throw std::logic_error If populations have two same persons or with the same IDs
              */
             void merge(const Population& other);
 
-            /*! Wipe out the population */
+            /** Wipe out the population */
             void wipe_out();
 
-            /*! Transfer selected persons from source population to this. 
-              \param source Source Population
-              \param selector Return true on persons selected for transfer
-              \throw std::logic_error If this population and selected persons from other population have two same persons or with the same IDs
+            /** Transfer selected persons from source population to this. 
+              @param source Source Population
+              @param selector Return true on persons selected for transfer
+              @throw std::logic_error If this population and selected persons from other population have two same persons or with the same IDs
              */
             void transfer_persons(Population& source, const Predicate<Person>& selector, const Contexts& ctx);            
 
-            /*! Find a shared pointer to an Actor-derived object in a vector sorted by IDs. We assume no null pointers.
-            \tparam AD Derived from ActorImpl<T>.
+            /** Find a shared pointer to an Actor-derived object in a vector sorted by IDs. We assume no null pointers.
+            @tparam AD Derived from ActorImpl<T>.
             */
             template <class AD> static typename AD::shared_ptr find_by_id(const std::vector<typename AD::shared_ptr>& persons, Actor::id_t id);
 
-            /*! Add new person.
-            * \throw std::domain_error If new person does not have higher ID than other persons in the population, or pointer is null.
+            /** Add new person.
+            * @throw std::domain_error If new person does not have higher ID than other persons in the population, or pointer is null.
             */
             void add_person(Actor::shared_ptr<Person> person, bool check_id = true);
 
-            /*! Add new persons.
-			\param persons Vector of new persons, sorted by ID in ascending order.
-            * \throw std::domain_error If one of the added pointers is null or persons is not sorted by ID in ascending order
+            /** Add new persons.
+			@param persons Vector of new persons, sorted by ID in ascending order.
+            * @throw std::domain_error If one of the added pointers is null or persons is not sorted by ID in ascending order
             */
             void add_persons(const std::vector<Actor::shared_ptr<Person>>& persons, bool check_ids = true);
 
-			/*! Remove this persons.
-			\param persons Vector of removed persons, sorted by ID in ascending order.
-			\throw std::domain_error If any person in persons is not a member of this population, or is a null pointer.
+			/** Remove this persons.
+			@param persons Vector of removed persons, sorted by ID in ascending order.
+			@throw std::domain_error If any person in persons is not a member of this population, or is a null pointer.
 			*/
 			void remove_persons(const std::vector<Actor::shared_ptr<Person>>& persons);
 
-			/*! Is population empty? */
+			/** Is population empty? */
 			bool empty() const;
 
 			const std::string& name() const {
 				return name_;
 			}
 
-			/*! Sort Person vector by ID in ascending order */
+			/** Sort Person vector by ID in ascending order */
 			static void sort_persons(std::vector<Actor::shared_ptr<Person>>& persons);			
         private:
 			static void merge_persons(std::vector<Actor::shared_ptr<Person>>& dst, const std::vector<Actor::shared_ptr<Person>>& src);
@@ -111,13 +111,13 @@ namespace averisera {
             */
             void import_persons(std::vector<PersonData>& person_datas, const Contexts& ctx, bool keep_ids, bool immigration);
 
-			/*! Sort this persons by ID in ascending order */
+			/** Sort this persons by ID in ascending order */
 			void sort_persons() {
 				sort_persons(_persons);
 			}
 
 			std::string name_;
-            std::vector<Actor::shared_ptr<Person>> _persons; /*!< Persons sorted by ID */
+            std::vector<Actor::shared_ptr<Person>> _persons; /**< Persons sorted by ID */
         };
 
         template <class AD> typename AD::shared_ptr Population::find_by_id(const std::vector<typename AD::shared_ptr>& objects, Actor::id_t id) {

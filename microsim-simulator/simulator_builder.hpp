@@ -16,17 +16,17 @@ namespace averisera {
         class Person;
         class Simulator;
 
-        /*! Helps build Simulator objects */
+        /** Helps build Simulator objects */
         class SimulatorBuilder {
         public:
             SimulatorBuilder();
             
-            /*! Add an Operator acting on Person objects.
-              \throw std::domain_error If op is null */
+            /** Add an Operator acting on Person objects.
+              @throw std::domain_error If op is null */
 			SimulatorBuilder& add_operator(std::shared_ptr<Operator<Person>> op);
 
-			/*! Add an Operator acting on T objects (moves the operator)
-			\throw std::domain_error If op is null */
+			/** Add an Operator acting on T objects (moves the operator)
+			@throw std::domain_error If op is null */
 			template <class T> SimulatorBuilder& add_operator(std::unique_ptr<Operator<T>>&& op) {
 				return add_operator(std::shared_ptr<Operator<T>>(std::move(op)));
 			}
@@ -38,29 +38,29 @@ namespace averisera {
 				return *this;
 			}
 
-            /*! \throw std::domain_error If obs is null */
+            /** @throw std::domain_error If obs is null */
 			SimulatorBuilder& add_observer(std::shared_ptr<Observer> obs);
 
-            /*! Set "add_newborns" property of Simulator (defaulted to true). */
+            /** Set "add_newborns" property of Simulator (defaulted to true). */
 			SimulatorBuilder& set_add_newborns(bool new_value);
 
-			/*! Add required feature */
+			/** Add required feature */
 			SimulatorBuilder& add_required_feature(const Feature& feature);
 
 			SimulatorBuilder& add_required_features(const std::unordered_set<Feature>& features);
 
-			/*! Set initial population size. */
+			/** Set initial population size. */
 			SimulatorBuilder& set_initial_population_size(size_t new_value);
 
-			/*! Set migration generator
-			\throw std::domain_error If migration_generator is null */
+			/** Set migration generator
+			@throw std::domain_error If migration_generator is null */
 			SimulatorBuilder& add_migration_generator(const std::shared_ptr<const MigrationGenerator>& migration_generator);
 
-			/*! Set intermediate Observer results filename */
+			/** Set intermediate Observer results filename */
 			SimulatorBuilder& set_intermediate_observer_results_filename(const std::string& value);
             
-            /*! Builds a Simulator object and clears the state of the builder 
-              \param ctx Contexts to use (moved)			  
+            /** Builds a Simulator object and clears the state of the builder 
+              @param ctx Contexts to use (moved)			  
              */
             Simulator build(Contexts&& ctx);
         private:

@@ -15,18 +15,18 @@
 namespace averisera {
     namespace microsim {
 
-        /*! Operator which simulated the Markov process. */
+        /** Operator which simulated the Markov process. */
         template <class T> class OperatorMarkovModel: public OperatorIndividual<T> {
         public:            
-            /*! Construct the operator as provider of feature = veriable name
-              \param variable Variable name of process history
-              \param markov_model Markov model to apply
-              \param pred Operator predicate
-              \param initialize Whether the operator should initialize an un-initialized object with initial state of the Markov process.
-              \param relative_risks_transitions Array2D in which relative_risks_transitions[from][to] is the relative risk to be applied to the transition
-              \param relative_risks_initial_state Vector of relative risk implementations for each state of Markov process used for initial state selection. Null element means no relative risk.
-              \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-              \throw std::domain_error If pred is null. If relative_risks_initial_state.size() != dim(). If relative_risks_transitions is not a dim() x dim() matrix.
+            /** Construct the operator as provider of feature = veriable name
+              @param variable Variable name of process history
+              @param markov_model Markov model to apply
+              @param pred Operator predicate
+              @param initialize Whether the operator should initialize an un-initialized object with initial state of the Markov process.
+              @param relative_risks_transitions Array2D in which relative_risks_transitions[from][to] is the relative risk to be applied to the transition
+              @param relative_risks_initial_state Vector of relative risk implementations for each state of Markov process used for initial state selection. Null element means no relative risk.
+              @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+              @throw std::domain_error If pred is null. If relative_risks_initial_state.size() != dim(). If relative_risks_transitions is not a dim() x dim() matrix.
             */
             OperatorMarkovModel(const FeatureUser<Feature>::feature_set_t& required,
                                 const std::string& variable,
@@ -37,7 +37,7 @@ namespace averisera {
                                 std::vector<std::shared_ptr<const RelativeRisk<T>>>&& relative_risks_initial_state,
                                 std::unique_ptr<Schedule>&& schedule);
 
-            /*! Dimension of the Markov model */
+            /** Dimension of the Markov model */
             unsigned int dim() const {
                 return _markov_model.dim();
             }
@@ -48,8 +48,8 @@ namespace averisera {
             
             void apply(const std::shared_ptr<T>& obj, const Contexts& contexts) const override;
 
-            /*! Apply a single transition without initialising the state
-              \param rrvs Vector to store relative risk values in, must have size() == dim()
+            /** Apply a single transition without initialising the state
+              @param rrvs Vector to store relative risk values in, must have size() == dim()
              */
             std::pair<Date, unsigned int> update_date_and_state(const T& obj, const Contexts& contexts, const std::pair<Date, unsigned int>& current_date_state, std::vector<double>& rrvs) const {
                 const unsigned int from = current_date_state.second;                
@@ -57,13 +57,13 @@ namespace averisera {
                 return _markov_model.select_next_state(current_date_state, rrvs, contexts.mutable_ctx().rng().next_uniform());
             }
 
-            /*! Get the last date for which the object has a well-defined state of the Markov process, and the state. */
+            /** Get the last date for which the object has a well-defined state of the Markov process, and the state. */
             virtual std::pair<Date, unsigned int> get_last_date_and_state(const T& obj, const Contexts& ctx) const = 0;
             
-            /*! Is the object's Markov process initialized to some state */
+            /** Is the object's Markov process initialized to some state */
             virtual bool is_initialized(const T& obj, const Contexts& contexts) const = 0;            
 
-            /*! Set the next state */
+            /** Set the next state */
             virtual void set_next_state(T& obj, Date date, unsigned int state, const Contexts& ctx) const = 0;
 
             bool active(Date date) const override {

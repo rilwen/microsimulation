@@ -10,15 +10,15 @@ namespace averisera {
     namespace microsim {
         class PersonAttributes;
 
-        /*! Allows drawing PersonAttributes values */
+        /** Allows drawing PersonAttributes values */
         class PersonAttributesDistribution {
         public:
-            /*! Construct from a distribution which draws values converted using static_cast to values from PersonAttributes.
-              \throw std::domain_error If distr is null or has dimension different than number of values in PersonAttributes.
+            /** Construct from a distribution which draws values converted using static_cast to values from PersonAttributes.
+              @throw std::domain_error If distr is null or has dimension different than number of values in PersonAttributes.
             */
             PersonAttributesDistribution(std::shared_ptr<const GenericDistribution<PersonAttributes>> distr);
 
-            /*! Draw a random set of attributes */
+            /** Draw a random set of attributes */
             PersonAttributes draw(RNG& rng) const;			
         private:
             std::shared_ptr<const GenericDistribution<PersonAttributes>> _distr;

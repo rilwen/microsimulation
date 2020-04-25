@@ -5,23 +5,23 @@
 using namespace averisera;
 using namespace averisera::microsim;
 
-/*! Mock ethnic group classification for testing */
+/** Mock ethnic group classification for testing */
 struct EthnicityMock {
 	enum class Group : PersonAttributes::ethnicity_t {
 		PINK = 0,
 		SALMON,
 		CHAMPAGNE,
 		STRIPED,
-		SIZE /*!< Use it to get the number of other values */
+		SIZE /**< Use it to get the number of other values */
 	};
 
-	/*! Number of groups */
+	/** Number of groups */
 	static const size_t SIZE = static_cast<size_t>(Group::SIZE);
 
-	/*! Name of the classification scheme */
+	/** Name of the classification scheme */
 	static const char* const CLASSIFICATION_NAME;
 
-	/*! Names of groups */
+	/** Names of groups */
 	static const std::array<const char*, SIZE + 1> NAMES;
 };
 
@@ -32,7 +32,7 @@ const std::array<const char*, EthnicityMock::SIZE + 1> EthnicityMock::NAMES = {
 	"SALMON",
 	"CHAMPAGNE",
 	"STRIPED",
-	"" /*!< SIZE */
+	"" /**< SIZE */
 };
 
 std::ostream& operator<<(std::ostream& os, EthnicityMock::Group group) {

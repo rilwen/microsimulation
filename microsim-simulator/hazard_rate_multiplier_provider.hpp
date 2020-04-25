@@ -9,7 +9,7 @@ namespace averisera {
 		public:
 			using Functor<A, HazardRateMultiplier>::operator();
 
-			/*! Deep copy */
+			/** Deep copy */
 			virtual std::unique_ptr<HazardRateMultiplierProvider> clone() const = 0;
 		};
 	}

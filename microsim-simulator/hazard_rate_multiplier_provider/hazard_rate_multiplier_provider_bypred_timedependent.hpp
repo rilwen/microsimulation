@@ -12,13 +12,13 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! HazardRateMultiplierProvider which matches A with a vector of predicates and returns a time-dependent HazardRateMultiplier for the first Predicate which selects A. Time-dependent HazardRateMultipliers are stored in TimeSeries indexed by Date of simulation. If no Predicate selects A, return default multiplier of 1.0. Predicates are checked in the order they are provided to the constructor. */
+		/** HazardRateMultiplierProvider which matches A with a vector of predicates and returns a time-dependent HazardRateMultiplier for the first Predicate which selects A. Time-dependent HazardRateMultipliers are stored in TimeSeries indexed by Date of simulation. If no Predicate selects A, return default multiplier of 1.0. Predicates are checked in the order they are provided to the constructor. */
 		template <class A> class HazardRateMultiplierProviderByPredTimeDependent: public HazardRateMultiplierProvider<A> {
 		public:
 			typedef TimeSeries<Date, HazardRateMultiplier> hrm_series;
 			typedef std::pair<std::unique_ptr<const Predicate<A>>, hrm_series> pred_hrm_ser_pair;
 
-			/*! \throw std::domain_error If any Predicate is null or TimeSeries is empty */
+			/** @throw std::domain_error If any Predicate is null or TimeSeries is empty */
 			HazardRateMultiplierProviderByPredTimeDependent(std::vector<pred_hrm_ser_pair>&& pairs) {
 				check_that(std::all_of(pairs.begin(), pairs.end(), [](const pred_hrm_ser_pair& p) {
 					return (p.first != nullptr) && (!p.second.empty());

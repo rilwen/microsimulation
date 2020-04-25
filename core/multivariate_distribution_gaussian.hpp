@@ -7,7 +7,7 @@ namespace averisera {
     /** Multivariate Gaussian distribution - rich version with covariance data */
     class MultivariateDistributionGaussian: public MultivariateDistributionGaussianSimple {
     public:
-        /** \see MultivariateDistributionGaussianSimple
+        /** @see MultivariateDistributionGaussianSimple
          */
         MultivariateDistributionGaussian(const Eigen::VectorXd& mean, const Eigen::MatrixXd& covariance);
 

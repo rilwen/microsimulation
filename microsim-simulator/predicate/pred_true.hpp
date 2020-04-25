@@ -6,7 +6,7 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Predicate which always returns true */
+        /** Predicate which always returns true */
         template <class T> class PredTrue: public Predicate<T> {
         public:
             bool select(const T& obj, const Contexts& contexts) const override {

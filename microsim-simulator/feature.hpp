@@ -9,15 +9,15 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Denotes a feature which is required or provided by a FeatureProvider */
+        /** Denotes a feature which is required or provided by a FeatureProvider */
         class Feature {
         public:
             Feature() = default;
 
-            /*! \throw std::domain_error If name is empty */
+            /** @throw std::domain_error If name is empty */
             Feature(const std::string& name);
 
-            /*! \throw std::domain_error If name is empty or null */
+            /** @throw std::domain_error If name is empty or null */
             Feature(const char* name);
 
             Feature(const Feature& other) = default;
@@ -30,7 +30,7 @@ namespace averisera {
 
             bool operator<(const Feature& other) const;
             
-            /*! Return empty feature set; set type must be the same as in FeatureProvider::feature_set_t typedef */
+            /** Return empty feature set; set type must be the same as in FeatureProvider::feature_set_t typedef */
             static const std::unordered_set<Feature>& empty();
             
             static std::unordered_set<Feature> from_names(const std::vector<std::string>& names);

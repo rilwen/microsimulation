@@ -8,19 +8,19 @@ namespace averisera {
     namespace microsim {
         class Person;
 
-        /*! Handles birth: creating new Person objects from Fetus objects */
+        /** Handles birth: creating new Person objects from Fetus objects */
         class OperatorBirth: public OperatorIndividual<Person> {
         public:
-            /*!
-              \param pred Predicate. If null, it is replaced by a predicate selecting live females.
+            /**
+              @param pred Predicate. If null, it is replaced by a predicate selecting live females.
             */
             OperatorBirth(std::shared_ptr<const Predicate<Person>> pred = nullptr);
 
-			/*!
+			/**
 			Generates appropriate predicate selecting women of childbearing age
-			\param min_childbearing_age Minimum childbearing age in years
-			\param max_childbearing_age Maximum childbearing age in years
-			\throw std::domain_error If min_childbearing_age > max_childbearing_age.
+			@param min_childbearing_age Minimum childbearing age in years
+			@param max_childbearing_age Maximum childbearing age in years
+			@throw std::domain_error If min_childbearing_age > max_childbearing_age.
 			*/
 			OperatorBirth(unsigned int min_childbearing_age, unsigned int max_childbearing_age);
             

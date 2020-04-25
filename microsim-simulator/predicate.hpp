@@ -14,7 +14,7 @@ namespace averisera {
     namespace microsim {
         class Contexts;
                 
-        /*! \brief Selects an object based on some criteria.
+        /** @brief Selects an object based on some criteria.
          * 
          * While it may require setting some properties of the object before applying,
          * it is not a FeatureUser.
@@ -23,28 +23,28 @@ namespace averisera {
 
 		 TODO: Predicate should return a list of variables it depends on which would be added to the HistoryUser requirements returned by Operator which uses the Predicate
 
-         \tparam T Object type
+         @tparam T Object type
         */
         template <class T> class Predicate: public Printable {
         public:
             virtual ~Predicate() {}
 
-            /*! Decide whether object is selected or not.
+            /** Decide whether object is selected or not.
 
-              \param[in] obj Object
-              \param[in] contexts Contexts object with additional shared data.
+              @param[in] obj Object
+              @param[in] contexts Contexts object with additional shared data.
 
-              \return True if selected.
+              @return True if selected.
             */
             virtual bool select(const T& obj, const Contexts& contexts) const = 0;
 
-			/*! Select or not, assuming obj is "alive" */
+			/** Select or not, assuming obj is "alive" */
 			virtual bool select_alive(const T& obj, const Contexts& contexts) const {
 				return select(obj, contexts);
 			}
 
-			/*! Ignore null pointers 
-			\tparam U T or const T */
+			/** Ignore null pointers 
+			@tparam U T or const T */
 			template <class U> void select(const std::vector<std::shared_ptr<U>>& objects, const Contexts& contexts, std::vector<std::shared_ptr<U>>& selected) const {
 				for (const auto& ptr : objects) {
 					if (ptr && select(*ptr, contexts)) {
@@ -53,8 +53,8 @@ namespace averisera {
 				}
 			}
 
-			/*! Select assuming every object is "alive". Ignore null pointers.
-			\tparam U T or const T */
+			/** Select assuming every object is "alive". Ignore null pointers.
+			@tparam U T or const T */
 			template <class U> void select_alive(const std::vector<std::shared_ptr<U>>& objects, const Contexts& contexts, std::vector<std::shared_ptr<U>>& selected) const {
 				for (const auto& ptr : objects) {
 					if (ptr && select_alive(*ptr, contexts)) {
@@ -63,13 +63,13 @@ namespace averisera {
 				}
 			}
 
-			/*! Is the Predicate selecting any objects on this date? 
+			/** Is the Predicate selecting any objects on this date? 
 			Must be compatible with the select methods. */
 			virtual bool active(Date) const {
 				return true;
 			}
 
-            /*! Select the object without any context information such as simulation date,
+            /** Select the object without any context information such as simulation date,
               based on its basic properties only. Perform "wide" selection, i.e. if the predicate select() method
               selects objects based on context-sensitive properties (such as current age, current value of variable),
               assume that the context-sensitive selection criteria are met.
@@ -78,40 +78,40 @@ namespace averisera {
             */
             virtual bool select_out_of_context(const T& obj) const = 0;
             
-            /*! Whether select() always returns true. */
+            /** Whether select() always returns true. */
             virtual bool always_true() const {
                 return false;
             }
 
-            /*! Whether select_out_of_context() always returns true. 
+            /** Whether select_out_of_context() always returns true. 
               If always_true() == true, then always_true_out_of_context() must be true as well.
              */
             virtual bool always_true_out_of_context() const {
                 return false;
             }
 
-			/*! Selects only entities which are "alive" (e.g. live persons, active companies, etc.) */
+			/** Selects only entities which are "alive" (e.g. live persons, active companies, etc.) */
 			virtual bool selects_alive_only() const {
 				return false;
 			}
             
-            /*! Create deep copy of the Predicate. Caller is expected to manage the pointer.
+            /** Create deep copy of the Predicate. Caller is expected to manage the pointer.
              */
             virtual Predicate<T>* clone() const = 0;
 
-            /*! Create a new Predicate which selects a union of objects selected by this or other Predicate.
+            /** Create a new Predicate which selects a union of objects selected by this or other Predicate.
               Either Predicate may be copied to achieve that.
-              \throw std::domain_error If other is null
+              @throw std::domain_error If other is null
             */
             virtual std::shared_ptr<const Predicate<T> > sum(std::shared_ptr<const Predicate<T> > other) const;
 
-            /*! Create a new Predicate which selects an intersection of objects selected by this or other Predicate.
+            /** Create a new Predicate which selects an intersection of objects selected by this or other Predicate.
               Either Predicate may be copied to achieve that.
-              \throw std::domain_error If other is null
+              @throw std::domain_error If other is null
             */
             virtual std::shared_ptr<const Predicate<T> > product(std::shared_ptr<const Predicate<T> > other) const;
 
-            /*! Create a new Predicate which negates the current one.
+            /** Create a new Predicate which negates the current one.
              */
             virtual std::shared_ptr<const Predicate<T>> negate() const;
         

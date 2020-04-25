@@ -24,7 +24,7 @@
 //			std::vector<size_t> range_indices; /**< Vector of new value range indices */
 //		};
 //
-//		/** \see PopulationMover::move_between_ranges */
+//		/** @see PopulationMover::move_between_ranges */
 //		void move_between_ranges(std::vector<Member>& population, RNG& rng) const;
 //	private:
 //		size_t ndims_;

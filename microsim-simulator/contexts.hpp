@@ -15,33 +15,33 @@ namespace averisera {
         class ImmutableContext;
         class MutableContext;
         
-        /*! \brief Holds pointers to ImmutableContext and MutableContext. */
+        /** @brief Holds pointers to ImmutableContext and MutableContext. */
         class Contexts {
         public:
-            /*! Default context */
+            /** Default context */
             Contexts();
 
-			/*! Move constructor */
+			/** Move constructor */
 			Contexts(Contexts&& other);
 
-			/*! Move assignment */
+			/** Move assignment */
 			Contexts& operator=(Contexts&& other);
 
             Contexts(const Contexts& other) = delete;
 			Contexts& operator=(const Contexts& other) = delete;
 
-            /*! Contexts with single simulation date */
+            /** Contexts with single simulation date */
             Contexts(Date asof);
 
-            /*! Contexts with a simulation schedule */
+            /** Contexts with a simulation schedule */
             Contexts(const Schedule& schedule);
 			Contexts(Schedule&& schedule);
             
-            /*! Construct object with pointers to contexts.
+            /** Construct object with pointers to contexts.
              * 
-             * \param[in] immutable_ctx Pointer to instance of ImmutableContext
-             * \param[in] mutable_ctx Pointer to instance of MutableContext
-             * \throw std::domain_error If either of the pointers is null.
+             * @param[in] immutable_ctx Pointer to instance of ImmutableContext
+             * @param[in] mutable_ctx Pointer to instance of MutableContext
+             * @throw std::domain_error If either of the pointers is null.
              */
             Contexts(std::shared_ptr<ImmutableContext> immutable_ctx, std::shared_ptr<MutableContext> mutable_ctx);
             
@@ -60,17 +60,17 @@ namespace averisera {
                 return *_mutable;
             }
             
-            /*! Get asof date (start of current schedule period) */
+            /** Get asof date (start of current schedule period) */
 			Date asof() const {
 				assert(_mutable);
 				assert(_immutable);
 				return _mutable->asof(*_immutable);
 			}
             
-            /*! Get index of asof() date */
+            /** Get index of asof() date */
             size_t asof_idx() const;
             
-            /*! Get current schedule period. */
+            /** Get current schedule period. */
             SchedulePeriod current_period() const;
         private:
             std::shared_ptr<ImmutableContext> _immutable;

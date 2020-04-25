@@ -9,9 +9,9 @@ namespace averisera {
 	class Contexts;
         class Feature;
 
-	/*! \brief Context-sensitive function
-	  \tparam A argument type
-	  \tparam R result type
+	/** @brief Context-sensitive function
+	  @tparam A argument type
+	  @tparam R result type
 	 */
 	template <class A, class R> class Functor: public FeatureUser<Feature> {
 	public:

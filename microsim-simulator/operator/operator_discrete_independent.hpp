@@ -15,20 +15,20 @@ namespace averisera {
 	namespace microsim {
 		class Person;
 
-		/*! Operator modelling a state variable X which is discrete and independent from other variables.
+		/** Operator modelling a state variable X which is discrete and independent from other variables.
 
-		\tparam S State class (unsigned int type)
+		@tparam S State class (unsigned int type)
 		*/ 
 		template <class S = unsigned int> class OperatorDiscreteIndependent : public OperatorIndividual<Person> {
 		public:
-			/*!
-			\param feature Feature provided by the operator (e.g. "BMI"); equal to the variable X name
-			\param model One or more discrete-time Markov models stitched together
-			\param initialise Whether to initialise the variable (or leave this to another operator)
-			\param percentile_variable_name Variable name for the percentiles of X (empty if no percentiles required)
-			\param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-			\param store_percentiles_as_floats Whether to store percentiles as floats (true) or doubles (false)
-			\throw std::domain_error If predicate is null
+			/**
+			@param feature Feature provided by the operator (e.g. "BMI"); equal to the variable X name
+			@param model One or more discrete-time Markov models stitched together
+			@param initialise Whether to initialise the variable (or leave this to another operator)
+			@param percentile_variable_name Variable name for the percentiles of X (empty if no percentiles required)
+			@param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+			@param store_percentiles_as_floats Whether to store percentiles as floats (true) or doubles (false)
+			@throw std::domain_error If predicate is null
 			*/
 			OperatorDiscreteIndependent(const std::string& feature, const StitchedMarkovModelWithSchedule<S>& model, std::shared_ptr<const Predicate<Person>> predicate, bool initialise, const std::string& percentile_variable_name,
 				std::unique_ptr<Schedule>&& schedule, bool store_percentiles_as_floats);
@@ -56,16 +56,16 @@ namespace averisera {
 				return Operator<Person>::active(schedule_, date);
 			}
 
-			/*!
-			\param ethnic_groupings Map ethnic group names to sets of ethnicity indices
-			\param category_variable_name Feature name
-			\param percentile_variable_name Optional percentile variable name (empty if percentiles not required)
-			\param models Models for each cohorts
-			\param cohorts Cohort definitions (using the names from ethnic_groupings)
-			\param start_dates Start date for every schedule
-			\param period_years Distance in years between operator applications
-			\param end_date Last date when any operator will be invoked
-			\param store_percentiles_as_floats Whether to store percentiles as floats (true) or doubles (false)
+			/**
+			@param ethnic_groupings Map ethnic group names to sets of ethnicity indices
+			@param category_variable_name Feature name
+			@param percentile_variable_name Optional percentile variable name (empty if percentiles not required)
+			@param models Models for each cohorts
+			@param cohorts Cohort definitions (using the names from ethnic_groupings)
+			@param start_dates Start date for every schedule
+			@param period_years Distance in years between operator applications
+			@param end_date Last date when any operator will be invoked
+			@param store_percentiles_as_floats Whether to store percentiles as floats (true) or doubles (false)
 			*/
 			static std::vector<std::unique_ptr<Operator<Person>>> build_for_cohorts(const std::map<std::string, Ethnicity::index_set_type>& ethnic_groupings,
 				const std::string& category_variable_name,
@@ -78,7 +78,7 @@ namespace averisera {
 				Date end_date,
 				bool store_percentiles_as_floats);
 
-			/*! Get the name of the feature responsible for initialising the main feature (discrete independent variable) 
+			/** Get the name of the feature responsible for initialising the main feature (discrete independent variable) 
 			This function should be used if another operator handles the initialisation 
 			*/
 			static std::string get_initialisation_feature(const std::string& main_feature);

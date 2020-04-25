@@ -19,7 +19,7 @@ namespace averisera {
 			return get_switch_date(year, 4);
 		}
 
-		static const Date COMMON_TRACK_START = get_switch_date(1959); /*!< First DOB at which females and males share common SPA */
+		static const Date COMMON_TRACK_START = get_switch_date(1959); /**< First DOB at which females and males share common SPA */
 
 		typedef TimeSeries<Date, Date> series_type;
 
@@ -35,7 +35,7 @@ namespace averisera {
 			return series_type(std::move(data));
 		}
 
-		/*! Make scale for linear SPA increase */
+		/** Make scale for linear SPA increase */
 		static series_type make_spa_scale(const Date start_dob, const Date end_dob, const Date start_spa) {
 			static const Period DELTA_DOB = Period::months(1);
 			static const Period DELTA_SPA = Period::months(2);
@@ -82,8 +82,8 @@ namespace averisera {
 			if (date_of_birth >= COMMON_TRACK_START) {
 				return get_date_spa_reached_common(date_of_birth);
 			} else {
-				static const Date female_catchup_start = get_switch_date(1950); /*!< First DOB at which female SPA starts to increase to catch up with male SPA */
-				static const Date female_catchup_end = get_switch_date(1955); /*!< DOB at which female SPA stops increasing to catch up with male SPA */
+				static const Date female_catchup_start = get_switch_date(1950); /**< First DOB at which female SPA starts to increase to catch up with male SPA */
+				static const Date female_catchup_end = get_switch_date(1955); /**< DOB at which female SPA stops increasing to catch up with male SPA */
 				if (date_of_birth < female_catchup_start) {
 					return date_of_birth + Period::years(FEMALE_SPA_AGE_PRE);
 				} else if (date_of_birth < female_catchup_end) {

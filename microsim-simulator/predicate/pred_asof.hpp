@@ -7,10 +7,10 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Selects an object if the asof date is in [begin, end) range */
+		/** Selects an object if the asof date is in [begin, end) range */
 		template <class T> class PredAsof: public Predicate<T> {
 		public:
-			/*! \throw std::domain_error if !(begin <= end) */
+			/** @throw std::domain_error if !(begin <= end) */
 			PredAsof(Date begin, Date end)
 				: begin_(begin), end_(end) {
 				check_that(begin <= end, "PredAsof: !(begin <= end)");				

@@ -11,7 +11,7 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Registers History names for an Actor implementation. 
+		/** Registers History names for an Actor implementation. 
          */
 		class HistoryRegistry {
 		public:
@@ -22,32 +22,32 @@ namespace averisera {
             HistoryRegistry(const HistoryRegistry&) = default;
             HistoryRegistry(HistoryRegistry&& other) noexcept;
             
-			/*! Register a new variable
-			\param[in] name Variable name
-			\return Index of this variable
-			\throw std::domain_error If name has been already registered or is empty
+			/** Register a new variable
+			@param[in] name Variable name
+			@return Index of this variable
+			@throw std::domain_error If name has been already registered or is empty
 			*/
 			index_t register_variable(const std::string& name);
 
-			/*! Number of registered variables */
+			/** Number of registered variables */
 			index_t nbr_variables() const {
 				return _variable_names.size();
 			}
 
-			/*! Name of idx-th variable */
+			/** Name of idx-th variable */
 			const std::string& variable_name(index_t idx) const {
 				assert(idx < nbr_variables());
 				return _variable_names[idx];
 			}
 
-			/*! Is the variable of this name registered? */
+			/** Is the variable of this name registered? */
 			bool has_variable(const std::string& name) const {
 				return _variables_by_name.find(name) != _variables_by_name.end();
 			}
 
-			/*! Index of variable with this name (if it is registered).
-			\param[in] name Variable name
-			\throw std::domain_error If not registered.
+			/** Index of variable with this name (if it is registered).
+			@param[in] name Variable name
+			@throw std::domain_error If not registered.
 			*/
 			index_t variable_index(const std::string& name) const;
 

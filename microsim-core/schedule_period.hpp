@@ -8,30 +8,30 @@
 namespace averisera {
     class Daycount;
     namespace microsim {
-        /*! \brief Schedule period type with precalculated derived quantities.
+        /** @brief Schedule period type with precalculated derived quantities.
         */
         struct SchedulePeriod {
-            /*! Default constructor */
+            /** Default constructor */
             SchedulePeriod()
             : days(0), fract(0) {
             }
 
-            /*! Construct period with single date */
+            /** Construct period with single date */
             explicit SchedulePeriod(Date date);
             
-            /*! Constructor with dates.
+            /** Constructor with dates.
              * 
-             * \param[in] n_begin Start date
-             * \param[in] n_end End date (on or after n_begin).
-             \param[in] daycount Daycount used to calculate year fractions.
+             * @param[in] n_begin Start date
+             * @param[in] n_end End date (on or after n_begin).
+             @param[in] daycount Daycount used to calculate year fractions.
              */
             SchedulePeriod(Date n_begin, Date n_end, const Daycount& daycount);
 
-            /*! Constructor with dates.
+            /** Constructor with dates.
              * 
-             * \param[in] n_begin Start date
-             * \param[in] n_end End date (on or after n_begin).
-             \param[in] daycount Daycount used to calculate year fractions.
+             * @param[in] n_begin Start date
+             * @param[in] n_end End date (on or after n_begin).
+             @param[in] daycount Daycount used to calculate year fractions.
              */
             SchedulePeriod(Date n_begin, Date n_end, std::shared_ptr<const Daycount> daycount);
             
@@ -41,8 +41,8 @@ namespace averisera {
             
             Date begin;
             Date end;
-            long days; /*!< Period length in days */
-            double fract; /*!< Period length as year fraction */
+            long days; /**< Period length in days */
+            double fract; /**< Period length as year fraction */
         };
 
         std::ostream& operator<<(std::ostream& stream, SchedulePeriod sp);

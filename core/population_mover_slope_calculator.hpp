@@ -13,7 +13,7 @@ namespace averisera {
       When i == category index and u == percentile of individual within a category, this
       algorithm is used to update a population with a Markov model transition matrix.
 
-      \see PopulationMover
+      @see PopulationMover
      */
 	class PopulationMoverSlopeCalculator {
 	public:

@@ -15,16 +15,16 @@ namespace averisera {
 			static std::shared_ptr<InterpolatorImpl> piecewiseLinear(const std::vector<double>& x, const std::vector<double>& y);
 			static std::shared_ptr<InterpolatorImpl> piecewiseCubic(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& dy);
 
-			/** \see AkimaApproximation */
+			/** @see AkimaApproximation */
 			static std::shared_ptr<InterpolatorImpl> akima(const std::vector<double>& x, const std::vector<double>& y);
 
-			/** \see FritschButlandApproximation */
+			/** @see FritschButlandApproximation */
 			static std::shared_ptr<InterpolatorImpl> fritschButland(const std::vector<double>& x, const std::vector<double>& y);
 
-			/** \see KrugerApproximation */
+			/** @see KrugerApproximation */
 			static std::shared_ptr<InterpolatorImpl> kruger(const std::vector<double>& x, const std::vector<double>& y);
 
-			/** \see InterpolatorImplTanh */
+			/** @see InterpolatorImplTanh */
 			static std::shared_ptr<InterpolatorImpl> tanh(const std::vector<double>& x, const std::vector<double>& y, double lambda = 0.1);
 		};
 }

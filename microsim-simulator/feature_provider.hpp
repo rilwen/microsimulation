@@ -13,30 +13,30 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Provides or requires features. Used to sort out in what order should we apply operations to data. 
-         *	  \tparam F Feature class
+        /** Provides or requires features. Used to sort out in what order should we apply operations to data. 
+         *	  @tparam F Feature class
          */
         template <class F> class FeatureProvider: public FeatureUser<F> {
         public:
             typedef typename FeatureUser<F>::feature_set_t features_set_t;
 
-            /*! \brief Features provided
-             *            \return Reference to set sorted in ascending order
+            /** @brief Features provided
+             *            @return Reference to set sorted in ascending order
              */
             virtual const features_set_t& provides() const = 0;
             
-            /*! Calculate the relation between this and another provider.
-             *            \return -1 if this provider provides Features required by the other provider;
+            /** Calculate the relation between this and another provider.
+             *            @return -1 if this provider provides Features required by the other provider;
              *            1 if the other provider provides Features required by this provider;
              *            0 otherwise.
-             *            \throw std::runtime_error If relation cannot be calculated.
+             *            @throw std::runtime_error If relation cannot be calculated.
              */
             virtual int relation(const FeatureProvider<F>& other) const;
             
-            /*! Sort a vector of pointers to feature providers by building a graph of 
+            /** Sort a vector of pointers to feature providers by building a graph of 
              *            their relations and sorting it according to who requires whom.
-             *	    \tparam I Class derived from FeatureProvider<F>
-             *            \throw std::runtime_error If the relations graph has cycles (e.g. A requires B, B requires C, C requires A)
+             *	    @tparam I Class derived from FeatureProvider<F>
+             *            @throw std::runtime_error If the relations graph has cycles (e.g. A requires B, B requires C, C requires A)
              */
             template <class I> static void sort(std::vector<std::shared_ptr<I>>& providers) {
                 static_assert(std::is_base_of<FeatureProvider<F>, I>::value, "I must be derived from FeatureProvider<F>");
@@ -47,16 +47,16 @@ namespace averisera {
                 });
             }
             
-            /*! Process provided and required features:
+            /** Process provided and required features:
              *	      2. make sure there are no duplicates
              *	      3. make sure there are no features which are both provided and required
              */
             static void process_features(features_set_t& provided, features_set_t& required);
             
-            /*! Check if all non-optional requirements are satisfied. Assumes the relationship graph is not cyclic.
-			\param ignored Set of requirements which can be ignored when checking
-			\param always_required Additional requirements which have to be met
-             * \tparam I Class derived from FeatureProvider<F>
+            /** Check if all non-optional requirements are satisfied. Assumes the relationship graph is not cyclic.
+			@param ignored Set of requirements which can be ignored when checking
+			@param always_required Additional requirements which have to be met
+             * @tparam I Class derived from FeatureProvider<F>
              */
             template <class I> static bool are_all_requirements_satisfied(const std::vector<std::shared_ptr<I>>& providers, const features_set_t& ignored, const features_set_t& always_required) {
                 static_assert(std::is_base_of<FeatureProvider<F>, I>::value, "I must be derived from FeatureProvider<F>");

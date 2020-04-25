@@ -135,8 +135,8 @@ static std::unique_ptr<const HazardRateMultiplierProvider<Person>> get_total_fer
 	return std::make_unique<HazardRateMultiplierProviderByPredTimeDependent<Person>>(std::move(pairs));
 }
 
-/*!
-\param multiplicity_distros Vector of TimeSeries (age, multiplicity distribution) indexed by years
+/**
+@param multiplicity_distros Vector of TimeSeries (age, multiplicity distribution) indexed by years
 */
 static std::vector<std::unique_ptr<Operator<Person>>> build_conception_operators(const std::string& birth_rates_file, const double birth_rate_basis, const Conception::mdistr_multi_series_type& multiplicity_distros, const std::unique_ptr<const HazardRateMultiplierProvider<Person>>& hrm_provider) {	
 	CSVFileReader reader(birth_rates_file, DELIM);

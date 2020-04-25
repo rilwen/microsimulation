@@ -16,20 +16,20 @@ namespace averisera {
         class HistoryRegistry;
         class ImmutableContext;
 
-		/*!
-		\brief Base object representing agents taking part in the simulation. An Actor is a person, a household, an institution or a business entity.
+		/**
+		@brief Base object representing agents taking part in the simulation. An Actor is a person, a household, an institution or a business entity.
 		An Actor has a vector of History.
 
 		Every actor has an ID number which uniquely identifies them. Valid ID numbers are nonzero.
 		*/
 		class Actor {
 		public:
-            typedef uint64_t id_t; /*!< Type of Actor IDs. Use 64bits to make sure we do not run out of space. */
-            typedef size_t histidx_t; /*!< Type used to index histories stored by the Actor */
+            typedef uint64_t id_t; /**< Type of Actor IDs. Use 64bits to make sure we do not run out of space. */
+            typedef size_t histidx_t; /**< Type used to index histories stored by the Actor */
 
 			/* Some template type definitions for derived classes */
-			template <class Derived> using shared_ptr = std::shared_ptr<Derived>; /*!< Shared pointer */
-			template <class Derived> using weak_ptr = std::weak_ptr<Derived>; /*!< Weak pointer */
+			template <class Derived> using shared_ptr = std::shared_ptr<Derived>; /**< Shared pointer */
+			template <class Derived> using weak_ptr = std::weak_ptr<Derived>; /**< Weak pointer */
 			template <class Derived, class... Args> static shared_ptr<Derived> make_shared(Args&&... args) {
 				return std::shared_ptr<Derived>(new Derived(std::forward<Args>(args)...));
 			}
@@ -43,18 +43,18 @@ namespace averisera {
 				return weak.lock();
 			}
             
-			static const id_t INVALID_ID = 0u; /*!< Used to mark missing ID */
-			static const id_t MIN_ID = INVALID_ID + 1; /*!< Minimum ID value, such that (MIN_ID - 1) < MIN_ID in unsigned arithmetic */
+			static const id_t INVALID_ID = 0u; /**< Used to mark missing ID */
+			static const id_t MIN_ID = INVALID_ID + 1; /**< Minimum ID value, such that (MIN_ID - 1) < MIN_ID in unsigned arithmetic */
 
-			/*!
-			\param[in] id ID number, nonzero.
-            \param[in] histories Vector of History implementations
-			\throw std::domain_error If id < MIN_ID.
+			/**
+			@param[in] id ID number, nonzero.
+            @param[in] histories Vector of History implementations
+			@throw std::domain_error If id < MIN_ID.
 			*/
 			Actor(id_t id);
 
-            /*! Set histories.
-              \throw std::logic_error If already has non-zero number of histories */
+            /** Set histories.
+              @throw std::logic_error If already has non-zero number of histories */
             void set_histories(std::vector<std::unique_ptr<History>>&& histories);
 
             Actor(const Actor&) = delete;
@@ -63,53 +63,53 @@ namespace averisera {
 
 			virtual ~Actor();
 
-			/*!
-			\return ID number
+			/**
+			@return ID number
 			*/
 			id_t id() const {
 				return _id;
 			}
 
-			/*! Number of histories stored */
+			/** Number of histories stored */
 			histidx_t nbr_histories() const {
 				return _histories.size();
 			}
 
-            /*! Is idx-th history valid (non-null). */
+            /** Is idx-th history valid (non-null). */
             bool is_history_valid(histidx_t idx) const;
 
-			/*! Reference to idx-th history 
-              \throw std::domain_error If no valid idx-th history.
+			/** Reference to idx-th history 
+              @throw std::domain_error If no valid idx-th history.
              */
 			History& history(histidx_t idx);
 
-			/*! Const reference to idx-th history 
-              \throw std::domain_error If no valid idx-th history.
+			/** Const reference to idx-th history 
+              @throw std::domain_error If no valid idx-th history.
              */
 			const History& history(histidx_t idx) const;
 
-            /*! Get the appropriate history registry for the class, or throw an exception
-            \throw std::logic_error This class has no history registry */
+            /** Get the appropriate history registry for the class, or throw an exception
+            @throw std::logic_error This class has no history registry */
             virtual const HistoryRegistry& get_history_registry(const ImmutableContext& im_ctx) const = 0;
 
-            /*! Check if Actor has a valid history for this variable */
+            /** Check if Actor has a valid history for this variable */
             bool has_history(const ImmutableContext& im_ctx, const std::string& variable) const;
 
-            /*! Get the history for this variable or throw std::domain_error if not present */
+            /** Get the history for this variable or throw std::domain_error if not present */
             History& history(const ImmutableContext& im_ctx, const std::string& variable);
 
-            /*! Get the history for this variable or throw std::domain_error if not present */
+            /** Get the history for this variable or throw std::domain_error if not present */
             const History& history(const ImmutableContext& im_ctx, const std::string& variable) const;
 
-            /*! Get the index of the variable history or throw an exception if not available */
+            /** Get the index of the variable history or throw an exception if not available */
             histidx_t get_variable_index(const Contexts& ctx, const std::string& variable) const;
 
-			/*! Convert to a pure data object */
+			/** Convert to a pure data object */
 			ActorData to_data(const ImmutableContext& im_ctx) const;			
 
-			/*! Find a shared pointer to an Actor-derived object in a vector sorted by IDs. We assume no null pointers.
-			\tparam AD Derived from ActorImpl<T>.
-			\return Iterator to pointer or objects.end() if not found.
+			/** Find a shared pointer to an Actor-derived object in a vector sorted by IDs. We assume no null pointers.
+			@tparam AD Derived from ActorImpl<T>.
+			@return Iterator to pointer or objects.end() if not found.
 			*/
 			template <class AD> static typename std::vector<typename AD::shared_ptr>::const_iterator find_by_id(const std::vector<typename AD::shared_ptr>& objects, id_t id) {
 				const auto iter = std::lower_bound(objects.begin(), objects.end(), id, [](const typename AD::shared_ptr& ptr, const Actor::id_t& i) { return ptr->id() < i; });
@@ -121,12 +121,12 @@ namespace averisera {
 			}
 		private:
 			id_t _id;
-			std::vector<std::unique_ptr<History>> _histories; /*!< vector of histories */
+			std::vector<std::unique_ptr<History>> _histories; /**< vector of histories */
 
 			void validate() const;
 		};
 
-		/*! Convenience class to automatically define some typedefs. */
+		/** Convenience class to automatically define some typedefs. */
 		template <class Derived> class ActorImpl : public Actor {
 		public:
 			using Actor::Actor;

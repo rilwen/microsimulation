@@ -18,10 +18,10 @@ namespace averisera {
         
         template <class T> class Predicate;
 
-        /*! Operator which acts instantaneously on asof date */
+        /** Operator which acts instantaneously on asof date */
         const Feature& INSTANTANEOUS(); 
         
-        /*! \brief Operates on objects of given class.
+        /** @brief Operates on objects of given class.
          * 
          *	  An instantaneous operator sets a property of the Actor, e.g. the BMI of a Person at date T_i.
          *	  A non-instantaneous operator acts over dates T_i <= d < T_{i+1}, e.g. causing the Person to develop cancer
@@ -31,7 +31,7 @@ namespace averisera {
          *	  Feature requirements of an Operator should include also the requirements of its Predicate.
          *	  
          *
-         * \tparam T Object class (e.g. Person).
+         * @tparam T Object class (e.g. Person).
          */
         template <class T> class Operator: public FeatureProvider<Feature>, public HistoryGenerator<T>, public HistoryUser<T> {
         public:
@@ -41,11 +41,11 @@ namespace averisera {
 			Operator(bool is_instantaneous, const FeatureUser<Feature>::feature_set_t& provided)
 				: Operator(is_instantaneous, provided, Feature::empty()) {}
             
-            /*!
+            /**
              *	      Features cannot contain INSTANTANEOUS and cannot contain duplicates. No feature can be provided and
              *	      required simultaneously.
              *	      All required features are treated as non-optional.
-             *	      \see FeatureProvider
+             *	      @see FeatureProvider
              */
             Operator(bool is_instantaneous, const FeatureUser<Feature>::feature_set_t& provided, const FeatureUser<Feature>::feature_set_t& required)
                 : _is_instantaneous(is_instantaneous), _provided(provided), _required(required) {
@@ -59,15 +59,15 @@ namespace averisera {
             
             virtual ~Operator() {}
             
-            /*! Return the predicate which selects which objects to act on. 
+            /** Return the predicate which selects which objects to act on. 
               The predicate will be invoked only on dates d for which active(d) returns true.
              */
             virtual const Predicate<T>& predicate() const = 0;
             
-            /*! Act on selected objects. Invoked only when active(contexts.asof()) return true.
-             * \param selected A non-empty vector
-             \param contexts Contexts.
-             * \throw std::domain_error If any pointer in selected is null.
+            /** Act on selected objects. Invoked only when active(contexts.asof()) return true.
+             * @param selected A non-empty vector
+             @param contexts Contexts.
+             * @throw std::domain_error If any pointer in selected is null.
              */
             virtual void apply(const std::vector<std::shared_ptr<T>>& selected, const Contexts& contexts) const = 0;
 
@@ -75,7 +75,7 @@ namespace averisera {
 				return active(date) && predicate().active(date);
 			}
             
-            /*! Whether the operator acts instantaneously or over the period till next simulation date. */
+            /** Whether the operator acts instantaneously or over the period till next simulation date. */
             bool is_instantaneous() const {
                 return _is_instantaneous;
             }
@@ -84,7 +84,7 @@ namespace averisera {
                 return _provided;
             }
             
-			/*! Features returned should also include the requirements of the Predicate */
+			/** Features returned should also include the requirements of the Predicate */
             const FeatureUser<Feature>::feature_set_t& requires() const override {
                 return _required;
             }
@@ -93,7 +93,7 @@ namespace averisera {
 				return HistoryGenerator<T>::EMPTY();
 			}
 
-			/*! HistoryUser requirements returned should also include the requirements of the Predicate */
+			/** HistoryUser requirements returned should also include the requirements of the Predicate */
 			const typename HistoryUser<T>::use_reqvec_t& user_requirements() const override {
 				return HistoryUser<T>::EMPTY();
 			}
@@ -121,8 +121,8 @@ namespace averisera {
                 }
             }
         private:
-			/*! Is the operator active on given date?
-			\param date Date from context schedule
+			/** Is the operator active on given date?
+			@param date Date from context schedule
 			*/
 			virtual bool active(Date date) const {
 				return true;

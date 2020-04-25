@@ -5,15 +5,15 @@ namespace averisera {
 	namespace microsim {
 		class Person;
 
-		/*! Selects persons based on the date of immigration. */
+		/** Selects persons based on the date of immigration. */
 		class PredImmigrationDate : public Predicate<Person> {
 		public:
-			/*!
-			\param from First imigration date (inclusive) 
-			\param to Last imigration date (exclusive); to >= from
-			\param allow_non_immigrants Select non-immigrants as well
-			\param require_alive Select only live people
-			\throw std::domain_error If to < from
+			/**
+			@param from First imigration date (inclusive) 
+			@param to Last imigration date (exclusive); to >= from
+			@param allow_non_immigrants Select non-immigrants as well
+			@param require_alive Select only live people
+			@throw std::domain_error If to < from
 			*/
 			PredImmigrationDate(Date from, Date to, bool allow_non_immigrants, bool require_alive);
 

@@ -10,7 +10,7 @@ namespace averisera {
 			"ASIAN",
 			"BLACK_AND_CARIBBEAN",
 			"OTHER",
-			"" /*!< SIZE */
+			"" /**< SIZE */
 		};
 	}
 }

@@ -3,7 +3,7 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Samples Person objects but does not maintain links to children and mother. */
+        /** Samples Person objects but does not maintain links to children and mother. */
         class InitialiserBootstrappingUnlinked : public InitialiserBootstrapping {
         public:
             InitialiserBootstrappingUnlinked(std::unique_ptr<PersonDataSampler>&& person_data_sampler, std::vector<std::unique_ptr<const DataPerturbation<PersonData>>>&& person_perturbations);

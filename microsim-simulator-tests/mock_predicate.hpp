@@ -6,7 +6,7 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Used in several tests */
+        /** Used in several tests */
         class MockPredicate: public Predicate<int> {
         public:
             MockPredicate(int n, bool active = true)

@@ -18,7 +18,7 @@ namespace averisera {
     */
     class CopulaGaussian: public CopulaAlphaStable {
     public:
-        /** \see CopulaAlphaStable */
+        /** @see CopulaAlphaStable */
         CopulaGaussian(const Eigen::MatrixXd& rho, double min_variance_fract = 1.0, unsigned int max_nbr_factors = 0);
 
 		CopulaGaussian(CopulaGaussian&& other);

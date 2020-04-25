@@ -9,22 +9,22 @@
 #include <string>
 
 namespace averisera {
-    /*! \namespace microsim
-     * \brief Microsimulation code
+    /** \namespace microsim
+     * @brief Microsimulation code
      * 
      * Namespace with the microsimulation code.
      */
     namespace microsim {
-        /*! \enum Sex
-         *\brief Enum values for sex (male or female). */
+        /** \enum Sex
+         *@brief Enum values for sex (male or female). */
         enum class Sex : uint8_t {
-            FEMALE = 0, /*!< Female gender */
-                MALE = 1 /*!< Male gender */
+            FEMALE = 0, /**< Female gender */
+                MALE = 1 /**< Male gender */
                 };
 
         std::ostream& operator<<(std::ostream& os, Sex sex);
 
-        /*! \throw std::runtime_error If str does not map to a valid Sex enum */
+        /** @throw std::runtime_error If str does not map to a valid Sex enum */
         Sex sex_from_string(const std::string& str);
     }
 }

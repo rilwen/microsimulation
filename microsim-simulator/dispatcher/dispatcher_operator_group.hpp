@@ -14,14 +14,14 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Dispatches argument to the first operator which selects it chosen from a group of operators O_i with mutually exclusive predicates P_i: for given argument x, only one P_i(x) is true.
+        /** Dispatches argument to the first operator which selects it chosen from a group of operators O_i with mutually exclusive predicates P_i: for given argument x, only one P_i(x) is true.
          */
         template <class T> class DispatcherOperatorGroup: public Dispatcher<T, unsigned int> {
         public:
-            /*! \param[in] operators Vector of operators. All pointers must be non-null. Non-zero size. All operators have to provide and require the
+            /** @param[in] operators Vector of operators. All pointers must be non-null. Non-zero size. All operators have to provide and require the
              * same features, and have the same value of is_instantaneous().
-             * \param[in] group_predicate Optional Predicate for the whole operator group. It should be functionally equivalent to logical sum of the predicates of member operators. If it is null, we create a predicate by cloning the operators' predicates and combining them into a logical sum.
-             * \throw std::domain_error If operators is empty, any pointer in it is empty or operators have different values of provides(),
+             * @param[in] group_predicate Optional Predicate for the whole operator group. It should be functionally equivalent to logical sum of the predicates of member operators. If it is null, we create a predicate by cloning the operators' predicates and combining them into a logical sum.
+             * @throw std::domain_error If operators is empty, any pointer in it is empty or operators have different values of provides(),
              * requires() or is_instantaneous().
              */
             DispatcherOperatorGroup(const std::vector<std::shared_ptr<const Operator<T>>>& operators, std::shared_ptr<const Predicate<T>> group_predicate = nullptr)

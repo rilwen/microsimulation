@@ -7,11 +7,11 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Constant RelativeRisk */
+        /** Constant RelativeRisk */
         template <class A> class RelativeRiskConstant: public RelativeRisk<A> {
         public:
-            /*!
-            \throw std::out_of_range If value.relative_risk < 0 or value.period <= 0
+            /**
+            @throw std::out_of_range If value.relative_risk < 0 or value.period <= 0
             */
             RelativeRiskConstant(RelativeRiskValueUnbound value)
             : _value(value) {              

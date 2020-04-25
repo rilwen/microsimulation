@@ -8,17 +8,17 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Class which uses abstract features
-         * \tparam F Feature type
+        /** Class which uses abstract features
+         * @tparam F Feature type
          */
         template <class F> class FeatureUser {
         public:
-            /*! Virtual destructor because this class will be extended by classes implementing the operations */
+            /** Virtual destructor because this class will be extended by classes implementing the operations */
 			virtual ~FeatureUser();
 
-            typedef std::unordered_set<F> feature_set_t; /*!< Set of features */
+            typedef std::unordered_set<F> feature_set_t; /**< Set of features */
             
-            /*! \brief Features required
+            /** @brief Features required
              \ return Reference to set of* features required
              */
             virtual const feature_set_t& requires() const = 0;

@@ -13,28 +13,28 @@ namespace averisera {
         class Person;
         template <class T> class RelativeRisk;
 
-		typedef uint8_t event_storage_type; /*!< Value type of the History used to store pregnancy events */
+		typedef uint8_t event_storage_type; /**< Value type of the History used to store pregnancy events */
         
-        /*! Operator for modelling the course of pregnancy. 
+        /** Operator for modelling the course of pregnancy. 
           
           If we switch operators during pregnancy to account e.g. for sudden onset of a disease, we should keep the same transition count structure.
          */
         class OperatorPregnancy: public OperatorIndividual<Person> {
         public:
-            /*!
-              \param pregnancy Pregnancy model
-              \param pred Predicate. It is multiplied internally with the predicate selecting only live females.
-              \param relative_risks_transitions Vector of Array2D in which relative_risks_transitions[model_idx][from][to] is the relative risk to be applied to the transition for model_idx-th model. Each element is moved to OperatorPregnancy object.
-			  \param min_childbearing_age Minimum childbearing age in years
-			  \param max_childbearing_age Maximum childbearing age in years
-              \throw std::domain_error If relative_risks_transitions.size() != pregnancy.nbr_stage_models(). If min_childbearing_age > max_childbearing_age. If max_childbearing_age == std::numeric_limits<unsigned int>::MAX().
+            /**
+              @param pregnancy Pregnancy model
+              @param pred Predicate. It is multiplied internally with the predicate selecting only live females.
+              @param relative_risks_transitions Vector of Array2D in which relative_risks_transitions[model_idx][from][to] is the relative risk to be applied to the transition for model_idx-th model. Each element is moved to OperatorPregnancy object.
+			  @param min_childbearing_age Minimum childbearing age in years
+			  @param max_childbearing_age Maximum childbearing age in years
+              @throw std::domain_error If relative_risks_transitions.size() != pregnancy.nbr_stage_models(). If min_childbearing_age > max_childbearing_age. If max_childbearing_age == std::numeric_limits<unsigned int>::MAX().
 
             */
 			OperatorPregnancy(Pregnancy&& pregnancy, std::shared_ptr<const Predicate<Person>> pred,
 				std::vector<Array2D<std::shared_ptr<const RelativeRisk<Person>>>>&& relative_risks_transitions,
 				unsigned int min_childbearing_age, unsigned int max_childbearing_age);
 
-            /*! Factory method constructing the operator on the heap with empty relative risks */
+            /** Factory method constructing the operator on the heap with empty relative risks */
             static std::unique_ptr<OperatorPregnancy> build_with_empty_relative_risks(Pregnancy&& pregnancy, std::shared_ptr<const Predicate<Person>> pred, unsigned int min_childbearing_age, unsigned int max_childbearing_age);
 
             const Predicate<Person>& predicate() const override {
@@ -69,7 +69,7 @@ namespace averisera {
 			unsigned int min_childbearing_age_;
 			unsigned int max_childbearing_age_;
 
-			/*! \param dummy Dummy argument to allow constructor overloading */
+			/** @param dummy Dummy argument to allow constructor overloading */
 			OperatorPregnancy(Pregnancy&& pregnancy, std::shared_ptr<const Predicate<Person>> pred,
 				std::vector<Array2D<std::shared_ptr<const RelativeRisk<Person>>>>&& relative_risks_transitions,
 				unsigned int min_childbearing_age, unsigned int max_childbearing_age, bool dummy);
@@ -80,7 +80,7 @@ namespace averisera {
 
             bool is_initialized(const Person& obj, const Contexts& contexts) const;
 
-			/*! Return date actually set */
+			/** Return date actually set */
             Date set_next_event(Person& obj, Date date, Pregnancy::Event evt, const Contexts& ctx) const;
 
             ImmutableHistory::index_t transitions_since_conception(const Person& obj, const Contexts& contexts, Date current_date) const;

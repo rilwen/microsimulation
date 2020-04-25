@@ -10,15 +10,15 @@ namespace averisera {
 	namespace microsim {
 		class Person;
 
-		/*! Select Person which has year of birth in given range.
+		/** Select Person which has year of birth in given range.
 		*/
 		class PredYearOfBirth : public Predicate < Person > {
 		public:
-			/*!
-			\param[in] min_year Minimum year of birth to select.
-			\param[in] max_year Maximum year of birth to select.
-            \param[in] alive Person must be alive
-			\throw std::domain_error If min_year > max_year
+			/**
+			@param[in] min_year Minimum year of birth to select.
+			@param[in] max_year Maximum year of birth to select.
+            @param[in] alive Person must be alive
+			@throw std::domain_error If min_year > max_year
 			*/
 			PredYearOfBirth(int min_year, int max_year, bool alive = true);
                         

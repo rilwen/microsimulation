@@ -10,12 +10,12 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Defines observed quantity for ObserverStats 
+        /** Defines observed quantity for ObserverStats 
 		Return NaN if data are missing.
 		*/
         template <class T> class ObservedQuantity {
         public:
-            /*! \throw std::domain_error If fun is null */
+            /** @throw std::domain_error If fun is null */
             ObservedQuantity(const std::string& name, std::function<double(const T&, const Contexts&)> fun)
                 : _name(name), _fun(fun) {
                 if (!fun) {
@@ -25,7 +25,7 @@ namespace averisera {
             ObservedQuantity(const ObservedQuantity&) = default;
             ObservedQuantity& operator=(const ObservedQuantity&) = default;
 
-            /*! Move constructor */
+            /** Move constructor */
             ObservedQuantity(ObservedQuantity&& other)
                 : _name(std::move(other._name)), _fun(std::move(other._fun)) {
             }
@@ -38,7 +38,7 @@ namespace averisera {
                 return _fun(obj, ctx);
             }
 
-            /*! Factory method which creates an ObservedQuantity object which reads the last value of a variable
+            /** Factory method which creates an ObservedQuantity object which reads the last value of a variable
               with given name from its History, as double */
             static ObservedQuantity<T> last_as_double(const std::string& variable_name ) {
                 return std::move(ObservedQuantity<T>(variable_name, std::function<double(const T&, const Contexts&)>([&variable_name](const T& obj, const Contexts& ctx) -> double {
@@ -53,7 +53,7 @@ namespace averisera {
 				})));
             }
 
-			/*! Variable which is either True (1) or False (0) */
+			/** Variable which is either True (1) or False (0) */
 			template <class I> static ObservedQuantity<T> indicator_variable(const std::string& variable_name, I indicator_fun) {
 				return std::move(ObservedQuantity<T>(variable_name, std::function<double(const T&, const Contexts&)>([indicator_fun](const T& obj, const Contexts& ctx) -> double {
 					return indicator_fun(obj, ctx) ? 1.0 : 0.0;

@@ -10,7 +10,7 @@ namespace averisera {
     namespace microsim {
 		class Person;
 		template <class T> class Predicate;
-        /*! \brief Mortality operator 
+        /** @brief Mortality operator 
 
           Based on HazardModel.
          */
@@ -19,15 +19,15 @@ namespace averisera {
             static const unsigned int ALIVE = 0;
             static const unsigned int DEAD = 1;
 
-            /*! \see OperatorHazardModel 
-			\param move_to_birth_date If true, move the HazardModel to Person's birth date before querying for probability of death.
-              \throw std::domain_error If hazard_model.dim() != 2
+            /** @see OperatorHazardModel 
+			@param move_to_birth_date If true, move the HazardModel to Person's birth date before querying for probability of death.
+              @throw std::domain_error If hazard_model.dim() != 2
              */
             Mortality(const HazardModel& hazard_model, const std::vector<std::shared_ptr<const RelativeRisk<Person>>>& relative_risks, std::shared_ptr<const Predicate<Person>> predicate, std::unique_ptr<Schedule>&& schedule, bool move_to_birth_date);
 
-			/*! \see OperatorHazardModel
-			\param move_to_birth_date If true, move the HazardModel to Person's birth date before querying for probability of death.
-			\throw std::domain_error If hazard_model.dim() != 2
+			/** @see OperatorHazardModel
+			@param move_to_birth_date If true, move the HazardModel to Person's birth date before querying for probability of death.
+			@throw std::domain_error If hazard_model.dim() != 2
 			*/
 			Mortality(HazardModel&& hazard_model, std::vector<std::shared_ptr<const RelativeRisk<Person>>>&& relative_risks, std::shared_ptr<const Predicate<Person>> predicate, std::unique_ptr<Schedule>&& schedule, bool move_to_birth_date);
 
@@ -36,11 +36,11 @@ namespace averisera {
 				return str;
 			}
 
-			/*! 
-			\param mortality_curves Vector of mortality curves, one for each birth year
-			\param schedule Pointer to schedule. If schedule != nullptr, *schedule is copied to each created operator.
-			\param predicate Predicate AND-ed with the year of birth predicate for each curve
-			\throw std::domain_error If any mortality curve is null */
+			/** 
+			@param mortality_curves Vector of mortality curves, one for each birth year
+			@param schedule Pointer to schedule. If schedule != nullptr, *schedule is copied to each created operator.
+			@param predicate Predicate AND-ed with the year of birth predicate for each curve
+			@throw std::domain_error If any mortality curve is null */
 			static std::vector<std::unique_ptr<Mortality>> build_operators(std::vector<std::unique_ptr<AnchoredHazardCurve>>&& mortality_curves, const Schedule* schedule, const std::shared_ptr<const Predicate<Person>>& predicate);
         private:
             state_t current_state(const Person& person, const Contexts& ctx) const override;

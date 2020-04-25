@@ -256,7 +256,7 @@ namespace averisera {
 			double hazard_rate_from_average_occurrences(const double T, const double N, const double dt, const unsigned int iters) {
 				check_that(N >= 0, "RateCalibrator: N >= 0");
 				check_that(dt >= 0, "RateCalibrator: dt >= 0");
-				check_that(T > dt, "RateCalibrator: T > dt");
+				check_greater(T, dt, "RateCalibrator: T > dt");
 				check_that(T > N * dt, "RateCalibrator: T > N*dt");
 				check_that(std::isfinite(T), "RateCalibrator: T is finite");
 				check_that(iters > 0, "RateCalibrator: iters > 0");

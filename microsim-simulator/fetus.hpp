@@ -6,12 +6,12 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Fetus becomes a Person after being born. For now it is a POD class */
+        /** Fetus becomes a Person after being born. For now it is a POD class */
         class Fetus {
         public:
-            /*!
-              \param attributes Constant attributes such as sex, ethnicity.
-              \param conception_date Conception date
+            /**
+              @param attributes Constant attributes such as sex, ethnicity.
+              @param conception_date Conception date
             */
             Fetus(const PersonAttributes& attributes, Date conception_date)
                 : _attributes(attributes), _conception_date(conception_date) {

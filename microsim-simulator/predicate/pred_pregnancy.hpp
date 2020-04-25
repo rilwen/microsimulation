@@ -11,13 +11,13 @@ namespace averisera {
     namespace microsim {
         class Person;
 
-        /*! Predicate selecting given pregnancy state. Selects only females. */
+        /** Predicate selecting given pregnancy state. Selects only females. */
         class PredPregnancy: public Predicate<Person> {
         public:
-            /*! \param state Selected state
-              \param alive Whether to select only alive persons
-			  \param at_start Whether to check at the beginning of the schedule period (true) or at the end (false)
-              \throw std::domain_error If state == State::SIZE
+            /** @param state Selected state
+              @param alive Whether to select only alive persons
+			  @param at_start Whether to check at the beginning of the schedule period (true) or at the end (false)
+              @throw std::domain_error If state == State::SIZE
              */
             PredPregnancy(const Pregnancy::State state, bool alive, bool at_start);
 

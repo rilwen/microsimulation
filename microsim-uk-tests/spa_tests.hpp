@@ -13,7 +13,7 @@ namespace averisera {
 	namespace testing {
 		typedef TimeSeries<Date, double> spa_series_type;
 
-		/*! Construct a series of SPA as function of retirement date, assuming monotonic increase of SPA per cohort */
+		/** Construct a series of SPA as function of retirement date, assuming monotonic increase of SPA per cohort */
 		template <class SPA> spa_series_type make_spa_at_retirement_date_series(const Date start, const Date end, const microsim::Sex sex) {
 			std::vector<spa_series_type::tvpair_t> data;
 			Date dob = start - Period::years(100);

@@ -9,34 +9,34 @@
 namespace averisera {
     template <class T> class GenericDistribution;
     namespace microsim {
-        /*! Description of a generation */
+        /** Description of a generation */
         class Generation {
         public:
-            /*! Construct generation with uniform date of birth distribution inside [begin, end) range.
-              \param begin First date of birth of the generation (inclusive)
-              \param end date End date of birth of the generation (exclusive)
-              \param attrib_distr PersonAttributes distribution
-              \param prob Probability of belonging to this generation
-              \throw std::domain_error If end <= begin or prob outside [0, 1]
+            /** Construct generation with uniform date of birth distribution inside [begin, end) range.
+              @param begin First date of birth of the generation (inclusive)
+              @param end date End date of birth of the generation (exclusive)
+              @param attrib_distr PersonAttributes distribution
+              @param prob Probability of belonging to this generation
+              @throw std::domain_error If end <= begin or prob outside [0, 1]
             */
             Generation(Date begin, Date end, PersonAttributesDistribution attrib_distr, double prob);
 
-            /*! Construct generation, calculating the conditional DOB distribution from the global DOB distribution (across all generations)
-              \param begin First date of birth of the generation (inclusive)
-              \param end date End date of birth of the generation (exclusive)
-              \param attrib_distr PersonAttributes distribution
-              \param global_dob_distr Global DOB distribution
-              \throw std::domain_error If end <= begin, global_dob_distr is null
+            /** Construct generation, calculating the conditional DOB distribution from the global DOB distribution (across all generations)
+              @param begin First date of birth of the generation (inclusive)
+              @param end date End date of birth of the generation (exclusive)
+              @param attrib_distr PersonAttributes distribution
+              @param global_dob_distr Global DOB distribution
+              @throw std::domain_error If end <= begin, global_dob_distr is null
             */
             Generation(Date begin, Date end, PersonAttributesDistribution attrib_distr, std::shared_ptr<const GenericDistribution<Date>> global_dob_distr);
 
-            /*! Construct generation with specified date of birth distribution inside [begin, end) range.
-              \param begin First date of birth of the generation (inclusive)
-              \param end date End date of birth of the generation (exclusive)
-              \param attrib_distr PersonAttributes distribution
-              \param prob Probability of belonging to this generation
-              \param dob_distr DOB distribution *within* this generation
-              \throw std::domain_error If end <= begin, dob_distr is null or prob outside [0, 1]
+            /** Construct generation with specified date of birth distribution inside [begin, end) range.
+              @param begin First date of birth of the generation (inclusive)
+              @param end date End date of birth of the generation (exclusive)
+              @param attrib_distr PersonAttributes distribution
+              @param prob Probability of belonging to this generation
+              @param dob_distr DOB distribution *within* this generation
+              @throw std::domain_error If end <= begin, dob_distr is null or prob outside [0, 1]
             */
             Generation(Date begin, Date end, PersonAttributesDistribution attrib_distr, double prob, std::shared_ptr<const GenericDistribution<Date>> dob_distr);
 
@@ -52,7 +52,7 @@ namespace averisera {
                 return _attrib_distr;
             }
 
-            /*! Probability of belonging to this generation */
+            /** Probability of belonging to this generation */
             double prob() const {
                 return _prob;
             }

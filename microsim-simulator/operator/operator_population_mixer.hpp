@@ -5,13 +5,13 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Uses Markov model to move entities between ranges of a continuous variable 
-		\tparam T Derived from Actor */
+		/** Uses Markov model to move entities between ranges of a continuous variable 
+		@tparam T Derived from Actor */
 		template <class T> class OperatorPopulationMixer: public Operator<T> {
 		public:
 			OperatorPopulationMixer(const std::string& variable, const Eigen::MatrixXd& pi, const std::vector<double>& ranges, std::shared_ptr<const Predicate<T>> predicate, std::unique_ptr<Schedule>&& schedule);
 
-			/*! \throw std::logic_error If custom schedule does not fit in context schedule */
+			/** @throw std::logic_error If custom schedule does not fit in context schedule */
 			void apply(const std::vector<std::shared_ptr<T>>& selected, const Contexts& contexts) const override;
 
 			const Predicate<T>& predicate() const override {

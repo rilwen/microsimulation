@@ -8,7 +8,7 @@ namespace averisera {
         class Contexts;
     }
     namespace testing {
-        /*! \brief RNG implementation using precalculated "random" uniform numbers. Throws when ran out of numbers. */
+        /** @brief RNG implementation using precalculated "random" uniform numbers. Throws when ran out of numbers. */
         class RNGPrecalc: public RNG {
         public:
             RNGPrecalc(const std::vector<double>& sample);
@@ -30,12 +30,12 @@ namespace averisera {
             // throws
             void next_alpha_stable(double alpha, const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd> y) override;
 
-            /*! Check if we have some numbers left */
+            /** Check if we have some numbers left */
             bool has_next() const {
                 return _iter != _sample.end();
             }
 
-            /*! Reset the stream of random numbers */
+            /** Reset the stream of random numbers */
             void reset() {
                 _iter = _sample.begin();
             }

@@ -3,7 +3,7 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Select Person object with this concrete ethnicity */
+		/** Select Person object with this concrete ethnicity */
 		class PredEthnicitySingle : public PredEthnicity {
 		public:
 			PredEthnicitySingle(ethnicity_type ethn, bool alive);

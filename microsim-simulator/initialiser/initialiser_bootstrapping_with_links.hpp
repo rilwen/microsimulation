@@ -6,12 +6,12 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Initialiser selects randomly a Person from the sample and then adds its linked Persons (mother, children) recursively. */
+        /** Initialiser selects randomly a Person from the sample and then adds its linked Persons (mother, children) recursively. */
         class InitialiserBootstrappingWithLinks: public InitialiserBootstrapping {
         public:
             typedef int depth_t;
-            /*!
-            \param recursion_limit Maximum distance in generations of the Person cloned from the sample from the one randomly drawn from it. If < 0 then we assume == 0.
+            /**
+            @param recursion_limit Maximum distance in generations of the Person cloned from the sample from the one randomly drawn from it. If < 0 then we assume == 0.
             */
             InitialiserBootstrappingWithLinks(std::unique_ptr<PersonDataSampler>&& person_data_sampler, std::vector<std::unique_ptr<const DataPerturbation<PersonData>>>&& person_perturbations, depth_t recursion_limit);
 

@@ -6,16 +6,16 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Simple HistoryGenerator implementation which stores a vector of requirements */
+        /** Simple HistoryGenerator implementation which stores a vector of requirements */
         template <class T> class HistoryGeneratorSimple: public HistoryGenerator<T> {
         public:
             using typename HistoryGenerator<T>::factory_t;
             using typename HistoryGenerator<T>::req_t;
             using typename HistoryGenerator<T>::reqvec_t;
 
-            /*! Create a dense double history generator 
-              \param predicate Cannot be null
-              \throw std::domain_error If  predicate is null.
+            /** Create a dense double history generator 
+              @param predicate Cannot be null
+              @throw std::domain_error If  predicate is null.
              */
             HistoryGeneratorSimple(const std::string& name, std::shared_ptr<const Predicate<T> > predicate)
                 : HistoryGeneratorSimple(reqvec_t(1, req_t(name, HistoryFactory::DENSE<double>(), predicate))) {
@@ -24,9 +24,9 @@ namespace averisera {
                 }                
             }
 
-            /*! Create a single History generator
-              \param predicate Cannot be null
-              \throw std::domain_error If  predicate is null.
+            /** Create a single History generator
+              @param predicate Cannot be null
+              @throw std::domain_error If  predicate is null.
              */
             HistoryGeneratorSimple(const std::string& name, factory_t factory, std::shared_ptr<const Predicate<T> > predicate)
                 : HistoryGeneratorSimple(reqvec_t(1, req_t(name, factory, predicate))) {
@@ -35,7 +35,7 @@ namespace averisera {
                 }
             }
 
-            /*! Create a generator for multiple histories -- most general case
+            /** Create a generator for multiple histories -- most general case
               Does no input checks.
              */
             HistoryGeneratorSimple(reqvec_t&& requirements) noexcept
@@ -47,9 +47,9 @@ namespace averisera {
 				other._requirements.clear();
 			}
 
-            /*! Provided a range of names and history factories and a single predicate, construct the requirements sharing the predicate.
-              \param predicate Cannot be null
-              \throw std::domain_error If ranges have unequal size or predicate is null.
+            /** Provided a range of names and history factories and a single predicate, construct the requirements sharing the predicate.
+              @param predicate Cannot be null
+              @throw std::domain_error If ranges have unequal size or predicate is null.
             */
             template <class SI, class FI> HistoryGeneratorSimple(SI names_begin, const SI names_end, FI factories_begin, const FI factories_end, std::shared_ptr<const Predicate<T> > predicate) {
                 if (!predicate) {

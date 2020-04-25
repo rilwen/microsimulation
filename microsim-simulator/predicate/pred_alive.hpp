@@ -8,7 +8,7 @@ namespace averisera {
     namespace microsim {
         class Person;
 
-        /*!  Selects Person objects which are alive */
+        /**  Selects Person objects which are alive */
         class PredAlive: public Predicate<Person> {
         public:
             bool select(const Person& obj, const Contexts& contexts) const override;

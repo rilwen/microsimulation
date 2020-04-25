@@ -12,21 +12,21 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Operator which uses a HazardModel to update a state variable. Transitions can happen between the dates of the schedule */
+        /** Operator which uses a HazardModel to update a state variable. Transitions can happen between the dates of the schedule */
         template <class T> class OperatorHazardModel: public OperatorIndividual<T> {
         public:            
-            /*!
-             * \param[in] provided_feature Feature provided by this operator
-             * \param[in] hazard_model Hazard model for base probability
-             * \param[in] relative_risks Vector of relative risks, resized internally to hazard_model.dim(). Any null pointer will be replaced by RelativeRisk implementation which always returns 1.
-             * \param[in] predicate Predicate for the operator
-             \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-             * \throw std::domain_error If predicate is null.
+            /**
+             * @param[in] provided_feature Feature provided by this operator
+             * @param[in] hazard_model Hazard model for base probability
+             * @param[in] relative_risks Vector of relative risks, resized internally to hazard_model.dim(). Any null pointer will be replaced by RelativeRisk implementation which always returns 1.
+             * @param[in] predicate Predicate for the operator
+             @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+             * @throw std::domain_error If predicate is null.
              */
             OperatorHazardModel(const Feature& provided_feature, const HazardModel& hazard_model, const std::vector<std::shared_ptr<const RelativeRisk<T>>>& relative_risks,
                                 std::shared_ptr<const Predicate<T>> predicate, std::unique_ptr<Schedule>&& schedule);
 
-			/*! Constructor which moves more elements */
+			/** Constructor which moves more elements */
 			OperatorHazardModel(const Feature& provided_feature, HazardModel&& hazard_model, std::vector<std::shared_ptr<const RelativeRisk<T>>>&& relative_risks,
 				std::shared_ptr<const Predicate<T>> predicate, std::unique_ptr<Schedule>&& schedule);
 
@@ -45,11 +45,11 @@ namespace averisera {
 				return _hazard_model;
 			}
 		private:
-            /*! Get the current state of the object */
+            /** Get the current state of the object */
             virtual state_t current_state(const T& obj, const Contexts& ctx) const = 0;
-            /*! Set the next state */
+            /** Set the next state */
             virtual void set_next_state(T& obj, Date date, state_t state, const Contexts& ctx) const = 0;
-			/*! If returns null, use _hazard_model */
+			/** If returns null, use _hazard_model */
 			virtual std::unique_ptr<HazardModel> adapt_hazard_model(const T& obj) const {
 				return nullptr;
 			}

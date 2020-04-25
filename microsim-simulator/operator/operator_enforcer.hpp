@@ -13,17 +13,17 @@ namespace averisera {
     namespace microsim {        
         class Actor;
         
-        /*! Enforces a distribution of a variable 
+        /** Enforces a distribution of a variable 
          * 
-         * \tparam T Derived from Actor
+         * @tparam T Derived from Actor
          */
         template <class T> class OperatorEnforcer: public Operator<T> {
             //static_assert(std::is_base_of<Actor, T>::value, "T must be derived from Actor");
         public:
-            /*! 
-              \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-              \throw std::domain_error If predicate or any of the distributions is null. If variable is empty.
-              \throw std::out_of_range If schedule is not null and there is less distributions than dates in the schedule.
+            /** 
+              @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+              @throw std::domain_error If predicate or any of the distributions is null. If variable is empty.
+              @throw std::out_of_range If schedule is not null and there is less distributions than dates in the schedule.
              */
             OperatorEnforcer(const std::string& variable,
                              std::shared_ptr<const Predicate<T>> predicate,
@@ -35,8 +35,8 @@ namespace averisera {
                 return *_predicate;
             }
     
-            /*! \throw std::out_of_range If not enough distributions.
-             \throw std::logic_error If custom schedule does not fit in context schedule */            
+            /** @throw std::out_of_range If not enough distributions.
+             @throw std::logic_error If custom schedule does not fit in context schedule */            
             void apply(const std::vector<std::shared_ptr<T>>& selected, const Contexts& contexts) const override;
 
             bool active(Date date) const override {

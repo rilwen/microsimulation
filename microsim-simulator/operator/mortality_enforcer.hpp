@@ -9,13 +9,13 @@ namespace averisera {
     namespace microsim {
         class Person;
 
-        /*! \brief Operator which enforces a predefined percentage of dead persons
+        /** @brief Operator which enforces a predefined percentage of dead persons
          */
         class MortalityEnforcer: public Operator<Person> {
         public:
-            /*! 
-              \param[in] distributions Vector of GenericDistribution<bool> implementations for IsDead status (true = dead).
-              \throw std::domain_error If predicate or any of the distributions is null or has wrong value range.
+            /** 
+              @param[in] distributions Vector of GenericDistribution<bool> implementations for IsDead status (true = dead).
+              @throw std::domain_error If predicate or any of the distributions is null or has wrong value range.
              */
             MortalityEnforcer(std::shared_ptr<const Predicate<Person>> predicate, const std::vector<std::shared_ptr<const GenericDistribution<bool>>>& distributions);
 
@@ -23,7 +23,7 @@ namespace averisera {
                 return *_predicate;
             }
     
-            /*! \throw std::out_of_range If not enough distributions */
+            /** @throw std::out_of_range If not enough distributions */
             void apply(const std::vector<std::shared_ptr<Person>>& selected, const Contexts& contexts) const override;
 
 			const std::string& name() const override {

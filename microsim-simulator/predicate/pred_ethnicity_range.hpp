@@ -3,10 +3,10 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Select Person object with ethnicity in a [from, to] range */
+		/** Select Person object with ethnicity in a [from, to] range */
 		class PredEthnicityRange : public PredEthnicity {
 		public:
-			/*! [from, to] inclusive range */
+			/** [from, to] inclusive range */
 			PredEthnicityRange(ethnicity_type from, ethnicity_type to, bool alive);
 
 			PredEthnicityRange* clone() const override {

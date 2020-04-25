@@ -10,17 +10,17 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Simple implementation of ObserverResultSaver. If more than one Observer shares the same saver, the results will be appended not overwritten between observers, but overwritten at each date.
+        /** Simple implementation of ObserverResultSaver. If more than one Observer shares the same saver, the results will be appended not overwritten between observers, but overwritten at each date.
          */
         class ObserverResultSaverSimple: public ObserverResultSaver {
         public:
-            /*!
-              \param intermediate_filename Filename to use for intermediate results. Do not save them if empty.
-              \param final_filename Filename to use for final results. Do not save them if empty.
+            /**
+              @param intermediate_filename Filename to use for intermediate results. Do not save them if empty.
+              @param final_filename Filename to use for final results. Do not save them if empty.
              */
             ObserverResultSaverSimple(const std::string& intermediate_filename, const std::string& final_filename);
 
-			/*! Use the same filename for intermediate and final results. */
+			/** Use the same filename for intermediate and final results. */
 			ObserverResultSaverSimple(const std::string& filename)
 				: ObserverResultSaverSimple(filename, filename) {}
 

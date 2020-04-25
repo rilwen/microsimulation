@@ -11,8 +11,8 @@
 
 namespace averisera {
     namespace microsim {
-        /*! \class PersonAttributes 
-         * \brief Containts constant attributes of a person. Designed to use little memory.
+        /** \class PersonAttributes 
+         * @brief Containts constant attributes of a person. Designed to use little memory.
          * 
          * Attributes:
          *  - sex (enum)
@@ -22,30 +22,30 @@ namespace averisera {
         public:
 			//typedef uint8_t storage_t;
 			typedef Ethnicity::group_index_type ethnicity_t;
-            static const ethnicity_t MAX_ETHNICITY = static_cast<size_t>(Ethnicity::MAX_SIZE - 1); /*!< Maximum value of ethnicity attribute. */
-            static const unsigned int DIM = 2; /*!< Number of values in PersonAttributes */
+            static const ethnicity_t MAX_ETHNICITY = static_cast<size_t>(Ethnicity::MAX_SIZE - 1); /**< Maximum value of ethnicity attribute. */
+            static const unsigned int DIM = 2; /**< Number of values in PersonAttributes */
 
             PersonAttributes();
             
-            /*!
-             * \param[in] sex Sex of the person
-             * \param[in] ethnicity Index of the person's ethnic group
+            /**
+             * @param[in] sex Sex of the person
+             * @param[in] ethnicity Index of the person's ethnic group
              */
             PersonAttributes(Sex sex, ethnicity_t ethnicity);
             
-            /*! \return Sex of the person (female or male)
+            /** @return Sex of the person (female or male)
              */
             Sex sex() const {
                 return _sex;
             }
             
-            /*! \return Index of ethnic group.
+            /** @return Index of ethnic group.
              */
 			ethnicity_t ethnicity() const {
                 return _ethnicity;
             }
             
-            /*! Equality operator */
+            /** Equality operator */
             bool operator==(const PersonAttributes& other) const;            
 
 			bool operator<(const PersonAttributes& other) const;

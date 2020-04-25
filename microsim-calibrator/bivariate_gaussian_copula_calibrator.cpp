@@ -16,7 +16,7 @@ namespace averisera {
             }
         }
 
-        /*! Integrand class for AdaptIntegration */
+        /** Integrand class for AdaptIntegration */
         class BivariateGaussianCopulaCalibratorIntegrand {
         public:
             BivariateGaussianCopulaCalibratorIntegrand(double mean_x, double mean_y, const Distribution& x, const Distribution& y)
@@ -65,7 +65,7 @@ namespace averisera {
             double _sqrt_1mr;
         };
 
-        /*! Calculates correlation for root solver */
+        /** Calculates correlation for root solver */
         class BivariateGaussianCopulaCalibratorFunction {
         public:
             BivariateGaussianCopulaCalibratorFunction(double mean_x, double mean_y, const Distribution& x, const Distribution& y, double target_rho,

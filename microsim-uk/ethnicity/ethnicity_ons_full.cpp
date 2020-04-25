@@ -57,7 +57,7 @@ namespace averisera {
 			"OTHER_BLACK", // 15
 			"ARAB",
 			"ANY_OTHER",
-			"" /*!< SIZE */
+			"" /**< SIZE */
 		};
 
 		const std::array<EthnicityONSFull::range_type, EthnicityONSMajor::SIZE + 1> EthnicityONSFull::MAJOR_RANGES = {

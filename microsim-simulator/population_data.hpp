@@ -4,7 +4,7 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Data we construct Population from. */
+        /** Data we construct Population from. */
         struct PopulationData {
             template <class D> using storage_t = std::vector<D>;
             storage_t<PersonData> persons;

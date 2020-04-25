@@ -6,7 +6,7 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Measures performance of a piece of code.
+		/** Measures performance of a piece of code.
 
 		Time unit: second
 		*/
@@ -14,10 +14,10 @@ namespace averisera {
 		public:
 			Performance();
 
-			/*!
-			\param total_time Total time of call in seconds 
-			\param nbr_processed Number of processed elements 
-			\throw std::domain_error If total_time < 0 or nbr_processed == 0
+			/**
+			@param total_time Total time of call in seconds 
+			@param nbr_processed Number of processed elements 
+			@throw std::domain_error If total_time < 0 or nbr_processed == 0
 			*/
 			void append_metrics(double total_time, size_t nbr_processed);
 
@@ -25,7 +25,7 @@ namespace averisera {
 				return total_nbr_processed_;
 			}
 
-			/*! Return total execution time added up */
+			/** Return total execution time added up */
 			double total_time() const {
 				return total_time_stats_.mean() * static_cast<double>(total_time_stats_.nbr_samples());
 			}
@@ -42,11 +42,11 @@ namespace averisera {
 				return nbr_processed_stats_;
 			}
 
-			/*! Execute functor, measure execution time and append metrics
-			\tparam F Functor class with operator()()
-			\param functor Functor object
-			\param nbr_processed Number of processed elements
-			\throws Whatever functor throws (if any) or std::domain_error if nbr_processed == 0
+			/** Execute functor, measure execution time and append metrics
+			@tparam F Functor class with operator()()
+			@param functor Functor object
+			@param nbr_processed Number of processed elements
+			@throws Whatever functor throws (if any) or std::domain_error if nbr_processed == 0
 			*/
 			template <class F> void measure_metrics(F functor, size_t nbr_processed) {
 				const double total_time = measure_time(functor);

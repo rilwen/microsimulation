@@ -115,10 +115,10 @@ namespace averisera {
 		*/
 		int dist(Date other, const Period& period) const;
 
-		/** \see dist */
+		/** @see dist */
 		int dist_years(Date other) const;
 
-		/** \see dist */
+		/** @see dist */
 		int dist_days(Date other) const;
 
 		bool is_leap() const {

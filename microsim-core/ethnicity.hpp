@@ -16,30 +16,30 @@
 
 namespace averisera {
 	namespace microsim {
-		/*! Methods operating on ethnic group classifications
+		/** Methods operating on ethnic group classifications
 
 		We assume that the group enum class type is associated with integer values 0, 1, 2, ..., SIZE - 1
 		*/
 		namespace Ethnicity {
 			template <class C> using group_type = typename C::Group;
 			typedef uint8_t group_index_type;
-            const group_index_type MAX_SIZE = 128; /*!< Maximum number of ethnicity groups. */
+            const group_index_type MAX_SIZE = 128; /**< Maximum number of ethnicity groups. */
 
             template <class C> constexpr group_index_type get_size() {
 				return static_cast<group_index_type>(group_type<C>::SIZE);
 			}
 
-			/*! Return a static C string */
+			/** Return a static C string */
 			template <class C> constexpr const char* get_name(group_index_type idx) {
 				return C::NAMES[idx];
 			}
 
-			/*! Return a static C string */
+			/** Return a static C string */
 			template <class C> constexpr const char* get_name(group_type<C> grp) {
 				return get_name<C>(static_cast<group_index_type>(grp));
 			}
 
-			/*! Return a static C string */
+			/** Return a static C string */
 			template <class C> constexpr const char* const& get_classification_name() {
 				return C::CLASSIFICATION_NAME;
 			}
@@ -77,7 +77,7 @@ namespace averisera {
 				return static_cast<group_type<C>>(get_last_group_index<C>());
 			}
 
-			/*! Execute f(c) for c in [begin, end] */
+			/** Execute f(c) for c in [begin, end] */
 			template <class C, class F> void iterate_over(group_type<C> begin, group_type<C> end, F f) {
 				const size_t i1 = static_cast<size_t>(end);
 				for (size_t i = static_cast<size_t>(begin); i <= i1; ++i) {
@@ -113,8 +113,8 @@ namespace averisera {
 				return range_type<C>(static_cast<group_type<C>>(range.begin()), static_cast<group_type<C>>(range.end()));
 			}
 
-			const char* const RANGE_ALL = "ALL"; /*!< Name for the range including all groups */			
-			const char* const RANGE_ALL_OTHERS = "ALL_OTHERS"; /*! Name for the "all other groups" quasi-range. We encode it as [SIZE, SIZE] range */
+			const char* const RANGE_ALL = "ALL"; /**< Name for the range including all groups */			
+			const char* const RANGE_ALL_OTHERS = "ALL_OTHERS"; /** Name for the "all other groups" quasi-range. We encode it as [SIZE, SIZE] range */
 
 			template <class C> index_range_type index_range_from_string(const char* str) {
 				if (!strcmp(str, RANGE_ALL)) {
@@ -147,9 +147,9 @@ namespace averisera {
 			/* Simple conversion of [i1, i2] range to a set of all group indices in this range */
 			index_set_type index_range_to_set(const index_range_type& range);
 
-			/*! Convert ranges into sets. If [SIZE, SIZE] range is found and is unique, it is replaced by a set containing all
+			/** Convert ranges into sets. If [SIZE, SIZE] range is found and is unique, it is replaced by a set containing all
 			values not found in other ranges. It is an error to provide [SIZE, SIZE] range more than once. 
-			\throw DataException */
+			@throw DataException */
 			template <class C> std::vector<set_type<C>> ranges_to_sets(const std::vector<range_type<C>>& ranges) {
 				std::vector<set_type<C>> sets(ranges.size());
 				std::transform(ranges.begin(), ranges.end(), sets.begin(), range_to_set<C>);
@@ -185,18 +185,18 @@ namespace averisera {
 				return sets;
 			}
 
-			/*! Convert ranges into sets. If [size, size] range is found and is unique, it is replaced by a set containing all
+			/** Convert ranges into sets. If [size, size] range is found and is unique, it is replaced by a set containing all
 			values not found in other ranges. It is an error to provide [size, size] range more than once. No range boundary values larger than size are permitted.
-			\throw DataException */
+			@throw DataException */
 			std::vector<index_set_type> index_ranges_to_sets(const std::vector<index_range_type>& ranges, group_index_type size);
 
-			/*! Index-based conversion functions */
+			/** Index-based conversion functions */
 			class IndexConversions {
 			public:
 				typedef group_index_type index_type;
 				typedef Ethnicity::index_range_type index_range_type;
 
-				/*! Default conversion which does not convert anything */
+				/** Default conversion which does not convert anything */
 				IndexConversions();
 
 				IndexConversions(IndexConversions&& other);
@@ -224,18 +224,18 @@ namespace averisera {
 					return class_name_;
 				}
 
-				/*! Number of ethnic groups */
+				/** Number of ethnic groups */
 				index_type size() const {
 					return size_;
 				}
 
-				/*! Name of the idx-th ethnic group */
+				/** Name of the idx-th ethnic group */
 				const std::string& name(index_type idx) const {
 					assert(idx < size_);
 					return names_[idx];
 				}
 
-				/*! Return the index of group name 
+				/** Return the index of group name 
 				or size() if name does not match (if check == false) or throw std::domain_error if check == true
 				 */
 				index_type index(const std::string& name, bool check = true) const {
@@ -251,13 +251,13 @@ namespace averisera {
 					}
 				}
 
-                /*! Return first valid index. Call only if size() > 0 */
+                /** Return first valid index. Call only if size() > 0 */
 				index_type first_index() const {
                     assert(size_ > 0);
 					return 0;
 				}
 
-                /*! Return last valid index. Call only if size() > 0 */
+                /** Return last valid index. Call only if size() > 0 */
 				index_type last_index() const {
                     assert(size_ > 0);
 					return static_cast<index_type>(size_ - 1);
@@ -275,9 +275,9 @@ namespace averisera {
 					return index_range_all_others_;
 				}
 
-				/*! Convert ranges into sets. If [size(), size()] range is found and is unique, it is replaced by a set containing all
+				/** Convert ranges into sets. If [size(), size()] range is found and is unique, it is replaced by a set containing all
 				values not found in other ranges. It is an error to provide [size(), size()] range more than once. No range boundary values larger than size are permitted.
-				\throw DataException */
+				@throw DataException */
 				std::vector<index_set_type> index_ranges_to_sets(const std::vector<index_range_type>& ranges) const {
 					return Ethnicity::index_ranges_to_sets(ranges, size());
 				}

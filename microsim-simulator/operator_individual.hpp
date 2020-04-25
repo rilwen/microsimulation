@@ -6,20 +6,20 @@
 
 namespace averisera {
     namespace microsim {
-        /*! \brief Operator acting on each object independently */
+        /** @brief Operator acting on each object independently */
         template <class T> class OperatorIndividual: public Operator<T> {
         public:
-            /*! \see Operator */
+            /** @see Operator */
             OperatorIndividual(bool is_instantaneous, const FeatureUser<Feature>::feature_set_t& provided, const FeatureUser<Feature>::feature_set_t& required)
                 : Operator<T>(is_instantaneous, provided, required)
                 {}
             
-			/*! \see Operator */
+			/** @see Operator */
 			OperatorIndividual(bool is_instantaneous, const FeatureUser<Feature>::feature_set_t& provided)
 				: Operator<T>(is_instantaneous, provided)
 			{}
 
-            /*! \see Operator */
+            /** @see Operator */
             OperatorIndividual(bool is_instantaneous)
                 : Operator<T>(is_instantaneous)
                 {}
@@ -34,7 +34,7 @@ namespace averisera {
                 }
             }
 
-            /*! \param obj Not-null pointer to object T
+            /** @param obj Not-null pointer to object T
              */
             virtual void apply(const std::shared_ptr<T>& obj, const Contexts& contexts) const = 0;
         };

@@ -4,7 +4,7 @@ namespace averisera {
 	namespace microsim {
 		class Feature;
 
-		/*! Commonly required/provided features */
+		/** Commonly required/provided features */
 		namespace CommonFeatures {
 			const Feature& MORTALITY();
 		}

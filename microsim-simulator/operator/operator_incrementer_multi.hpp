@@ -11,16 +11,16 @@ namespace averisera {
     namespace microsim {
         class Actor;
         
-        /*! OperatorIndividual which increments the variable by drawing the delta from a distribution.
+        /** OperatorIndividual which increments the variable by drawing the delta from a distribution.
          * Non-instantaneous.
-		 * \tparam T derived from Actor
+		 * @tparam T derived from Actor
          */
         template <class T> class OperatorIncrementerMulti: public OperatorIndividual<T> {
             //static_assert(std::is_base_of<Actor, T>::value, "T must be derived from Actor");
         public:
-            /*! 
-              \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-              \throw std::domain_error If predicate or any of the distributions is null. If variable is empty. If variables.size() != distributions[i].dim() for any i, or if variables.size() != history_factories.size(). If any history factory is null.
+            /** 
+              @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+              @throw std::domain_error If predicate or any of the distributions is null. If variable is empty. If variables.size() != distributions[i].dim() for any i, or if variables.size() != history_factories.size(). If any history factory is null.
              */
             OperatorIncrementerMulti(const std::vector<std::string>& variables, std::shared_ptr<const Predicate<T>> predicate, const std::vector<std::shared_ptr<const MultivariateDistribution>>& distributions, std::unique_ptr<Schedule>&& schedule);
             
@@ -28,12 +28,12 @@ namespace averisera {
                 return *_predicate;
             }
 
-            /*! Dimension of the increment distributions */
+            /** Dimension of the increment distributions */
             unsigned int dim() const {
                 return static_cast<unsigned int>(_variables.size());
             }
             
-            /*! \throw std::out_of_range If not enough distributions */
+            /** @throw std::out_of_range If not enough distributions */
             void apply(const std::shared_ptr<T>& obj, const Contexts& contexts) const override;
 
             bool active(Date date) const override {

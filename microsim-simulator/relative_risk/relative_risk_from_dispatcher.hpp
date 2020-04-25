@@ -8,10 +8,10 @@ namespace averisera {
     namespace microsim {
         template <class A, class H> class Dispatcher;
 
-        /*! RelativeRisk calculated from Dispatcher */
+        /** RelativeRisk calculated from Dispatcher */
         template <class A> class RelativeRiskFromDispatcher : public RelativeRisk<A> {
         public:
-            /*! \throw std::domain_error If dispatcher is null */
+            /** @throw std::domain_error If dispatcher is null */
             RelativeRiskFromDispatcher(std::shared_ptr<const Dispatcher<A, RelativeRiskValueUnbound>> dispatcher)
                 : _disp(dispatcher) {
                 if (!dispatcher) {

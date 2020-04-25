@@ -8,13 +8,13 @@
 
 namespace averisera {
     namespace microsim {
-        /*! Acts on Actor or derived classes */
+        /** Acts on Actor or derived classes */
         template <class T> class OperatorMarkovModelActor: public OperatorMarkovModel<T> {
             //static_assert(std::is_base_of<Actor, T>::value, "T must be derived from Actor");
         public:
-            /*! 
-			\param history_factory History factory for storing the state (must be int type)
-			\see OperatorMarkovModel */
+            /** 
+			@param history_factory History factory for storing the state (must be int type)
+			@see OperatorMarkovModel */
             OperatorMarkovModelActor(const FeatureUser<Feature>::feature_set_t& required,
                                      const std::string& variable,
                                      MarkovModel&& markov_model,

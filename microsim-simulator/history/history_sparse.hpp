@@ -9,7 +9,7 @@
 
 namespace averisera {
     namespace microsim {
-        /*! \brief History implementation which uses sparse storage and stores only values when they are changed. It assumes that between the changes the value is known and constant.
+        /** @brief History implementation which uses sparse storage and stores only values when they are changed. It assumes that between the changes the value is known and constant.
          * 
          *	  When appending a double (or int) value to HistorySparse, it is appended to implementation only if it is different than the vale
          *	  returns by last_as_double() (or last_as_int()), or implementation is empty.
@@ -20,12 +20,12 @@ namespace averisera {
          */
         class HistorySparse: public History {
         public:
-            /*! Construct a new HistorySparse.
+            /** Construct a new HistorySparse.
              * 
              * Takes ownership of the provided pointer to implementation.
              *
-             * \param impl Implementation of History which stores changing values. Not null.
-             * \throw std::domain_error If impl is null.
+             * @param impl Implementation of History which stores changing values. Not null.
+             * @throw std::domain_error If impl is null.
              */
             HistorySparse(std::unique_ptr<History>&& impl);
             

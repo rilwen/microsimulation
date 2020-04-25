@@ -16,19 +16,19 @@ namespace averisera {
 		template <class T> class HazardRateMultiplierProvider;
         template <class T> class RelativeRisk;		
 
-        /*! Operator describing the conception (start of pregnancy). It can only generate a single conception event until the next schedule date. It will select females which can get pregnant during current schedule period
+        /** Operator describing the conception (start of pregnancy). It can only generate a single conception event until the next schedule date. It will select females which can get pregnant during current schedule period
          */
         class OperatorConception: public OperatorIndividual<Person> {
         public:            			
-            /*! 
-              \param[in] conception Conception model
-              \param[in] relative_risk Relative risks vector (elements can't be null).
-              \param[in] external_predicate Predicate which selects Persons to act on from among non-pregnant females of appropriate age. If null, it is replaced by PredTrue. The Predicate provided is multiplied internally by predicates selecting sex, age and pregnancy status. 
-              \param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
-			  \param min_childbearing_age Minimum childbearing age in years
-			  \param max_childbearing_age Maximum childbearing age in years
-			  \param zero_fertility_period Period after childbirth during which there can be no conception
-              \throw std::domain_error If any relative risk is null. If min_childbearing_age > max_childbearing_age. If zero_fertility_period has negative size.
+            /** 
+              @param[in] conception Conception model
+              @param[in] relative_risk Relative risks vector (elements can't be null).
+              @param[in] external_predicate Predicate which selects Persons to act on from among non-pregnant females of appropriate age. If null, it is replaced by PredTrue. The Predicate provided is multiplied internally by predicates selecting sex, age and pregnancy status. 
+              @param schedule Custom schedule (moved). Must be contained in context schedule. Null to use context schedule.
+			  @param min_childbearing_age Minimum childbearing age in years
+			  @param max_childbearing_age Maximum childbearing age in years
+			  @param zero_fertility_period Period after childbirth during which there can be no conception
+              @throw std::domain_error If any relative risk is null. If min_childbearing_age > max_childbearing_age. If zero_fertility_period has negative size.
              */
 			OperatorConception(const Conception& conception, const std::vector<std::shared_ptr<const RelativeRisk<Person>>>& relative_risks, std::shared_ptr<const Predicate<Person>> external_predicate, std::unique_ptr<Schedule>&& schedule, unsigned int min_childbearing_age, unsigned int max_childbearing_age, Period zero_fertility_period);
 
@@ -66,7 +66,7 @@ namespace averisera {
 				return str;
 			}
 
-			/*! Calculate first date when conception can happen */
+			/** Calculate first date when conception can happen */
 			static Date calc_first_conception_date_allowed(const std::shared_ptr<Person>& obj, const Contexts& ctx, unsigned int min_childbearing_age, Period zero_fertility_period);
         private:			
 			HistoryUserSimple<Person> hist_use_;
@@ -82,7 +82,7 @@ namespace averisera {
 
 			static std::shared_ptr<const Predicate<Person>> predicate_for_history_generator();
 
-			/*! Add required conditions particular to OperatorConception */
+			/** Add required conditions particular to OperatorConception */
 			static std::shared_ptr<const Predicate<Person>> predicate_for_operator(const std::shared_ptr<const Predicate<Person>>& external_predicate, unsigned int min_childbearing_age, unsigned int max_childbearing_age);
 
 			Date calc_first_conception_date_allowed(const std::shared_ptr<Person>& obj, const Contexts& ctx) const;
