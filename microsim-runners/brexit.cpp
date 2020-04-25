@@ -1,3 +1,8 @@
+/*
+Microsimulation runner for Brexit scenarios simulation in England and Wales.
+
+(C) Averisera Ltd 2016-2020
+*/
 #include "microsim-core/anchored_hazard_curve.hpp"
 #include "microsim-uk/ethnicity/ethnicity_ons_full.hpp"
 #include "microsim-core/conception.hpp"
