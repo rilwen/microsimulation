@@ -4,7 +4,7 @@
 
 namespace averisera {
 	namespace microsim {
-		void MigrantSelectorLatestImigrantsFirst::select_impl(const Contexts& ctx, std::vector<std::shared_ptr<Person>>& source, size_t number, std::vector<std::shared_ptr<Person>>::iterator dest_begin) const {
+		void MigrantSelectorLatestImigrantsFirst::select_impl(const Contexts&, std::vector<std::shared_ptr<Person>>& source, size_t number, std::vector<std::shared_ptr<Person>>::iterator dest_begin) const {
 			std::sort(source.begin(), source.end(), [](const std::shared_ptr<Person>& l, const std::shared_ptr<Person>& r) {
 				assert(l);
 				assert(r);

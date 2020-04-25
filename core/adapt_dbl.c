@@ -13,6 +13,13 @@
 #include <f2c.h>
 #include "adapt_dbl.h"
 
+#ifdef _MSC_VER
+// Turn off the "unreferenced formal parameter" warning in Visual Studio.
+// ANSI C requires providing parameter names, so we cannot avoid triggering the
+// below warning in Visual Studio if a parameter is unused.
+#pragma warning(disable : 4100)
+#endif /* _MSC_VER */
+
 /* Table of constant values */
 
 static integer c__2 = 2;
@@ -101,6 +108,12 @@ L40:
 /*<       END >*/
 } /* wht_ */
 
+/* Builtin functions */
+integer pow_ii(integer *, integer *);
+/* Subroutine */ int bsrl_(integer *, doublereal *, doublereal *,
+	adapt_fp, integer *, integer *, doublereal *, doublereal *,
+	doublereal *, integer *, integer *, const doublereal *, const integer *);
+
 /*<        >*/
 /* Subroutine */ int adapt_(integer *ndim, doublereal *a, doublereal *b, 
 	integer *minpts, integer *maxpts, adapt_fp functn, doublereal *eps, 
@@ -110,17 +123,13 @@ L40:
     /* System generated locals */
     integer i__1;
 
-    /* Builtin functions */
-    integer pow_ii(integer *, integer *);
+    
 
     /* Local variables */
     integer j, k;
     static const doublereal one = 1.0;
     static const doublereal two = 2.0;
-    static const doublereal half = 0.5;
-    extern /* Subroutine */ int bsrl_(integer *, doublereal *, doublereal *, 
-	    adapt_fp, integer *, integer *, doublereal *, doublereal *, 
-	    doublereal *, integer *, integer *, const doublereal *, const integer *);
+    static const doublereal half = 0.5;    
     static const doublereal zero = 0.0;
     doublereal width[20];
     integer index1, index2, divflg;
@@ -131,7 +140,7 @@ L40:
     doublereal errmin;
     integer divaxn;
     doublereal rgnerr;
-    integer funcls, sbrgns, subrgn, rulcls, sbtmpp, subtmp, rgnstr;
+    integer funcls, sbrgns = 0, subrgn, rulcls, sbtmpp, subtmp, rgnstr;
 
 /*<       IMPLICIT NONE >*/
 /* ***BEGIN PROLOGUE ADAPT */
@@ -484,6 +493,10 @@ L300:
 /*<       END >*/
 } /* adapt_ */
 
+/* Subroutine */ int symrl_(integer *, doublereal *, doublereal *,
+	adapt_fp, integer *, integer *, doublereal *, integer *, integer *,
+	doublereal *, doublereal *, integer *, const doublereal *, const integer *);
+
 /*<        >*/
 /* Subroutine */ int bsrl_(integer *s, doublereal *center, doublereal *hwidth,
 	 adapt_fp f, integer *maxvls, integer *funcls, doublereal *errmin, 
@@ -500,9 +513,7 @@ L300:
 	    zero;
     integer ifail;
     doublereal three;
-    extern /* Subroutine */ int symrl_(integer *, doublereal *, doublereal *, 
-	    adapt_fp, integer *, integer *, doublereal *, integer *, integer *, 
-	    doublereal *, doublereal *, integer *, const doublereal *, const integer *);
+    
     integer mindeg, maxdeg;
     doublereal difmax;
     integer minord, intcls, maxord;
@@ -644,6 +655,12 @@ L40:
 /*<       END >*/
 } /* bsrl_ */
 
+doublereal flsm_(integer *, doublereal *, doublereal *, doublereal
+	*, integer *, integer *, integer *, const doublereal *, adapt_fp, integer *,
+	const doublereal *, const integer *);
+
+/* Subroutine */ int nxprt_(integer *, integer *, integer *);
+
 /*<        >*/
 /* Subroutine */ int symrl_(integer *s, doublereal *center, doublereal *
 	hwidth, adapt_fp f, integer *minord, integer *maxord, doublereal *intvls, 
@@ -666,12 +683,10 @@ L40:
     extern doublereal wht_(integer *, doublereal *, integer *, integer *, 
 	    integer *, integer *, integer *, doublereal *);
     doublereal two;
-    extern doublereal flsm_(integer *, doublereal *, doublereal *, doublereal 
-	    *, integer *, integer *, integer *, const doublereal *, adapt_fp, integer *,
-	     const doublereal *, const integer *);
+    
     integer maxs;
     doublereal zero;
-    extern /* Subroutine */ int nxprt_(integer *, integer *, integer *);
+    
     integer modofm;
     doublereal floatl, hundrd;
     integer maxrdm;
@@ -873,9 +888,8 @@ L50:
 /* Computing 2nd power */
 		d__1 = g[i__ - 2];
 		gisqrd = d__1 * d__1;
-	    }
+	    } else {
 /*<           IF (I.GT.L) GISQRD = G(I)**2 >*/
-	    if (i__ > l) {
 /* Computing 2nd power */
 		d__1 = g[i__ - 1];
 		gisqrd = d__1 * d__1;
@@ -979,7 +993,7 @@ L90:
 
 /*<        >*/
 doublereal flsm_(integer *s, doublereal *center, doublereal *hwidth, 
-                 doublereal *x, integer *m, integer *mp, integer *maxord, const doublereal *
+                 doublereal *x, integer *m, integer *mp, integer * maxord, const doublereal *
 	g, adapt_fp f, integer *sumcls, const doublereal *params, const integer *npara)
 {
     /* System generated locals */

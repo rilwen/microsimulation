@@ -20,7 +20,7 @@ namespace averisera {
             return -2 * log_likelihood + number_parameters * (log(number_observations) - log_2pi);
         }
         
-        double aic(double log_likelihood, unsigned int number_parameters, unsigned int number_observations) {
+        double aic(double log_likelihood, unsigned int number_parameters) {
             return 2 * (-log_likelihood + number_parameters);
         }
         

@@ -11,7 +11,7 @@ static const RelativeRiskValueUnbound RR(1.51, Period(PeriodType::YEARS, 5));
 
 class MockRelativeRisk : public RelativeRisk<int> {
 public:
-    RelativeRiskValueUnbound calc_relative_risk_unbound(const int& arg, const Contexts& ctx) const override {
+    RelativeRiskValueUnbound calc_relative_risk_unbound(const int&, const Contexts&) const override {
         return RR;
     }
 

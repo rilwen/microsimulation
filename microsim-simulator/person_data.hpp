@@ -43,9 +43,11 @@ namespace averisera {
             void change_child_id(Actor::id_t old_id, Actor::id_t new_id);
 
 			/** Create a link to a child. 
+			@param child Reference to the data of the child being linked.
+			@param child_conception_data Conception date of the child.
 			@throw std::domain_error If child.id is already link as child
 			*/
-            void link_child(PersonData& child, Date conception_date);
+            void link_child(PersonData& child, Date child_conception_date);
 
 			/** Print to stream */
 			void print(std::ostream& os) const;

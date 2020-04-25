@@ -28,7 +28,7 @@ namespace averisera {
             return person.is_alive(ctx.asof()) ? ALIVE : DEAD;
         }
         
-        void Mortality::set_next_state(Person& person, Date date, state_t state, const Contexts& ctx) const {
+        void Mortality::set_next_state(Person& person, Date date, state_t state, const Contexts&) const {
             if (state == DEAD) {
                 person.die(date);
             } // else do nothing

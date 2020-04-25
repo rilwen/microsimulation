@@ -2,6 +2,7 @@
 #include "initialiser_bootstrapping_unlinked.hpp"
 #include "../mutable_context.hpp"
 #include "../person.hpp"
+#include "core/preconditions.hpp"
 #include "core/rng.hpp"
 #include <cassert>
 
@@ -11,8 +12,8 @@ namespace averisera {
             : InitialiserBootstrapping(std::move(person_data_sampler), std::move(person_perturbations)) {}
 
         void InitialiserBootstrappingUnlinked::sample(std::vector<PersonData>& added_persons, pop_size_t remaining_size, const Contexts& ctx) const {
-            assert(remaining_size > 0);
-            assert(added_persons.empty());
+			check_greater(remaining_size, 0u);
+			check_that(added_persons.empty());
             const size_t idx = static_cast<size_t>(ctx.mutable_ctx().rng().next_uniform(sample_size() - 1));
             assert(idx < sample_size());
             const PersonData& sampled = sample_person(idx);

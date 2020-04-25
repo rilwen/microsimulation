@@ -4,21 +4,21 @@
 
 using namespace averisera;
 
-int counter;
+int global_counter;
 
 double xinvcoshx(double x)
 {
-	++counter;
+	++global_counter;
 	return x != 0 ? x/cosh(x) : 0;
 }
 
 TEST(Brent, XInvCoshX)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	EXPECT_NEAR(0, RootFinding::find_root(xinvcoshx, -1, 5, tol, tol), tol);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -27,17 +27,17 @@ TEST(Brent, XInvCoshX)
 
 double my_atan(double x)
 {
-	++counter;
+	++global_counter;
 	return atan(x);
 }
 
 TEST(Brent, ATan)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	EXPECT_NEAR(0, RootFinding::find_root(my_atan, -1, 5, tol, tol), tol);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -46,17 +46,17 @@ TEST(Brent, ATan)
 
 double polynomial(double x)
 {
-	++counter;
+	++global_counter;
 	return (x - 1.0001)*(x - 1)*(x-4)*(x-10);
 }
 
 TEST(Brent, Polynomial)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	const double x0 = RootFinding::find_root(polynomial, -7, 7, tol, tol);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, polynomial(x0), RootFinding::effective_tolerance(1, tol));
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
@@ -70,7 +70,7 @@ TEST(Brent, Polynomial)
 
 double lines(double x)
 {
-	++counter;
+	++global_counter;
 	if (x < -1) {
 		return -1;
 	} else if (x < 1) {
@@ -82,10 +82,10 @@ double lines(double x)
 TEST(Brent, Lines)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	EXPECT_NEAR(0, RootFinding::find_root(lines, -10, 5, tol, tol), tol);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -128,7 +128,7 @@ TEST(Brent, NormCDF)
 
 double p02(double x)
 {
-	++counter;
+	++global_counter;
 //	std::cout << "Evaluating at x == " << std::setprecision(16) << x << std::endl;
 	return 2*x - exp(-x);
 }
@@ -136,15 +136,15 @@ double p02(double x)
 TEST(Brent, P02)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	double xa_tolx;
 	double xb_tolx;
 	double xa_toly;
 	double xb_toly;
 //	std::cout << "TOLX" << std::endl;
 	const double root_tolx = RootFinding::find_root(p02, -10, 100, tol, 0, xa_tolx, xb_tolx);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -158,11 +158,11 @@ TEST(Brent, P02)
 //	const double brent_root_tolx = brent(p02, -10, 100, tol, 0);
 //	std::cout << "Used " << counter << " function evaluations for Brent" << std::endl;
 
-	counter = 0;
+	global_counter = 0;
 //	std::cout << "TOLY" << std::endl;
 	const double root_toly = RootFinding::find_root(p02, -10, 100, 0, tol, xa_toly, xb_toly);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -178,26 +178,26 @@ TEST(Brent, P02)
 double pinhead(double x)
 {
 	static const double epsilon = 0.00001E+00;
-	++counter;
+	++global_counter;
 	return ( 16.0E+00 - x*x*x*x ) / ( 16.0E+00 * x*x*x*x + epsilon );
 }
 
 TEST(Brent, Pinhead)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	double xa_tolx, xb_tolx;
 	double xa_toly, xb_toly;
 	const double root_tolx = RootFinding::find_root(pinhead, 0, 10, tol, 0, xa_tolx, xb_tolx);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, xb_tolx - xa_tolx, RootFinding::effective_tolerance(root_tolx, tol));
 	EXPECT_NEAR(2, root_tolx, RootFinding::effective_tolerance(root_tolx, tol));
-	counter = 0;
+	global_counter = 0;
 	const double root_toly = RootFinding::find_root(pinhead, 0, 10, 0, tol, xa_toly, xb_toly);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, pinhead(root_toly), tol);
 
@@ -213,31 +213,31 @@ TEST(Brent, Pinhead)
 
 double repeller(double x)
 {
-	++counter;
+	++global_counter;
 	return 20.0E+00 * x / ( 100.0E+00 * x * x + 1.0E+00 );
 }
 
 TEST(Brent, Repeller)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	double xa_tolx;
 	double xb_tolx;
 	double xa_toly;
 	double xb_toly;
 	const double root_tolx = RootFinding::find_root(repeller, -11, 8, tol, 0, xa_tolx, xb_tolx);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, xb_tolx - xa_tolx, RootFinding::effective_tolerance(root_tolx, tol));
 	EXPECT_NEAR(0, root_tolx, RootFinding::effective_tolerance(root_tolx, tol));
 //	counter = 0;
 //	const double root_brent_tolx = brent(repeller, -11, 8, tol, 0);
 //	std::cout << "Used " << counter << " function evaluations for Brent" << std::endl;
-	counter = 0;
+	global_counter = 0;
 	const double root_toly = RootFinding::find_root(repeller, -11, 8, 0, tol, xa_toly, xb_toly);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, repeller(root_toly), tol);
 //	counter = 0;
@@ -247,7 +247,7 @@ TEST(Brent, Repeller)
 
 double camel(double x)
 {
-	++counter;
+	++global_counter;
 	return 1.0E+00 / ( pow( x - 0.3E+00, 2 ) + 0.01E+00 )
 	+ 1.0E+00 / ( pow( x - 0.9E+00, 2 ) + 0.04E+00 ) + 2.0E+00 * x - 5.2E+00;
 }
@@ -255,13 +255,13 @@ double camel(double x)
 TEST(Brent, Camel)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	double xa_tolx, xb_tolx;
 	double xa_toly;
 	double xb_toly;
 	const double root_tolx = RootFinding::find_root(camel, -11, 10, tol, 0, xa_tolx, xb_tolx);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -269,10 +269,10 @@ TEST(Brent, Camel)
 //	std::cout << "Rejected interpolation " << maths::root_finder_stats.rejection_cnt << " times" << std::endl;
 //	std::cout << "Function value at our root: " << camel(root_tolx) << std::endl;
 	EXPECT_NEAR(0, xb_tolx - xa_tolx, RootFinding::effective_tolerance(root_tolx, tol));
-	counter = 0;
+	global_counter = 0;
 	const double root_toly = RootFinding::find_root(camel, -11, 10, 0, tol, xa_toly, xb_toly);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//	std::cout << "Used " << counter << " function evaluations" << std::endl;
 //	std::cout << "Proceeded by bisection " << maths::root_finder_stats.bisection_cnt << " times" << std::endl;
 //	std::cout << "Proceeded by inverse quadratic interpolation " << maths::root_finder_stats.inverse_quadratic_cnt << " times" << std::endl;
@@ -293,26 +293,26 @@ TEST(Brent, Camel)
 
 double lazy_boy(double x)
 {
-	++counter;
+	++global_counter;
 	return 0.00000000001E+00 * (x - 100);
 }
 
 TEST(Brent, LazyBoy)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	double xa_tolx, xb_tolx;
 	double xa_toly, xb_toly;
 	const double root_tolx = RootFinding::find_root(lazy_boy, -12000000000000.0E+00, 10000000000000.0E+00, tol, 0, xa_tolx, xb_tolx);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, xb_tolx - xa_tolx, RootFinding::effective_tolerance(root_tolx, tol));
 	EXPECT_NEAR(100, root_tolx, RootFinding::effective_tolerance(root_tolx, tol));
-	counter = 0;
+	global_counter = 0;
 	const double root_toly = RootFinding::find_root(lazy_boy, -12000000000000.0E+00, 10000000000000.0E+00, 0, tol, xa_toly, xb_toly);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, lazy_boy(root_toly), tol);
 
@@ -328,7 +328,7 @@ TEST(Brent, LazyBoy)
 
 double vertigo(double x)
 {
-	++counter;
+	++global_counter;
 	const double y = x - 1E6;
 	const int sign = y > 0 ? 1 : -1;
 	return 1E12*sign*sqrt(std::abs(y));
@@ -337,19 +337,19 @@ double vertigo(double x)
 TEST(Brent, Vertigo)
 {
 	const double tol = 1E-18;
-	counter = 0;
+	global_counter = 0;
 	double xa_tolx, xb_tolx;
 	double xa_toly, xb_toly;
 	const double root_tolx = RootFinding::find_root(vertigo, -2E6, 3E6, tol, 0, xa_tolx, xb_tolx);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, xb_tolx - xa_tolx, RootFinding::effective_tolerance(root_tolx, tol));
 	EXPECT_NEAR(1E6, root_tolx, RootFinding::effective_tolerance(root_tolx, tol));
-	counter = 0;
+	global_counter = 0;
 	RootFinding::find_root(vertigo, -2E6, 3E6, 0, tol, xa_toly, xb_toly);
-	ASSERT_GT(counter, 0);
-	ASSERT_LT(counter, 100);
+	ASSERT_GT(global_counter, 0);
+	ASSERT_LT(global_counter, 100);
 	//std::cout << "Used " << counter << " function evaluations" << std::endl;
 	EXPECT_NEAR(0, xb_toly - xa_toly, RootFinding::effective_tolerance(root_tolx, 0));
 }

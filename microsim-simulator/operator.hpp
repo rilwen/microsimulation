@@ -124,7 +124,7 @@ namespace averisera {
 			/** Is the operator active on given date?
 			@param date Date from context schedule
 			*/
-			virtual bool active(Date date) const {
+			virtual bool active(Date /*date*/) const {
 				return true;
 			}
 

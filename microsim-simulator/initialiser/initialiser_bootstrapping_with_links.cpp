@@ -22,7 +22,7 @@ namespace averisera {
             assert(idx < sample_size());
             const PersonData& sampled = sample_person(idx);
             visited_t visited;
-			const pop_size_t total_family_size = 1 + walk_link_graph(sampled, nullptr, 0, visited, [](const PersonData& p, const PersonData* from) {});
+			const pop_size_t total_family_size = 1 + walk_link_graph(sampled, nullptr, 0, visited, [](const PersonData&, const PersonData*) {});
             visited.clear();
             ActorData::id_map_t copies; // map originals to copied clones
             if (total_family_size <= remaining_size) {

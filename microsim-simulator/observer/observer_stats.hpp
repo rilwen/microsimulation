@@ -52,9 +52,9 @@ namespace averisera {
             unsigned int _precision;            
 			bool calc_medians_;
 
-			template <class Functor> void save_single_result(std::ostream& os, const ImmutableContext& im_ctx, Functor f, const char* result_name, const std::vector<Date>& dates) const;
+			template <class Functor> void save_single_result(std::ostream& os, Functor f, const char* result_name, const std::vector<Date>& dates) const;
 
-			void save_single_result(std::ostream& os, const ImmutableContext& im_ctx, const std::unordered_map<Date, std::vector<V>>& results, const char* result_name, const std::vector<Date>& dates) const;
+			void save_single_result(std::ostream& os, const std::unordered_map<Date, std::vector<V>>& results, const char* result_name, const std::vector<Date>& dates) const;
         };
     }
 }

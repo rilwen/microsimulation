@@ -313,7 +313,7 @@ namespace averisera {
 		const auto d = static_cast<unsigned int>(sample.rows());
 		Eigen::MatrixXd cov;
 		Statistics::estimate_covariance_matrix(sample.transpose(), DataCheckLevel::FINITE, cov);
-		assert(d == cov.rows());
+		assert(d == static_cast<unsigned int>(cov.rows()));
 		assert(cov.rows() == cov.cols());
 		Eigen::JacobiSVD<Eigen::MatrixXd> svd(cov, Eigen::ComputeFullU | Eigen::ComputeFullV);
 		// svd.matrixU() has an eigenvector in each column

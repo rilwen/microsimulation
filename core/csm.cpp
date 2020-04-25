@@ -97,14 +97,14 @@ namespace averisera {
 
 	double CSM::estimate(Eigen::MatrixXd& pi, Eigen::VectorXd& q0, std::string* estimation_info_string)
 	{
-		if (q0.size() != _state_dim) {
+		if (static_cast<unsigned int>(q0.size()) != _state_dim) {
 			throw std::invalid_argument("CSM: Wrong initial state distribution size");
 		}
 		
-		if (pi.rows() != _prms.dim) {
+		if (static_cast<unsigned int>(pi.rows()) != _prms.dim) {
 			throw std::invalid_argument("CSM: Wrong transition matrix row dimension");
 		}
-		if (pi.cols() != _state_dim) {
+		if (static_cast<unsigned int>(pi.cols()) != _state_dim) {
 			throw std::invalid_argument("CSM: Wrong transition matrix column dimension");
 		}
 		const clock_t time0 = std::clock();		
@@ -307,7 +307,7 @@ namespace averisera {
 	}	
 
 	void CSM::calc_initial_guess_q0_from_data(Eigen::VectorXd& q0) const {
-		if (q0.size() != _state_dim) {
+		if (static_cast<unsigned int>(q0.size()) != _state_dim) {
 			q0.resize(_state_dim);
 		}
 		// Assume almost 100% correlation between time points.
@@ -330,7 +330,7 @@ namespace averisera {
 	}
 
 	void CSM::calc_initial_guess_q0_max_entropy(Eigen::VectorXd& q0) const {
-		if (q0.size() != _state_dim) {
+		if (static_cast<unsigned int>(q0.size()) != _state_dim) {
 			q0.resize(_state_dim);
 		}
 		std::fill(q0.data(), q0.data() + _state_dim, 1. / static_cast<double>(_state_dim));

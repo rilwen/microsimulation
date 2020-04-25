@@ -9,11 +9,11 @@ namespace averisera {
         /** Predicate which always returns true */
         template <class T> class PredTrue: public Predicate<T> {
         public:
-            bool select(const T& obj, const Contexts& contexts) const override {
+            bool select(const T&, const Contexts&) const override {
                 return true;
             }
 
-            bool select_out_of_context(const T& obj) const override {
+            bool select_out_of_context(const T&) const override {
                 return true;
             }
             

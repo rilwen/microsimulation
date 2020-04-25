@@ -25,22 +25,22 @@ public:
     bool empty() const override { return true; }
     Date last_date() const override { return Date(); }
     Date first_date() const override { return Date(); }
-    Date last_date(Date asof) const override { return Date(); }
-    double_t as_double(Date asof) const override { return 0; }
-    int_t as_int(Date asof) const override { return 0; }
+    Date last_date(Date) const override { return Date(); }
+    double_t as_double(Date) const override { return 0; }
+    int_t as_int(Date) const override { return 0; }
     double_t last_as_double() const override { return 0; }
     int_t last_as_int() const override { return 0; }
-    double_t last_as_double(Date asof) const override { return 0; }
-    int_t last_as_int(Date asof) const override { return 0; }
-    void append(Date date, double_t value) override {}
-    void append(Date date, int_t value) override {}
-    void correct(double_t value) override {}
+    double_t last_as_double(Date) const override { return 0; }
+    int_t last_as_int(Date) const override { return 0; }
+    void append(Date, double_t) override {}
+    void append(Date, int_t) override {}
+    void correct(double_t) override {}
     index_t size() const override { return 0; }
-    Date date(index_t idx) const override { return Date(); }
-    double_t as_double(index_t idx) const override { return 0.; }
-    int_t as_int(index_t idx) const override { return 0; }
-    index_t last_index(Date asof) const override { return 0; }
-    index_t first_index(Date asof) const override { return 0; }
+    Date date(index_t) const override { return Date(); }
+    double_t as_double(index_t) const override { return 0.; }
+    int_t as_int(index_t) const override { return 0; }
+    index_t last_index(Date) const override { return 0; }
+    index_t first_index(Date) const override { return 0; }
     void print(std::ostream& os) const override { os << "MOCK"; }
     std::unique_ptr<History> clone() const override { return nullptr; }
 	HistoryData to_data() const { return HistoryData(); }

@@ -53,35 +53,19 @@ Microsimulation runner for Brexit scenarios simulation in England and Wales.
 using namespace averisera;
 using namespace averisera::microsim;
 
-const CSV::Delimiter DELIM = CSV::Delimiter::TAB;
-const bool MIGRATION_MID_YEAR = true;
-const bool USE_SINGLE_SIMULATION_WITHOUT_MIGRATION = false;
-const std::string BMI_CATEGORY_VARIABLE_NAME("BMICat");
-const std::string BMI_PERCENTILE_VARIABLE_NAME("BMIPerc");
-const std::string BMI_VARIABLE_NAME("BMI");
-const unsigned int POST_PREGNANCY_ZERO_FERTILITY_MONTHS = 3;
+const CSV::Delimiter DELIM = CSV::Delimiter::TAB; /**< Type of delimiter used in input files. */
+const bool MIGRATION_MID_YEAR = true; /**< Whether migration happens on 1 July (true) or 1 January (false) each year. */
+const bool USE_SINGLE_SIMULATION_WITHOUT_MIGRATION = false; /**< Whether migration is estimated by performing a single simulation without it between the 1st and last census year (true), or by performing such migration-free simulations between consecutive census years. */
+const std::string BMI_CATEGORY_VARIABLE_NAME("BMICat"); /**< History variable name for BMI category. */
+const std::string BMI_PERCENTILE_VARIABLE_NAME("BMIPerc"); /**< History variable name for BMI percentile. */
+const std::string BMI_VARIABLE_NAME("BMI"); /**< History variable name for BMI value. */
+const unsigned int POST_PREGNANCY_ZERO_FERTILITY_MONTHS = 3; /**< How many months after pregnancy are assumed to be zero fertility. */
 const double POST_PREGNANCY_ZERO_FERTILITY_YEAR_FRACTION = static_cast<double>(POST_PREGNANCY_ZERO_FERTILITY_MONTHS) / 12.0 - 0.0001; // Subtract small fraction to help calibration.
-typedef uint8_t bmi_cat_type;
 
-// static std::vector<PersonData> load_person_data(const std::string& variables_filename, const std::string& persons_filename) {
-// 	// Load population sample
-// 	const PopulationLoader population_loader(CSV::Delimiter::COMMA, CSV::QuoteCharacter::DOUBLE_QUOTE);
-// 	MutableContext mut_ctx;
-// 	// Load variable definitions
-// 	PopulationLoader::value_type_map_t value_map;
-// 	population_loader.load_variables(variables_filename, value_map);
-// 	// Load sample population data
-// 	return population_loader.load_persons(persons_filename, mut_ctx, value_map, false);
-// }
+typedef uint8_t bmi_cat_type; /**< Type used to represent BMI categories. */
 
-//static std::vector<std::unique_ptr<AnchoredHazardCurve>> load_mortality_data(const std::string& deaths_file, const std::string& groups_file, const Schedule& schedule, const RateCalibrator::age_type max_age) {
-//	CSVFileReader deaths(deaths_file, DELIM, CSV::QuoteCharacter::DOUBLE_QUOTE);
-//	CSVFileReader groups(groups_file, DELIM, CSV::QuoteCharacter::DOUBLE_QUOTE);
-//	Date::year_type max_year_of_birth = schedule.end_date().year();
-//	Date::year_type min_year_of_birth = MathUtils::safe_cast<Date::year_type>(schedule.begin()->begin.year() - max_age);
-//	return MortalityCalibrator::calc_mortality_curves(deaths, groups, min_year_of_birth, max_year_of_birth);
-//}
-
+/** Loads mortality rates from data file.
+*/
 static std::vector<std::unique_ptr<AnchoredHazardCurve>> load_mortality_data(const std::string& mortality_rates_file, const Schedule& schedule, const RateCalibrator::age_type max_age) {
 	CSVFileReader rates(mortality_rates_file, DELIM, CSV::QuoteCharacter::DOUBLE_QUOTE);
 	Date::year_type max_year_of_birth = schedule.end_date().year();
@@ -89,13 +73,8 @@ static std::vector<std::unique_ptr<AnchoredHazardCurve>> load_mortality_data(con
 	return MortalityCalibrator::calc_mortality_curves(rates, min_year_of_birth, max_year_of_birth);
 }
 
-//static std::vector<std::unique_ptr<Operator<Person>>> build_mortality_operators(const std::string& deaths_file, const std::string& groups_file, const Schedule& schedule, const RateCalibrator::age_type max_age, const std::shared_ptr<const Predicate<Person>>& predicate) {
-//	auto vec = Mortality::build_operators(std::move(load_mortality_data(deaths_file, groups_file, schedule, max_age)), nullptr, predicate);
-//	std::vector<std::unique_ptr<Operator<Person>>> result(vec.size());
-//	std::transform(vec.begin(), vec.end(), result.begin(), [](std::unique_ptr<Mortality>& m) { return std::move(m); });
-//	return result;
-//}
-
+/** Builds operators applying mortality to people.
+*/
 static std::vector<std::unique_ptr<Operator<Person>>> build_mortality_operators(const std::string& mortality_rates_file, const Schedule& schedule, const RateCalibrator::age_type max_age, const std::shared_ptr<const Predicate<Person>>& predicate) {
 	auto vec = Mortality::build_operators(std::move(load_mortality_data(mortality_rates_file, schedule, max_age)), nullptr, predicate);
 	std::vector<std::unique_ptr<Operator<Person>>> result(vec.size());
@@ -103,6 +82,8 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_mortality_operators(
 	return result;
 }
 
+/** Returns multipliers correcting fertility rates for ethnic groups.
+*/
 static std::unique_ptr<const HazardRateMultiplierProvider<Person>> get_total_fertility_rates_multipliers(const std::string& filename, const std::string& ethnicity_classification) {
 	CSVFileReader reader(filename, DELIM);	
 	Ethnicity::IndexConversions ic(EthnicityClassficationsEnglandWales::get_conversions(ethnicity_classification.c_str()));
@@ -128,14 +109,15 @@ static std::unique_ptr<const HazardRateMultiplierProvider<Person>> get_total_fer
 		pairs.push_back(std::make_pair(std::move(pred), std::move(series)));
 	}
 	// TODO: ideally, remaining ethnic groups should have their fertility rates adjusted to match other data
-	// but the error we're making by not doing so is small
+	// but the error we're making by not doing so is small.
 	for (const auto& pair : pairs) {
 		LOG_DEBUG() << "HRM pair: " << pair.first->as_string() << ", " << pair.second;
 	}
 	return std::make_unique<HazardRateMultiplierProviderByPredTimeDependent<Person>>(std::move(pairs));
 }
 
-/**
+/** Builds operators handling conceiving babies.
+
 @param multiplicity_distros Vector of TimeSeries (age, multiplicity distribution) indexed by years
 */
 static std::vector<std::unique_ptr<Operator<Person>>> build_conception_operators(const std::string& birth_rates_file, const double birth_rate_basis, const Conception::mdistr_multi_series_type& multiplicity_distros, const std::unique_ptr<const HazardRateMultiplierProvider<Person>>& hrm_provider) {	
@@ -169,6 +151,7 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_conception_operators
 	return operators;
 }
 
+/** Builds operators handling creating fetuses after conception (gender ratios). */
 static std::vector<std::unique_ptr<Operator<Person>>> build_fetus_generator_operators(const std::string& birth_gender_ratios_file) {
 	CSVFileReader reader(birth_gender_ratios_file, DELIM);
 	const auto gender_rates = ProcreationCalibrator::load_gender_rates(reader, 0);
@@ -189,6 +172,7 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_fetus_generator_oper
 	return operators;
 }
 
+/** Generates names of files with census data. */
 static std::vector<std::string> get_census_filenames(const std::vector<Date::year_type>& census_years_start, const unsigned int census_spacing_years, const std::string& resource_dir, const std::string& pattern, const bool single_sim) {
 	std::vector<std::string> census_filenames;
 	for (auto yr_start : census_years_start) {
@@ -202,6 +186,7 @@ static std::vector<std::string> get_census_filenames(const std::vector<Date::yea
 	return census_filenames;
 }
 
+/** Rescales values in a range by a constant factor. */
 template <class It> static void rescale_range(It begin, const It end, double factor) {
 	for (; begin != end; ++begin) {
 		(*begin) *= factor;
@@ -210,10 +195,12 @@ template <class It> static void rescale_range(It begin, const It end, double fac
 
 typedef std::vector<PopulationCalibrator::pop_data_type> pop_data_vector;
 
+/** Calculates total population size */
 static double calc_total_population(const PopulationCalibrator::pop_data_type& female, const PopulationCalibrator::pop_data_type& male) {
 	return female.values().sum() + male.values().sum();
 }
 
+/** Loads and rescales (to match historical starting population) simulated no-migration census numbers coming from a single simulation. */
 static void get_single_simulation_no_migration_numbers(const std::vector<Date::year_type>& census_years_start,
 	const std::string& resource_dir,
 	const Ethnicity::IndexConversions& ic,
@@ -243,6 +230,7 @@ static void get_single_simulation_no_migration_numbers(const std::vector<Date::y
 	nomigr_male_census_numbers_end = pop_data_vector(nomigr_male_census_numbers.begin() + 1, nomigr_male_census_numbers.end());
 }
 
+/** Loads and rescales (to match historical census populations) simulated no-migration census numbers coming from a 10-year simulations spanning the intervals between historical censuses. */
 static void get_multiple_simulations_no_migration_numbers(const std::vector<Date::year_type>& census_years,
 	const unsigned int census_spacing_years,
 	const std::string& resource_dir,
@@ -279,6 +267,7 @@ static void get_multiple_simulations_no_migration_numbers(const std::vector<Date
 	}
 }
 
+/** Generates sets of ethnic groups for BMI modelling */
 std::map<std::string, Ethnicity::index_set_type> get_bmi_ethnic_sets(const Ethnicity::IndexConversions& ic) {
 	const Ethnicity::index_set_type white({ ic.index("WHITE_BRITISH"), ic.index("IRISH"), ic.index("GYPSY_OR_TRAVELLER"), ic.index("OTHER_WHITE") });
 	const Ethnicity::index_set_type asian({ ic.index("INDIAN"), ic.index("PAKISTANI"), ic.index("BANGLADESHI"), ic.index("CHINESE"), ic.index("OTHER_ASIAN") });
@@ -296,7 +285,7 @@ std::map<std::string, Ethnicity::index_set_type> get_bmi_ethnic_sets(const Ethni
 }
 
 
-
+/** Builds operators handling BMI dynamics. */
 static std::vector<std::unique_ptr<Operator<Person>>> build_bmi_operators(const std::string& csm_calibration_file, 
 	const bmi_cat_type dim, 
 	const RateCalibrator::age_type min_age,
@@ -364,6 +353,7 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_bmi_operators(const 
 	return operators;
 }
 
+/** Main function. */
 void do_main(const UserArguments& ua) {
     // Read user arguments
     //const std::string variables_filename(ua.get<std::string>("VARIABLES_FILE"));
@@ -553,7 +543,7 @@ void do_main(const UserArguments& ua) {
 	for (const auto& varname : variables_for_stats) {
 		observed_quantities.push_back(ObservedQuantity<Person>::last_as_double(varname));
 	}
-	// bmi stats
+	// BMI stats
 	if (do_bmi) {
 		const std::string variable_name(BMI_CATEGORY_VARIABLE_NAME); // TODO: is this necessary?
 		for (bmi_cat_type i = 0; i < bmi_dim; ++i) {

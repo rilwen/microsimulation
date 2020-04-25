@@ -57,27 +57,25 @@ namespace averisera {
         /** Akaike Information Criterion, without the finite sample size correction
          *		@param log_likelihood Natural logarithm of the maximized likelihood
          *		@param number_parameters Number of parameters in the model
-         *		@param number_observations Number of independent observations used to calibrate the model
          *		@return Value of AIC
          */
-        double aic(double log_likelihood, unsigned int number_parameters, unsigned int number_observations);
+        double aic(double log_likelihood, unsigned int number_parameters);
         
         /** Akaike Information Criterion, without the finite sample size correction, for cross-sectional models (MLR or CSM)
          *		@param entropy Shannon entropy of the observed probability distributions
          *		@param kl_div Kullback-Leibler divergence D(observed||predicted) minimized by the model
          *		@param number_parameters Number of parameters in the model
-         *		@param number_observations Number of independent observations used to calibrate the model
          *		@return Value of AIC
          */
-        inline double aic(double entropy, double kl_div, unsigned int number_parameters, unsigned int number_observations) {
-            return aic(-entropy - kl_div, number_parameters, number_observations);
+        inline double aic(double entropy, double kl_div, unsigned int number_parameters) {
+            return aic(-entropy - kl_div, number_parameters);
         }
         
         /** Akaike Information Criterion, including the finite sample size correction
          *		@param log_likelihood Natural logarithm of the maximized likelihood
          *		@param number_parameters Number of parameters in the model
          *		@param number_observations Number of independent observations used to calibrate the model
-         *		@return Value of AIC
+         *		@return Value of AICc
          */
         double aic_corr(double log_likelihood, unsigned int number_parameters, unsigned int number_observations);
         

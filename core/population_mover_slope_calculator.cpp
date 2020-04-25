@@ -28,7 +28,7 @@ namespace averisera {
 		return sum;
 	}
 
-	double constraint_function(const std::vector<double>& x, std::vector<double>& grad, void* f_data) {
+	double constraint_function(const std::vector<double>& x, std::vector<double>& grad, void* /*f_data*/) {
 		if (!grad.empty()) {
 			std::fill(grad.begin(), grad.end(), 1.0);
 		}

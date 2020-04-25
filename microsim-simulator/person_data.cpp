@@ -102,13 +102,13 @@ namespace averisera {
             throw std::out_of_range("PersonData: no such child ID");
         }
 
-        void PersonData::link_child(PersonData& child, Date conception_date) {
+        void PersonData::link_child(PersonData& child, Date child_conception_date) {
 			if (std::find(children.begin(), children.end(), child.id) != children.end()) {
 				throw std::domain_error("PersonData::link_child: ID already linked");
 			}
 			children.push_back(child.id); // do this first in case insert fails
             child.mother_id = id;			
-			child.conception_date = conception_date;
+			child.conception_date = child_conception_date;
         }
 
 		void PersonData::print(std::ostream& os) const {

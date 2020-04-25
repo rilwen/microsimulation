@@ -116,9 +116,8 @@ namespace averisera {
 			}
 
 			DataFrame<age_group_type, int, double> read_values(CSVFileReader& reader, flag_type flags) {
-				const auto missing_year_handler = [&reader](const std::exception&, const std::string& elem) {
+				const auto missing_year_handler = [&reader](const std::exception&, const std::string& elem) -> int {
 					throw DataException(boost::str(boost::format("RateCalibrator: cannot convert \"%s\" to year number in file %s, column %d") % elem % reader.file_name() % YEAR_COLUMN_INDEX));
-					return 0;
 				};
 
 				DataFrame<age_group_type, int> data(DataFrame<age_group_type, int>::from_csv_file(reader,

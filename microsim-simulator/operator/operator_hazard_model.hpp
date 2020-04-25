@@ -50,7 +50,7 @@ namespace averisera {
             /** Set the next state */
             virtual void set_next_state(T& obj, Date date, state_t state, const Contexts& ctx) const = 0;
 			/** If returns null, use _hazard_model */
-			virtual std::unique_ptr<HazardModel> adapt_hazard_model(const T& obj) const {
+			virtual std::unique_ptr<HazardModel> adapt_hazard_model(const T& /*obj*/) const {
 				return nullptr;
 			}
             

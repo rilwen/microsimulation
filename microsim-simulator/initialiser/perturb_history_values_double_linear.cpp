@@ -16,7 +16,7 @@ namespace averisera {
             }
         }
         
-        template <class AD> double PerturbHistoryValuesDoubleLinear<AD>::perturb(Date date, double value, const Contexts& ctx) const {
+        template <class AD> double PerturbHistoryValuesDoubleLinear<AD>::perturb(Date, double value, const Contexts& ctx) const {
             return value + _distr->draw(ctx.mutable_ctx().rng());
         }
 

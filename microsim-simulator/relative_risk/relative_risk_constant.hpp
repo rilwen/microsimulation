@@ -17,7 +17,7 @@ namespace averisera {
             : _value(value) {              
             }
             
-            RelativeRiskValueUnbound calc_relative_risk_unbound(const A& arg, const Contexts& ctx) const override {
+            RelativeRiskValueUnbound calc_relative_risk_unbound(const A& /*arg*/, const Contexts& /*ctx*/) const override {
                 return _value;
             }
             

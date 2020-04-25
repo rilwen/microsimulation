@@ -16,7 +16,7 @@ public:
         _pred = PredicateFactory::make_true<int>();
     }
 
-    unsigned int dispatch(const int& obj, const Contexts& contexts) const override {
+    unsigned int dispatch(const int& obj, const Contexts&) const override {
         return static_cast<unsigned int>(obj);
     }
 

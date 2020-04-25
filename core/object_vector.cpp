@@ -40,12 +40,6 @@ namespace averisera {
 		return ObjectVector::Type::UINT32;
 	}
 
-    void ObjectVector::throw_unknown_type(ObjectVector::Type type) {
-		throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(type)));
-	}
-
-
-
     ObjectVector::Type ObjectVector::type_from_string(const std::string& str) {
         if (str == "none") {
             return ObjectVector::Type::NONE;
@@ -103,7 +97,7 @@ namespace averisera {
 			_type = type;
 			break;
 		default:
-			throw_unknown_type(type);
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(type)));
 		}
 	}
 
@@ -137,7 +131,7 @@ namespace averisera {
 			_type = other._type;
 			break;
 		default:
-			throw_unknown_type(other._type);
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(other._type)));
 		}
 	}
 
@@ -212,8 +206,7 @@ namespace averisera {
 		case Type::NONE:
 			return 0;
 		default:
-			throw_unknown_type(_type);
-			return 0;
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(_type)));
 		}
 	}
 
@@ -311,7 +304,7 @@ namespace averisera {
 		case Type::NONE:
 			throw std::domain_error("ObjectVector: reserving size in null");
 		default:
-			throw_unknown_type(_type);
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(_type)));
 		}
 	}
 
@@ -344,7 +337,7 @@ namespace averisera {
 		case Type::NONE:
 			throw std::domain_error("ObjectVector: resizing null");
 		default:
-			throw_unknown_type(_type);
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(_type)));
 		}
 	}
 
@@ -378,7 +371,7 @@ namespace averisera {
             os << "none";
             break;
         default:
-            ObjectVector::throw_unknown_type(typ);
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(typ)));
         }
         return os;
     }
@@ -413,7 +406,7 @@ namespace averisera {
 		case ObjectVector::Type::NONE:
             break;
         default:
-			ObjectVector::throw_unknown_type(v.type());
+			throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(v.type())));			
         }
         return os;
     }

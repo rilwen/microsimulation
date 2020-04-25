@@ -65,22 +65,22 @@ namespace averisera {
 				/*const double fit_norm = */model(data, extrap_times, extrap_probs);
 				double err = 0;
 				for (size_t i = 0; i < L; ++i) {
-					const size_t j = srt_omt_idx[i];
-					const double err_j = divergence(data0.nbr_surveys[j], data0.probs.col(j), extrap_probs.col(i));
-					if (!std::isfinite(err_j)) {
+					const size_t k = srt_omt_idx[i];
+					const double err_k = divergence(data0.nbr_surveys[k], data0.probs.col(k), extrap_probs.col(i));
+					if (!std::isfinite(err_k)) {
 						std::stringstream ss;
-						ss << "Abnormal cross-sectional cross-validation error: " << err_j << ", P == " << data0.probs.col(j) << ", Q = " << extrap_probs.col(i) << std::endl;
+						ss << "Abnormal cross-sectional cross-validation error: " << err_k << ", P == " << data0.probs.col(k) << ", Q = " << extrap_probs.col(i) << std::endl;
 						throw std::runtime_error(ss.str());
 					}
 					/*if (err_j > 10000) {
-						std::cout << model.name() << ": omitted[" << i << " -> " << j << "] == " << err_j << "\n";
+						std::cout << model.name() << ": omitted[" << i << " -> " << k << "] == " << err_j << "\n";
 						std::cout << "fit_norm == " << fit_norm << "\n";
-						std::cout << "data0.nbr_surveys[j] == " << data0.nbr_surveys[j] << "\n";
-						std::cout << "data0.probs.col(j) == " << data0.probs.col(j) << "\n";
+						std::cout << "data0.nbr_surveys[k] == " << data0.nbr_surveys[k] << "\n";
+						std::cout << "data0.probs.col(k) == " << data0.probs.col(k) << "\n";
 						std::cout << "extrap_probs.col(i) == " << extrap_probs.col(i) << std::endl;
 					}*/
-					err += err_j;
-					*error_idx_begin = err_j;
+					err += err_k;
+					*error_idx_begin = err_k;
 					++error_idx_begin;
 				}
 				return err;
@@ -93,7 +93,7 @@ namespace averisera {
 			}
 
 			// Calculation method for longitudinal data
-			template <class M, class I1> double minus_likelihood_of_omitted_longitudinal(const ObservedDiscreteData& data0, M& model, I1 omit_idx_begin, I1 omit_idx_end, size_t dim) {
+			template <class M, class I1> double minus_likelihood_of_omitted_longitudinal(const ObservedDiscreteData& data0, M& model, I1 omit_idx_begin, I1 omit_idx_end) {
 				const size_t L = static_cast<size_t>(std::distance(omit_idx_begin, omit_idx_end)); // nbr omitted indices
 				const size_t N0 = static_cast<size_t>(data0.ltimes.size());
 				assert(data0.ltrajs.size() == N0);
@@ -165,7 +165,7 @@ namespace averisera {
 		}
 
 		// k-fold cross-validation of longitudinal data. Splits trajectories into randomly chosen k subgroups. Measures error as minus log-likelihood.
-		template <class M, class URNG> std::vector<double> cross_validation_kfold_longitudinal(const ObservedDiscreteData& data, const size_t k, M& model, URNG&& urng, size_t dim) {
+		template <class M, class URNG> std::vector<double> cross_validation_kfold_longitudinal(const ObservedDiscreteData& data, const size_t k, M& model, URNG&& urng) {
 			const size_t T = data.ltimes.size();
 			std::vector<size_t> indices(T);
 			std::iota(indices.begin(), indices.end(), 0);
@@ -177,7 +177,7 @@ namespace averisera {
 			for (size_t omitted = 0; omitted < k; ++omitted) {
 				const auto omitted_init = L*omitted;
 				const auto omitted_end = (omitted < k - 1) ? (omitted_init + L) : n_omit;
-				const double total_error = minus_likelihood_of_omitted_longitudinal(data, model, indices.begin() + omitted_init, indices.begin() + omitted_end, dim);
+				const double total_error = minus_likelihood_of_omitted_longitudinal(data, model, indices.begin() + omitted_init, indices.begin() + omitted_end);
 				errorz[omitted] = total_error;
 			}
 			return errorz;

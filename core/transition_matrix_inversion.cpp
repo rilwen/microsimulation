@@ -13,7 +13,7 @@
 namespace averisera {
 	namespace TransitionMatrixInversion {
 		struct TransitionMatrixInversionData {
-			TransitionMatrixInversionData(double tolerance, const Eigen::MatrixXd& npi, const Eigen::VectorXd& ny) 
+			TransitionMatrixInversionData(const Eigen::MatrixXd& npi, const Eigen::VectorXd& ny) 
 			: pi(npi), y(ny), r(ny.size()) { }
 
 			const Eigen::MatrixXd& pi;
@@ -47,7 +47,7 @@ namespace averisera {
 			}
 		}
 
-		double constraint_function(const std::vector<double>& v, std::vector<double>& grad, void* f_data) {
+		double constraint_function(const std::vector<double>& v, std::vector<double>& grad, void* /*f_data*/) {
 			if (grad.size()) {
 				std::fill(grad.begin(), grad.end(), 1.0);
 			}
@@ -55,7 +55,7 @@ namespace averisera {
 		}
 
 		Eigen::VectorXd apply_inverse_pi(const Eigen::MatrixXd& pi, const Eigen::VectorXd& y, const double tolerance) {
-			TransitionMatrixInversionData data(tolerance, pi, y);
+			TransitionMatrixInversionData data(pi, y);
 			const unsigned int dim = static_cast<unsigned int>(y.size());
 			nlopt::opt opt(nlopt::LD_SLSQP, dim);
 			opt.set_min_objective(optimized_function, &data);

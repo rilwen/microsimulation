@@ -21,11 +21,11 @@ namespace averisera {
                 }
             }
             
-            H dispatch(const A& obj, const Contexts& contexts) const override {
+            H dispatch(const A&, const Contexts&) const override {
                 return _dflt;
             }
 
-            H dispatch_out_of_context(const A& obj) const override {
+            H dispatch_out_of_context(const A&) const override {
                 return _dflt;
             }
             

@@ -34,7 +34,7 @@ namespace averisera {
                 return new PredVariableRange<T, V>(_variable, _min, _max, _accept_missing);
             }
 
-            bool select_out_of_context(const T& obj) const override {
+            bool select_out_of_context(const T&) const override {
                 return true;
             }
 

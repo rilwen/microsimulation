@@ -17,17 +17,18 @@ namespace averisera {
 
             double next_gaussian() override;
 
+			/** Not implemented. */
             double next_alpha_stable(double alpha) override;
 
             uint64_t next_uniform(uint64_t n) override;
 
-            // throws
+            /** Not implemented. */
             void next_gaussians(const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd> y) override;
 
-            // throws
+			/** Not implemented. */
             void next_gaussians_noncont(const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd, 0, Eigen::InnerStride<>> y) override;
 
-            // throws
+			/** Not implemented. */
             void next_alpha_stable(double alpha, const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd> y) override;
 
             /** Check if we have some numbers left */

@@ -43,8 +43,7 @@ namespace averisera {
 
         void parse(const std::string& line, std::vector<std::string>& values) override {
             const col_idx_t nbr_cols_in_line = find_column_starts(line);
-            values.resize(nbr_cols_in_line);
-            col_idx_t k = 0;
+            values.resize(nbr_cols_in_line);            
             size_t i0 = 0;                
             for (col_idx_t k = 0; k < nbr_cols_in_line; ++k) {
                 const size_t i1 = ((k + 1) < nbr_cols_in_line) ? _column_starts[k + 1] : line.size();
@@ -53,7 +52,7 @@ namespace averisera {
                 values[k].reserve(i1 - i0);
                 i0 = i1;
             }
-            k = 0;
+			col_idx_t k = 0;
             walk_over_line(line.begin(), line.end(), [&values,&k](char c){ values[k].push_back(c); }, [&k](size_t){++k;});
         }
 

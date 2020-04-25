@@ -29,7 +29,7 @@ namespace averisera {
                 return _pred;
             }
             
-            void apply(const std::vector<std::shared_ptr<Obj>>& selected, const Contexts& contexts) const {
+            void apply(const std::vector<std::shared_ptr<Obj>>&, const Contexts&) const {
             }
 
 			const std::string& name() const override {

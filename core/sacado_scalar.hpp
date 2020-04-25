@@ -9,11 +9,11 @@ Author: Agnieszka Werpachowska
 #include <cmath>
 
 #ifdef _MSC_VER
-#pragma warning(disable : 4396 4099)
+#pragma warning(disable : 4396 4099 4100)
 #endif // _MSC_VER
 #include <Sacado.hpp>
 #ifdef _MSC_VER
-#pragma warning(default : 4396 4099)
+#pragma warning(default : 4396 4099 4100)
 #endif // _MSC_VER
 
 

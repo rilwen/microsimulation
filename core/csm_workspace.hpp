@@ -69,7 +69,6 @@ namespace averisera {
 		@throw std::invalid_argument If x.size() != ax.size().
 		*/
 		ad_scalar_t set_calibrated_parameters(const std::vector<double>& x, const bool with_gradient) {
-			const auto arg_dim = static_cast<unsigned int>(ax.size());
 			if (x.size() != arg_dim) {
 				throw std::invalid_argument("Wrong number of calibrated parameters");
 			}
@@ -204,16 +203,16 @@ namespace averisera {
 						const auto* right = get_pi_power(right_power);
 						const auto* left = get_pi_power(left_power);
 						auto* result = get_pi_power_higher(q2);
-						for (unsigned int l = 0; l < this->state_dim; ++l) {
-							auto* result_col = result + l * this->state_dim;
+						for (unsigned int l2 = 0; l2 < this->state_dim; ++l2) {
+							auto* result_col = result + l2 * this->state_dim;
 							ad_scalar_t sum(0.0);
-							for (unsigned int k = 0; k < this->state_dim; ++k) {
+							for (unsigned int k2 = 0; k2 < this->state_dim; ++k2) {
 								ad_scalar_t tmp(0.0);
-								const auto* right_col = right + l * this->state_dim;
+								const auto* right_col = right + l2 * this->state_dim;
 								for (unsigned int m = 0; m < this->state_dim; ++m) {
-									tmp += left[m * this->state_dim + k] * right_col[m];
+									tmp += left[m * this->state_dim + k2] * right_col[m];
 								}
-								result_col[k] = tmp;
+								result_col[k2] = tmp;
 								sum += tmp;
 							}
 							if (sum != 1.0) {

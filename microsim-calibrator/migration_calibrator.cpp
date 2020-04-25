@@ -459,7 +459,7 @@ namespace averisera {
 			MigrationDataSet::MigrationDataSet() {}
 
 			MigrationDataSet::MigrationDataSet(data_type&& n_data, std::vector<std::string>&& n_types, NumericalRange<int>&& n_data_year_range)
-				: data(std::move(n_data)), types(std::move(types)), data_year_range(std::move(n_data_year_range)) {}
+				: data(std::move(n_data)), types(std::move(n_types)), data_year_range(std::move(n_data_year_range)) {}
 
 			MigrationDataSet MigrationDataSet::drop_ethnic_set(const Ethnicity::index_set_type& set) const {
 				try {

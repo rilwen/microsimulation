@@ -56,7 +56,7 @@ TEST(MultiIndex, Iteration) {
 		0, 2,
 		1, 2,
 		2, 2;
-	for (size_t r = 0; r < 9; ++r) {
+	for (r = 0; r < 9; ++r) {
 		for (size_t c = 0; c < 2; ++c) {
 			ASSERT_EQ(expected(r, c), actual(r, c)) << r << " " << c;
 		}

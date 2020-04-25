@@ -7,7 +7,7 @@
 
 namespace averisera {
 	namespace microsim {
-        void ObserverDemographicsEmigrants::observe(const Population& population, const Contexts& ctx) {
+        void ObserverDemographicsEmigrants::observe(const Population&, const Contexts& ctx) {
             for (const auto& kv: ctx.mutable_ctx().emigrants()) {
                 observe_persons(kv.second, ctx);
             }

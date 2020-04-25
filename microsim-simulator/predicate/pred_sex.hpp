@@ -19,7 +19,7 @@ namespace averisera {
             /** @param[in] Person must be alive */
 			PredSex(Sex sex, bool alive = true);
 			bool select(const Person& obj, const Contexts& contexts) const override;
-			bool select_alive(const Person& obj, const Contexts& contexts) const override {
+			bool select_alive(const Person& obj, const Contexts&) const override {
 				return select_out_of_context(obj);
 			}
             bool select_out_of_context(const Person& obj) const override;

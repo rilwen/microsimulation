@@ -102,18 +102,13 @@ namespace averisera {
 					const Range& range = active_ranges[i];
 					const size_t ri = active_range_column_indices[i]; // find the position of the column the range applies to
 					if (ri < nbr_read) {
-						double value;
-						bool read_ok = true;
 						try {
 							// convert string to double using Boost library
-							value = boost::lexical_cast<double>(data_row[ri]);						
-						} catch (std::exception&) {
-							LOG_WARN() << "Error reading column " << range.column_name << ": cannot convert " << data_row[ri] << " to value";
-							read_ok = false;
-						}
-						if (read_ok) { // we read a number
+							const auto value = boost::lexical_cast<double>(data_row[ri]);						
 							//check if the number is within the allowed range
 							within_ranges &= value >= range.lower && value <= range.upper;
+						} catch (std::exception&) {
+							LOG_WARN() << "Error reading column " << range.column_name << ": cannot convert " << data_row[ri] << " to value";
 						}
 					} else {
 						throw std::runtime_error("Missing data");

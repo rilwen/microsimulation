@@ -10,7 +10,7 @@ using namespace averisera::microsim;
 
 class MockFunctor: public Functor<std::pair<int, double>, double> {
 public:
-    double operator()(const std::pair<int, double>& obj, const Contexts& ctx) const {
+    double operator()(const std::pair<int, double>& obj, const Contexts&) const {
         return obj.first * obj.second;
     }
     
@@ -28,7 +28,7 @@ public:
         return _pred;
     }
     
-    void apply(const std::shared_ptr<int>& obj, const Contexts& contexts) const {
+    void apply(const std::shared_ptr<int>& obj, const Contexts&) const {
         (*obj) *= _multi;
     }
 

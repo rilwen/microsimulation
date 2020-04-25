@@ -22,7 +22,7 @@ namespace averisera {
 
 			bool select(const Person& obj, const Contexts& contexts) const override;
 
-			bool select_alive(const Person& obj, const Contexts& contexts) const override {
+			bool select_alive(const Person& obj, const Contexts& /*contexts*/) const override {
 				return select_out_of_context(obj);
 			}
 

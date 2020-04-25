@@ -10,7 +10,7 @@ Scalar fixed_func(const Scalar& a, const Scalar& b, const Scalar& c) {
 }
 
 template <class Scalar>
-Scalar fixed_func_da(const Scalar& a, const Scalar& b, const Scalar& c) {
+Scalar fixed_func_da(const Scalar& /*a*/, const Scalar& b, const Scalar& c) {
 	return std::exp(b * b * c);
 }
 

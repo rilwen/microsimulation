@@ -12,7 +12,7 @@ namespace averisera {
             MockPredicate(int n, bool active = true)
                 : _n(n), active_(active) {}
             
-            bool select(const int& obj, const Contexts& contexts) const {
+            bool select(const int& obj, const Contexts&) const {
                 return obj == _n;
             }
 

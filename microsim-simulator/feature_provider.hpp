@@ -43,7 +43,7 @@ namespace averisera {
                 Sorting::topological_sort(providers, [](const std::shared_ptr<I>& a, const std::shared_ptr<I>& b) -> int {
                     assert(a);
                     assert(b);
-                    return a->relation(*b);
+					return a->relation(*b);
                 });
             }
             

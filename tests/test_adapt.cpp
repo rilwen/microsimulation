@@ -13,7 +13,7 @@ TEST(Adapt, Dummy) {
 }
 #else
 
-static double function_constant(const int* dim, const double* x, const int* npara, const double* params) {    
+static double function_constant(const int* /*dim*/, const double* /*x*/, const int* npara, const double* params) {
     assert(*npara == 0);
     assert(!params);
     return 1.0;
@@ -80,7 +80,7 @@ struct data {
     double b;
 };
 
-static double function_uses_struct(const int* dim, const double* x, const int* npara, const double* params) {
+static double function_uses_struct(const int* /*dim*/, const double* /*x*/, const int* npara, const double* params) {
     assert(*npara == 1);
     const void * p = AdaptIntegration::get_ptr(params[0]);
     const data* d = static_cast<const data*>(p);

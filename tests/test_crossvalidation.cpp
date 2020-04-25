@@ -238,7 +238,7 @@ TEST(CrossValidation, kFoldLongitudinal) {
 	ModelLongitudinal model(dim, true);
 	std::mt19937 urng;
 	urng.seed(42);
-	const auto result = averisera::CrossValidation::cross_validation_kfold_longitudinal(data, 3, model, urng, dim);
+	const auto result = averisera::CrossValidation::cross_validation_kfold_longitudinal(data, 3, model, urng);
 	const double sum_result = std::accumulate(result.begin(), result.end(), 0.);
 	const double sum_expected = -(4 * log(0.25) + 2 * log(0.5));
 	ASSERT_NEAR(sum_result, sum_expected, 1E-12);

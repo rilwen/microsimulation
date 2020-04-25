@@ -20,7 +20,7 @@ namespace averisera {
 
 		void operator()(CSMWorkspaceNoData<1>& wksp) const override;
 
-		void check_compatibility(const CSMObjectiveFunction& objective_function) const override {}
+		void check_compatibility(const CSMObjectiveFunction& /*objective_function*/) const override {}
 	private:
 		template <unsigned int L> void calc(CSMWorkspaceNoData<L>& wksp) const;
 

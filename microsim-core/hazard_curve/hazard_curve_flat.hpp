@@ -23,15 +23,12 @@ namespace averisera {
                 assert(rate >= 0);
             }
             
-            double instantaneous_hazard_rate(double t) const {
+            double instantaneous_hazard_rate(double) const {
 				LOG_TRACE() << "HazardCurveFlat: ihr=" << _rate;
-                assert(t >= 0);
                 return _rate;
             }
             
-            double average_hazard_rate(double t1, double t2) const {
-                assert(t1 >= 0);
-                assert(t2 >= t1);
+            double average_hazard_rate(double, double) const {
                 return _rate;
             }
             

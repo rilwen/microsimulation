@@ -13,7 +13,7 @@ namespace averisera {
         public:
             bool select(const Person& obj, const Contexts& contexts) const override;
 
-			bool select_alive(const Person& obj, const Contexts& contexts) const override {
+			bool select_alive(const Person& /*obj*/, const Contexts& /*contexts*/) const override {
 				return true;
 			}
 
@@ -21,7 +21,7 @@ namespace averisera {
                 return new PredAlive();
             }
 
-            bool select_out_of_context(const Person& obj) const override {
+            bool select_out_of_context(const Person& /*obj*/) const override {
                 return true;
             }
 

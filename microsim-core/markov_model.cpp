@@ -34,8 +34,8 @@ namespace averisera {
 				}
 				++i;
 			}
-			for (decltype(transition_matrix.cols()) i = 0; i < transition_matrix.cols(); ++i) {
-				const Eigen::MatrixXd::ConstColXpr col = transition_matrix.col(i);
+			for (decltype(transition_matrix.cols()) j = 0; j < transition_matrix.cols(); ++j) {
+				const Eigen::MatrixXd::ConstColXpr col = transition_matrix.col(j);
 				const double sum_p = col.sum();
 				if (col.minCoeff() < 0 || col.maxCoeff() > 1) {
 					throw std::domain_error("MarkovModel: probabilities outside bounds");

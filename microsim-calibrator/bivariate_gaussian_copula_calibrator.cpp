@@ -82,13 +82,11 @@ namespace averisera {
                 return rho - _target_rho;
             }
         private:
-            static double integrand_func(const int* dim, const double* z, const int* npara, const double* params) {
-                assert(*npara == 1);
-                assert(*dim == 2);
+            static double integrand_func(const int* /*dim*/, const double* z, const int* /*npara*/, const double* params) {
                 const void * p = AdaptIntegration::get_ptr(params[0]);
                 assert(p);
-                const BivariateGaussianCopulaCalibratorIntegrand* integrant_ptr = static_cast<const BivariateGaussianCopulaCalibratorIntegrand*>(p);
-                return (*integrant_ptr)(z[0], z[1]);
+                const BivariateGaussianCopulaCalibratorIntegrand* integrand_ptr = static_cast<const BivariateGaussianCopulaCalibratorIntegrand*>(p);
+                return (*integrand_ptr)(z[0], z[1]);
             }
                         
             BivariateGaussianCopulaCalibratorIntegrand _integrand;

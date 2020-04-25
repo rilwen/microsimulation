@@ -91,7 +91,7 @@ namespace averisera {
 			}
         }
         
-        template <class T, class V> void ObserverStats<T, V>::save_results(std::ostream& os, const ImmutableContext& im_ctx) const {
+        template <class T, class V> void ObserverStats<T, V>::save_results(std::ostream& os, const ImmutableContext&) const {
 			//const Schedule& sim_schedule = im_ctx.schedule();
 			const auto old_precision = os.precision();
 			os.precision(_precision);
@@ -150,14 +150,14 @@ namespace averisera {
 					os << "\t1.0\n";
 				}
             }
-			save_single_result(os, im_ctx, [](const RunningStatistics<V>& rs) { return rs.mean(); }, "MEAN", dates);
-			save_single_result(os, im_ctx, [](const RunningStatistics<V>& rs) { return rs.mean() * static_cast<double>(rs.nbr_samples()); }, "SUM", dates);
-			save_single_result(os, im_ctx, [](const RunningStatistics<V>& rs) { return rs.standard_deviation(); }, "ST_DEV", dates);
-			save_single_result(os, im_ctx, medians_, "MEDIAN", dates);
+			save_single_result(os, [](const RunningStatistics<V>& rs) { return rs.mean(); }, "MEAN", dates);
+			save_single_result(os, [](const RunningStatistics<V>& rs) { return rs.mean() * static_cast<double>(rs.nbr_samples()); }, "SUM", dates);
+			save_single_result(os, [](const RunningStatistics<V>& rs) { return rs.standard_deviation(); }, "ST_DEV", dates);
+			save_single_result(os, medians_, "MEDIAN", dates);
 			os.precision(old_precision);
         }
 
-		template <class T, class V> template <class Functor> void ObserverStats<T, V>::save_single_result(std::ostream& os, const ImmutableContext& im_ctx, Functor f, const char* result_name, const std::vector<Date>& dates) const {
+		template <class T, class V> template <class Functor> void ObserverStats<T, V>::save_single_result(std::ostream& os, Functor f, const char* result_name, const std::vector<Date>& dates) const {
 			os << "#" << result_name << "\n";
 			os << "Date";
 			for (auto varit = _variables.begin(); varit != _variables.end(); ++varit) {
@@ -177,7 +177,7 @@ namespace averisera {
 			}
 		}
 
-		template <class T, class V> void ObserverStats<T, V>::save_single_result(std::ostream& os, const ImmutableContext& im_ctx, const std::unordered_map<Date, std::vector<V>>& results, const char* result_name, const std::vector<Date>& dates) const {
+		template <class T, class V> void ObserverStats<T, V>::save_single_result(std::ostream& os, const std::unordered_map<Date, std::vector<V>>& results, const char* result_name, const std::vector<Date>& dates) const {
 			os << "#" << result_name << "\n";
 			os << "Date";
 			for (auto varit = _variables.begin(); varit != _variables.end(); ++varit) {

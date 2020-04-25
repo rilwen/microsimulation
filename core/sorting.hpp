@@ -59,7 +59,7 @@ namespace averisera {
 				}
 			}
 			Graph g(edges.begin(), edges.end(), n);
-			std::vector<size_t> sorted_vertices(n, -1);
+			std::vector<size_t> sorted_vertices(n, static_cast<size_t>(-1));
 			try {
 				boost::topological_sort(g, sorted_vertices.begin());
 			} catch (boost::not_a_dag& e) {

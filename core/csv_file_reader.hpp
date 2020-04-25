@@ -306,7 +306,7 @@ namespace averisera {
 				: reader_(reader), col_idx_(col_idx) {}
 			T operator()(const std::exception&, const std::string& elem) const {
 				throw DataException(boost::str(boost::format("CSVFileReader: cannot convert \"%s\" in file %s, column %d") % elem % reader_.file_name() % col_idx_));
-				return 0;
+				// return 0;
 			}
 		private:
 			const CSVFileReader& reader_;

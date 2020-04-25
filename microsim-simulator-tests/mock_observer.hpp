@@ -12,10 +12,10 @@ namespace averisera {
 
         private:
             
-            void observe(const Population& population, const Contexts& ctx) override {
+            void observe(const Population&, const Contexts&) override {
             }
 
-            void save_results(std::ostream& os, const ImmutableContext& im_ctx) const override {
+            void save_results(std::ostream&, const ImmutableContext&) const override {
             }
         };
     }

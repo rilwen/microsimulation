@@ -8,11 +8,11 @@ using namespace averisera::microsim;
 
 class MockPredicate: public Predicate<double> {
 public:
-    bool select(const double& obj, const Contexts& contexts) const {
+    bool select(const double&, const Contexts&) const {
 	return true;
     }
 
-    bool select_out_of_context(const double& obj) const {
+    bool select_out_of_context(const double&) const {
         return true;
     }
 
@@ -27,7 +27,7 @@ public:
     MockPredicate* clone() const override {
         return new MockPredicate();
     }
-    std::shared_ptr<const Predicate<double> > sum(std::shared_ptr<const Predicate<double> > other) const override {
+    std::shared_ptr<const Predicate<double> > sum(std::shared_ptr<const Predicate<double> >) const override {
         return nullptr;
     }
 

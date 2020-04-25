@@ -93,10 +93,10 @@ namespace averisera {
 					const std::string& ethn = data_ethnicity[i];
 					for (year_type yob = min_yob; yob <= max_yob; ++yob) {
 						const cohort_type cohort(yob, ethn, sex);
-						const age_type min_age = static_cast<age_type>(std::max(static_cast<int>(age_grp.begin()), start_year - yob));
-						//LOG_DEBUG() << "StitchedMarkovModelCalibrator: min_age=" << min_age << " for yob=" << yob;
-						if (min_age < age_grp.end()) {
-							coverage_map[cohort].push_back(coverage_type(i, age_group_type(min_age, age_grp.end())));
+						const age_type min_age_grp = static_cast<age_type>(std::max(static_cast<int>(age_grp.begin()), start_year - yob));
+						//LOG_DEBUG() << "StitchedMarkovModelCalibrator: min_age_grp=" << min_age_grp << " for yob=" << yob;
+						if (min_age_grp < age_grp.end()) {
+							coverage_map[cohort].push_back(coverage_type(i, age_group_type(min_age_grp, age_grp.end())));
 						} else {
 							LOG_WARN() << "StitchedMarkovModelCalibrator: model " << i << " is useless for year of birth " << yob;
 						}

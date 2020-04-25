@@ -2,8 +2,10 @@
 #include <cstdint>
 #include <cstdlib>
 #include <iosfwd>
+#include <stdexcept>
 #include <string>
 #include <vector>
+#include <boost/format.hpp>
 #include "core/math_utils.hpp"
 
 namespace averisera {
@@ -104,7 +106,7 @@ namespace averisera {
 			case Type::NONE:
 				throw std::domain_error("ObjectVector: pushing back to null");
 			default:
-				throw_unknown_type(_type);
+				throw std::domain_error(boost::str(boost::format("ObjectVector: unknown type %d") % static_cast<int>(_type)));
 			}
 		}
 
@@ -126,8 +128,6 @@ namespace averisera {
 	private:
 		/** Copy initialisation */
 		template <class T> void init(const std::vector<T>& value, Type type);
-
-		static void throw_unknown_type(ObjectVector::Type type);
 
 		void* _value;
 		Type _type;

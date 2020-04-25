@@ -32,19 +32,19 @@ namespace averisera {
             return std::min(static_cast<uint64_t >(static_cast<double>(n) * next_uniform()), n);
         }
 
-        double RNGPrecalc::next_alpha_stable(double alpha) {
+        double RNGPrecalc::next_alpha_stable(double) {
             throw std::logic_error("RNGPrecalc: not implemented");
         }
 
-        void RNGPrecalc::next_gaussians(const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd> y) {
+        void RNGPrecalc::next_gaussians(const Eigen::MatrixXd&, Eigen::Ref<Eigen::VectorXd>) {
             throw std::logic_error("RNGPrecalc: not implemented");
         }
 
-        void RNGPrecalc::next_gaussians_noncont(const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd, 0, Eigen::InnerStride<>> y) {
+        void RNGPrecalc::next_gaussians_noncont(const Eigen::MatrixXd&, Eigen::Ref<Eigen::VectorXd, 0, Eigen::InnerStride<>>) {
             throw std::logic_error("RNGPrecalc: not implemented");
         }
 
-        void RNGPrecalc::next_alpha_stable(double alpha, const Eigen::MatrixXd& S, Eigen::Ref<Eigen::VectorXd> y) {
+        void RNGPrecalc::next_alpha_stable(double, const Eigen::MatrixXd&, Eigen::Ref<Eigen::VectorXd>) {
             throw std::logic_error("RNGPrecalc: not implemented");
         }
 

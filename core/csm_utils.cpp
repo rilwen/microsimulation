@@ -109,16 +109,16 @@ namespace averisera {
 				const unsigned int tot_unknown_dim = tot_dim / tot_known_dim;
 				const unsigned int tot_summed_dim = tot_unknown_dim / dim_i;
 				assert(tot_unknown_dim % dim_i == 0);
-				for (unsigned int i = 0; i < tot_state_dim; ++i) {
-					const unsigned int base_dst_col_idx = i * tot_known_dim;
-					const auto src_col = pi_compact.col(i);
-					for (unsigned int j = 0; j < tot_known_dim; ++j) {
-						const unsigned int dst_col_idx = base_dst_col_idx + j;
-						const unsigned int base_src_row_idx = j * tot_unknown_dim;
+				for (unsigned int j = 0; j < tot_state_dim; ++j) {
+					const unsigned int base_dst_col_idx = j * tot_known_dim;
+					const auto src_col = pi_compact.col(j);
+					for (unsigned int k = 0; k < tot_known_dim; ++k) {
+						const unsigned int dst_col_idx = base_dst_col_idx + k;
+						const unsigned int base_src_row_idx = k * tot_unknown_dim;
 						auto dst_col = pi.col(dst_col_idx);
-						for (unsigned int k = 0; k < tot_unknown_dim; ++k) {
-							const unsigned int src_row_idx = base_src_row_idx + k;
-							const unsigned int dst_row_idx = k / tot_summed_dim;
+						for (unsigned int l = 0; l < tot_unknown_dim; ++l) {
+							const unsigned int src_row_idx = base_src_row_idx + l;
+							const unsigned int dst_row_idx = l / tot_summed_dim;
 							dst_col[dst_row_idx] += src_col[src_row_idx];
 						}
 						const double sump = dst_col.sum();

@@ -58,10 +58,10 @@ namespace averisera {
 	}
 
 	void CSMRegulariserTarget::check_compatibility(const CSMObjectiveFunction& objective_function) const {
-		if (objective_function.state_dim() != target_q0_.size()) {
+		if (objective_function.state_dim() != static_cast<unsigned int>(target_q0_.size())) {
 			throw std::invalid_argument("CSMRegulariserTarget: Target initial state distribution incompatible with the model");
 		}
-		if (objective_function.state_dim() != target_pi_.cols() || objective_function.csm_params().dim != target_pi_.rows()) {
+		if (objective_function.state_dim() != static_cast<unsigned int>(target_pi_.cols()) || objective_function.csm_params().dim != static_cast<unsigned int>(target_pi_.rows())) {
 			throw std::invalid_argument("CSMRegulariserTarget: Target transition matrix incompatible with the model");
 		}
 	}

@@ -32,7 +32,7 @@ namespace averisera {
                                              std::vector<Array2D<std::shared_ptr<const RelativeRisk<Person>>>>&& relative_risks_transitions,
                                              unsigned int min_childbearing_age,
                                              unsigned int max_childbearing_age,
-                                             bool dummy)
+                                             bool)
             : OperatorIndividual<Person>(false,
                                          FeatureUser<Feature>::feature_set_t({Procreation::PREGNANCY_FEATURE()}),
                                          get_required_features(relative_risks_transitions)),

@@ -362,7 +362,7 @@ namespace averisera {
         index_t _size;
     };
     
-    template <class T> bool is_not_a_time(T time) {
+    template <class T> bool is_not_a_time(T /*time*/) {
         return false; // by default all time values are valid
     }
     

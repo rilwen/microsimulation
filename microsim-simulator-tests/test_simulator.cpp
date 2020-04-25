@@ -207,5 +207,5 @@ TEST(Simulator, Simples) {
 	const size_t final_size = population.persons().size();
 	ASSERT_GT(static_cast<double>(final_size), 1.05 * static_cast<double>(initial_pop_size));
 	std::cout << "Population increased from " << initial_pop_size << " to " << final_size;
-	ASSERT_NE(mutable_context->emigrants().size(), 0);
+	ASSERT_NE(mutable_context->emigrants().size(), 0u);
 }

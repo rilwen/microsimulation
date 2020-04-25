@@ -40,7 +40,7 @@ namespace averisera {
             return _mean;
         }
 
-        double variance(double mean) const override {
+        double variance(double /*mean*/) const override {
             return _variance;
         }
 

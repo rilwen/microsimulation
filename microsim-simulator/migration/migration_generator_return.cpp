@@ -19,7 +19,7 @@ namespace averisera {
 			emigrant_selector_ = std::move(emigrant_selector);
 		}
 
-		void MigrationGeneratorReturn::migrate_persons(const Population& population, const Contexts& ctx, std::vector<std::shared_ptr<Person>>& persons_removed, std::vector<PersonData>& persons_added) const {
+		void MigrationGeneratorReturn::migrate_persons(const Population&, const Contexts& ctx, std::vector<std::shared_ptr<Person>>& persons_removed, std::vector<PersonData>& persons_added) const {
 			persons_removed.clear();
 			persons_added.clear();
 			const SchedulePeriod sp = ctx.current_period();

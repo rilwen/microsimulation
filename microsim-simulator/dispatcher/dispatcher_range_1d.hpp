@@ -43,7 +43,7 @@ namespace averisera {
                 return static_cast<unsigned int>(std::distance(_thresholds.begin(), it));
             }
 
-            unsigned int dispatch_out_of_context(const T& obj) const override {
+            unsigned int dispatch_out_of_context(const T&) const override {
                 return 0;
             }
             
