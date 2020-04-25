@@ -54,8 +54,8 @@ const bool USE_SINGLE_SIMULATION_WITHOUT_MIGRATION = false;
 const std::string BMI_CATEGORY_VARIABLE_NAME("BMICat");
 const std::string BMI_PERCENTILE_VARIABLE_NAME("BMIPerc");
 const std::string BMI_VARIABLE_NAME("BMI");
-const unsigned int POST_PREGNANCY_ZERO_FERTILITY_MONTHS = 0; // !!! Not 3 months
-const double POST_PREGNANCY_ZERO_FERTILITY_YEAR_FRACTION = static_cast<double>(POST_PREGNANCY_ZERO_FERTILITY_MONTHS) / 12.0;
+const unsigned int POST_PREGNANCY_ZERO_FERTILITY_MONTHS = 3;
+const double POST_PREGNANCY_ZERO_FERTILITY_YEAR_FRACTION = static_cast<double>(POST_PREGNANCY_ZERO_FERTILITY_MONTHS) / 12.0 - 0.0001; // Subtract small fraction to help calibration.
 typedef uint8_t bmi_cat_type;
 
 // static std::vector<PersonData> load_person_data(const std::string& variables_filename, const std::string& persons_filename) {
@@ -137,7 +137,6 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_conception_operators
 	CSVFileReader reader(birth_rates_file, DELIM);
 	const auto birth_rates = ProcreationCalibrator::load_cohort_birth_rates(reader, birth_rate_basis, true);
 	// hazard rates for cohorts
-	check_equals(0.0, POST_PREGNANCY_ZERO_FERTILITY_YEAR_FRACTION, "Not implemented");
 	const auto cohort_conception_hazard_rates = ProcreationCalibrator::calculate_conception_hazard_rates(birth_rates, multiplicity_distros, POST_PREGNANCY_ZERO_FERTILITY_YEAR_FRACTION);
 	auto conception_hazard_curves = ProcreationCalibrator::calculate_conception_hazard_curves(cohort_conception_hazard_rates);
 	const size_t ncohorts = birth_rates.index().size();
