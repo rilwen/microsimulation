@@ -123,7 +123,6 @@ namespace averisera {
         private:
             RNG& _rng;
         };
-	private:
     };
 }
 

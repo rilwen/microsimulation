@@ -5,8 +5,10 @@
 #include "csm.hpp"
 #include "csm_utils.hpp"
 #include "jagged_2d_array.hpp"
+#include "log.hpp"
 #include "markov.hpp"
 #include "multi_index.hpp"
+#include "preconditions.hpp"
 #include "observed_discrete_data.hpp"
 #include "sacado_scalar.hpp"
 #include <algorithm>
@@ -96,8 +98,13 @@ namespace averisera {
 
 			Markov::expand_transition_matrix(&ax[0], &pi_expanded[0], dim, state_dim);
 
-			// const auto sum_pi = std::accumulate(x.begin(), x.begin() + dim * state_dim, 0.0);
-			const auto sum_pi_expanded = std::accumulate(pi_expanded.begin(), pi_expanded.end(), ad_scalar_t(0.0));
+#ifndef NDEBUG
+			// A rough test that the expansion of transition matrix works correctly.
+			const double sum_pi = NestedADouble<L>::to_double(std::accumulate(ax.begin(), ax.begin() + dim * state_dim, ad_scalar_t(0.0)));
+			const double sum_pi_expanded = NestedADouble<L>::to_double(std::accumulate(pi_expanded.begin(), pi_expanded.end(), ad_scalar_t(0.0)));
+			const double error = std::abs(sum_pi - sum_pi_expanded);
+			check_less_or_equal(error, 1e-10, "Transition matrix expansion produced errors");			
+#endif // NDEBUG			
 
 			// Copy the provided initial state distribution q0.
 			// Last _state_dim entries of ax contain the initial state.

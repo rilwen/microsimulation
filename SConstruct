@@ -15,8 +15,8 @@ Export('arch')
 
 # Only 'debug' or 'release' allowed.
 if not (mymode in ['debug', 'release']):
-   print("Error: expected 'debug' or 'release' for 'mymode' parameter, found: " + mymode)
-   Exit(1)
+    print("Error: expected 'debug' or 'release' for 'mymode' parameter, found: " + mymode)
+    Exit(1)
    
 print('**** Compiling in %s mode for architecture %s ****' % (mymode, arch))
 
@@ -37,19 +37,21 @@ enabled_warnings = ['-Wall', '-Werror', '-Wfatal-errors', '-Wpedantic', '-Wforma
 c_flags = system_include_paths + compilation_options + enabled_warnings + disabled_warnings + boost_c_flags
 linkflags = []
 if arch == 'x64':
-   arch_switch = '-m64'
+    arch_switch = '-m64'
+elif arch == 'x86':
+    arch_switch = '-m32'
 else:
-   arch_switch = '-m32'
+    raise ValueError('Unknown architecture: %s' % arch)
 c_flags.append(arch_switch)
 linkflags.append(arch_switch)
 flags = ["-std=c++14"] + c_flags
 #home = os.path.expanduser('~')
 if mymode == 'debug':
-   BUILD_DIR = '%s/Debug' % arch
-   flags += debugcflags
+    BUILD_DIR = 'build_%s/Debug' % arch
+    flags += debugcflags
 else:
-   BUILD_DIR = '%s/Release' % arch
-   flags += releasecflags
+    BUILD_DIR = 'build_%s/Release' % arch
+    flags += releasecflags
 Export('BUILD_DIR')
 
 cpp_path = ['#']#, os.path.join(SACADO_PATH, 'mpl')]
@@ -73,7 +75,7 @@ OTHER_LIBS = ['trilinos_teuchoscore', 'trilinos_kokkoscore', 'trilinos_teuchosco
 Export('OTHER_LIBS')
 
 def call(subdir, name='SConscript'):
-   return SConscript(os.path.join(subdir, name), variant_dir = os.path.join(subdir, BUILD_DIR), duplicate = 0)
+    return SConscript(os.path.join(subdir, name), variant_dir = os.path.join(subdir, BUILD_DIR), duplicate = 0)
 
 # Build libraries.
 core = call('core')
@@ -88,21 +90,21 @@ microsim_uk = call('microsim-uk')
 Export('microsim_uk')
 
 if mymode == 'debug':
-   top_dir = Dir('#').abspath   
-   env.Append(CXXFLAGS=['-isystem' + os.path.join(top_dir, 'googletest/include')])
-   # Test tools.
-   testing = call('testing')
-   Export('testing')
-   gtest = call('googletest', 'SConscript-gtest')
-   Export('gtest')
-   GTEST_LIBS = ['pthread']
-   Export('GTEST_LIBS')
-   # Build tests.
-   call('tests')
-   call('microsim-core-tests')
-   call('microsim-calibrator-tests')
-   call('microsim-simulator-tests')
-   call('microsim-uk-tests')
+    top_dir = Dir('#').abspath   
+    env.Append(CXXFLAGS=['-isystem' + os.path.join(top_dir, 'googletest/include')])
+    # Test tools.
+    testing = call('testing')
+    Export('testing')
+    gtest = call('googletest', 'SConscript-gtest')
+    Export('gtest')
+    GTEST_LIBS = ['pthread']
+    Export('GTEST_LIBS')
+    # Build tests.
+    call('tests')
+    call('microsim-core-tests')
+    call('microsim-calibrator-tests')
+    call('microsim-simulator-tests')
+    call('microsim-uk-tests')
 
 
 # Integration test and Brexit model.

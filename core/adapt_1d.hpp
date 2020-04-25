@@ -16,29 +16,60 @@ namespace averisera {
 		}
 	};
 
-	// size_t -- the the size_t of the GK integrator used (N,2*N+1)
+	/** 
+	1D adaptive quadrature integration algorithm.
+	
+	@tparam N Size of the GK integrator used (N,2*N+1)
+	*/
 	template <size_t N>
 	class Adapt1D
 	{
 	public:
-		// max_iter - maximum number of subdivisions
-		// tolerance - tolerance for absolute error
-		// blow_up -- when asked to return the error with the result, either throw runtime_error on
-		// failure to converge (true), or return the result anyway (dflt false)
+		/**
+		@param[in] max_subdiv Maximum number of subdivisions
+		@param[in] tolerance Tolerance for absolute error
+		@param[in] blow_up When asked to return the error with the result, either throw runtime_error on failure to converge (true), or return the result anyway (default: false).
+		*/
 		Adapt1D(unsigned int max_subdiv, double tolerance, bool blow_up = false);
 
-		// throws std::runtime_error if could not converge
-		// "function" param maps double to V
-		// Norm -- provides the operator()(const V& v) function which measures the norm of a result type
+		/**
+		Integrate a function.
+		
+		@param function Integrated 1D function with V(*function)(double) signature.
+		@param x0 Lower bound of the integral.
+		@param x1 Upper bound of the integral.
+		@param[out] integral Value of the integral.
+		@param normalizator Provides the operator()(const V& v) function which measures the norm of a result type.
+		@tparam V Value type of the integral (e.g. double).		
+		@throw std::runtime_error If could not converge.
+		*/
 		template <typename F, typename V, typename Norm>
 		void integrate(F function, double x0, double x1, V& integral, Norm normalizator) const;
+		
+		/**
+		Integrate a function with result type double.
+		
+		@param function Integrated 1D function with V(*function)(double) signature.
+		@param x0 Lower bound of the integral.
+		@param x1 Upper bound of the integral.
+		@return Value of the integral.
+		@throw std::runtime_error If could not converge.
+		*/
 		template <typename F>
 		inline double integrate(F function, double x0, double x1) const;	
 
-		// throws std::runtime_error if could not converge
-		// "function" param maps double to V
-		// Norm -- provides the norm(const V& v) function which measures the norm of a result type
-		// returns a pair (result, error measure)
+		/**
+		Integrate a function, returning an error estimate.
+		
+		@param function Integrated 1D function with V(*function)(double) signature.
+		@param x0 Lower bound of the integral.
+		@param x1 Upper bound of the integral.
+		@param[out] integral Value of the integral.
+		@param normalizator Provides the operator()(const V& v) function which measures the norm of a result type.
+		@tparam V Value type of the integral (e.g. double).		
+		@return An error estimate.
+		@throw std::runtime_error If could not converge.
+		*/
 		template <typename F, typename V, typename Norm>
 		double integrate_with_error(F function, double x0, double x1, V& integral, Norm normalizator = std::abs) const;
 	private:
@@ -140,7 +171,6 @@ namespace averisera {
 	}
 
 	typedef Adapt1D<7> Adapt1D_15;
-	/*typedef Adapt1D<10> Adapt1D21;*/
 	typedef Adapt1D<20> Adapt1D_41;
 
 }

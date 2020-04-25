@@ -5,10 +5,6 @@
 #define __AVERISERA_RNG_IMPL_H
 
 #include "rng.hpp"
-#include "serialization.hpp"
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/nvp.hpp>
 #include <gtest/gtest_prod.h>
 #include <random>
 
@@ -42,24 +38,12 @@ namespace averisera {
 
 		
     private:
-		FRIEND_TEST(RNGImplTest, SerializeDirectly);
-		FRIEND_TEST(RNGImplTest, SerializeViaUniquePtr);
         std::mt19937_64 _rng;
         std::uniform_real_distribution<double> _u01;
         std::normal_distribution<double> _n01;
 
-		friend class boost::serialization::access;
 		std::string to_string() const;
-		/** For boost::serialization */
-		template <class Archive> void serialize(Archive& ar, const unsigned int version) {
-			// save/load base class information
-			ar & BOOST_SERIALIZATION_BASE_OBJECT_NVP(RNG);
-			ar & _rng;
-		}
     };
-
-	///** For boost::serialization */
-	//BOOST_CLASS_EXPORT(RNGImpl)
 }
 
 #endif // __AVERISERA_RNG_IMPL_H
