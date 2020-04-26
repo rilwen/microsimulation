@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "mock_predicate.hpp"
 #include "microsim-simulator/contexts.hpp"

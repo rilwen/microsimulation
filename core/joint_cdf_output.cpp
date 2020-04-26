@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "joint_cdf_output.hpp"
 #include "empirical_cdf.hpp"
 

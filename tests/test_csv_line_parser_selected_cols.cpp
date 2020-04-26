@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/csv_line_parser.hpp"
 #include "core/csv_line_parser_selected_cols.hpp"

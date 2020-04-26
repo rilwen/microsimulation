@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "markov_process_simulator.hpp"
 #include <stdexcept>
 

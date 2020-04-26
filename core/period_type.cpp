@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "period_type.hpp"
 #include <cstring>
 #include <ostream>

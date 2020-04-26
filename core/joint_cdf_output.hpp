@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __AVERISERA_JOINT_CDF_OUTPUT_H
 #define __AVERISERA_JOINT_CDF_OUTPUT_H
 

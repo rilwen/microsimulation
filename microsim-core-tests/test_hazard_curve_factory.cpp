@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-core/hazard_curve_factory.hpp"
 #include "microsim-core/hazard_curve.hpp"

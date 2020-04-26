@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #ifndef __AVERISERA_ADAPT_1D_H
 #define __AVERISERA_ADAPT_1D_H
 

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/hazard_rate_multiplier_provider/hazard_rate_multiplier_provider_bypred_timedependent.hpp"
 

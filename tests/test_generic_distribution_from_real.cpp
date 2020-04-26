@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/generic_distribution_from_real.hpp"
 #include "core/discrete_distribution.hpp"

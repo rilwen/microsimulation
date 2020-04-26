@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "multivariate_distribution_enumerated.hpp"
 #include "preconditions.hpp"
 

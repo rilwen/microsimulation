@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "rng_precalc.hpp"
 #include <algorithm>
 #include <limits>

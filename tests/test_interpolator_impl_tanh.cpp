@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/interpolator_impl_tanh.hpp"
 #include <boost/format.hpp>

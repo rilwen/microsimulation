@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "immutable_history_truncated.hpp"
 #include "core/dates.hpp"
 #include <algorithm>

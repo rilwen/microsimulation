@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "population_calibrator.hpp"
 #include "rate_calibrator.hpp"
 #include "core/data_exception.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "log.hpp"
 #include "nlopt_wrap.hpp"
 #include "population_mover_slope_calculator.hpp"

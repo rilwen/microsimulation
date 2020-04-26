@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "ethnicity_ons_major.hpp"
 
 namespace averisera {

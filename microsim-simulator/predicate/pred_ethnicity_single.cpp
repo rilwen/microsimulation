@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "pred_ethnicity_single.hpp"
 #include "../person.hpp"
 

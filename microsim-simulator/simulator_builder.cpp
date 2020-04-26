@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "contexts.hpp"
 #include "dispatcher_factory.hpp"
 //#include "feature.h"

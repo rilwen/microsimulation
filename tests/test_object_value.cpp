@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <sstream>
 #include <gtest/gtest.h>
 #include "core/object_value.hpp"

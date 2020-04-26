@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "generation.hpp"
 #include "core/generic_distribution.hpp"
 #include "core/period.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "bivariate_gaussian_copula_calibrator.hpp"
 #include <cassert>
 #include <cmath>

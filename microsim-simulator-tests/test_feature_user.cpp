@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "microsim-simulator/feature_user.hpp"
 #include <gtest/gtest.h>
 #include <string>

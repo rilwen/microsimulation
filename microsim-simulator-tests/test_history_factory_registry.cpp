@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/dispatcher_factory.hpp"
 #include "microsim-simulator/history_factory.hpp"

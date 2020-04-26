@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/actor.hpp"
 #include "microsim-simulator/actor_data.hpp"

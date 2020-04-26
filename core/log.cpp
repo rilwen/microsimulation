@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "log.hpp"
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator_inheritance.hpp"
 #include "../contexts.hpp"
 #include "../history.hpp"

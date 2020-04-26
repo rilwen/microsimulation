@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "object_value.hpp"
 #include <algorithm>
 #include <ostream>

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "observer_demographics.hpp"
 #include "microsim-core/schedule.hpp"
 #include "../contexts.hpp"

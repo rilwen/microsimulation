@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "brent.hpp"
 
 namespace averisera {

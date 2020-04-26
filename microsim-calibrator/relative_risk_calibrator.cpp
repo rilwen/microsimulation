@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "relative_risk_calibrator.hpp"
 #include "core/data_exception.hpp"
 #include <numeric>

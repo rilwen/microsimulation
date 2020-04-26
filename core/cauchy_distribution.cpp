@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "cauchy_distribution.hpp"
 #include "math_utils.hpp"
 #include <cassert>

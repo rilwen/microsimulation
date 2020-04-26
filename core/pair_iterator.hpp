@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __AVERISERA_PAIR_ITERATOR_HPP
 #define __AVERISERA_PAIR_ITERATOR_HPP
 

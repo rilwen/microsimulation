@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "distribution_linear_interpolated.hpp"
 #include <stdexcept>
 #include <cmath>

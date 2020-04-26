@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "observer_stats.hpp"
 #include "../contexts.hpp"
 #include "../immutable_context.hpp"

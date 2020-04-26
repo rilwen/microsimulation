@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "distribution_transformed.hpp"
 #include "preconditions.hpp"
 #include <stdexcept>

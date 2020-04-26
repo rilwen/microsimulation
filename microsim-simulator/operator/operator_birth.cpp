@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "../contexts.hpp"
 #include "../mutable_context.hpp"
 #include "operator_birth.hpp"

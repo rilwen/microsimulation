@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "pred_immigration_date.hpp"
 #include "core/preconditions.hpp"
 #include "../person.hpp"

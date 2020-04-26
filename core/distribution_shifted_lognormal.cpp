@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "distribution_shifted_lognormal.hpp"
 #include "log.hpp"
 #include "preconditions.hpp"

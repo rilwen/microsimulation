@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "../contexts.hpp"
 #include "generation.hpp"
 #include "initialiser_generations.hpp"

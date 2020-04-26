@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "csm_utils.hpp"
 #include "markov.hpp"
 #include "matrix_power_cache.hpp"

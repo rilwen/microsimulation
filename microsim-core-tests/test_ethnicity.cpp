@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-core/ethnicity.hpp"
 #include "microsim-core/person_attributes.hpp"

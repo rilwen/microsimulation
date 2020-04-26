@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator_hazard_model_actor.hpp"
 #include "../actor.hpp"
 #include "../contexts.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef _AVERISERA_F2C_TYPES_H
 #define _AVERISERA_F2C_TYPES_H
 

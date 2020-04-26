@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #pragma once
 #include "core/data_exception.hpp"
 #include "core/math_utils.hpp"

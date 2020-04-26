@@ -1,5 +1,5 @@
 /*
-(C) Averisera 2017
+(C) Averisera Ltd 2017
 */
 #include <gtest/gtest.h>
 #include "core/kmeans_init_strats.hpp"

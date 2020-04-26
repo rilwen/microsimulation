@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "pred_pregnancy.hpp"
 #include "../contexts.hpp"
 //#include "core/log.hpp"

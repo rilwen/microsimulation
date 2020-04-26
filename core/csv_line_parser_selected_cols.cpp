@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "csv_line_parser_selected_cols.hpp"
 #include "preconditions.hpp"
 #include <algorithm>

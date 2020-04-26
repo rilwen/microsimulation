@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 //#include <gtest/gtest.h>
 //#include "core/beta_distribution.hpp"
 //#include "core/distribution_empirical.hpp"

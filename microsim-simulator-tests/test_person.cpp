@@ -1,5 +1,5 @@
 /*
- * ( *C) Averisera Ltd 2015
+ * (C) Averisera Ltd 2015
  */
 #include <gtest/gtest.h>
 #include "core/daycount.hpp"

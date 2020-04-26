@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "mortality_calibrator.hpp"
 #include "rate_calibrator.hpp"
 #include "microsim-core/anchored_hazard_curve.hpp"

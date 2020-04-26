@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "adapt_1d.hpp"
 
 namespace averisera {

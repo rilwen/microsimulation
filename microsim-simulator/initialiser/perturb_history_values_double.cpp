@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "../history_data.hpp"
 #include "../person_data.hpp"
 #include "perturb_history_values_double.hpp"

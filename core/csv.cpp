@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "csv.hpp"
 #include "csv_line_parser.hpp"
 #include <iostream>

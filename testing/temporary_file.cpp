@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "temporary_file.hpp"
 #include <cstdio>
 #include <stdexcept>

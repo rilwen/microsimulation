@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "migration_generator_return.hpp"
 #include "migrant_selector_random.hpp"
 #include "../contexts.hpp"

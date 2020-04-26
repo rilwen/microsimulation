@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator_factory.hpp"
 #include "operator/mortality.hpp"
 #include "operator/mortality_enforcer.hpp"

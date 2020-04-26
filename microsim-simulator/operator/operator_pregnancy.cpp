@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "../history_factory.hpp"
 #include "operator_markov_model_actor.hpp"
 #include "operator_pregnancy.hpp"

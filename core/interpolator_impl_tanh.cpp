@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "akima_approximation.hpp"
 #include "interpolator_impl_tanh.hpp"
 #include "log.hpp"

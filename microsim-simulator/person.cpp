@@ -1,5 +1,5 @@
 /*
- ( *C) Averisera Ltd 2015
+ (C) Averisera Ltd 2015
  */
 #include "history_data.hpp"
 #include "history_factory_registry.hpp"

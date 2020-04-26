@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "observer.hpp"
 #include "observer_result_saver.hpp"
 #include "core/dates.hpp"

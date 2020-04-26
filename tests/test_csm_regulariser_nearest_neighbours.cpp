@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/csm_regulariser_nearest_neighbours.hpp"
 #include "core/csm_workspace.hpp"

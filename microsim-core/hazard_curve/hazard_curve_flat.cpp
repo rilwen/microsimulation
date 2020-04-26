@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "hazard_curve_flat.hpp"
 #include "hazard_curve_piecewise_constant.hpp"
 

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/relative_risk_factory.hpp"
 #include "microsim-simulator/contexts.hpp"

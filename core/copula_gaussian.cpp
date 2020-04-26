@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "copula_gaussian.hpp"
 #include "eigen.hpp"
 #include "multivariate_distribution_gaussian.hpp"

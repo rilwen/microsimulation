@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "rate_calibrator.hpp"
 #include "microsim-core/hazard_curve.hpp"
 #include "core/brent.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "migrant_selector_random.hpp"
 #include "../contexts.hpp"
 #include "../mutable_context.hpp"

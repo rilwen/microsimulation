@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "running_mean.hpp"
 #include <algorithm>
 #include <cassert>

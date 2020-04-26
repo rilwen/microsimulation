@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/operator/operator_incrementer.hpp"
 #include "microsim-simulator/dispatcher_factory.hpp"

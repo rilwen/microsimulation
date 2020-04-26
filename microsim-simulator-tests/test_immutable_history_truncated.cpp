@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/history/immutable_history_truncated.hpp"
 #include "microsim-simulator/history/history_time_series.hpp"

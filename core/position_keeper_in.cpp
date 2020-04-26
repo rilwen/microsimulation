@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "position_keeper_in.hpp"
 #include <istream>
 

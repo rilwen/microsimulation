@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "histogram_output.hpp"
 #include <stdexcept>
 #include <boost/lexical_cast.hpp>

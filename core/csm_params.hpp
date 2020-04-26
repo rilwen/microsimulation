@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __AVERISERA_CSM_PARAMS_H
 #define __AVERISERA_CSM_PARAMS_H
 #include <memory>

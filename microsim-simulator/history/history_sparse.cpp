@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "history_sparse.hpp"
 #include "core/dates.hpp"
 #include "core/log.hpp"

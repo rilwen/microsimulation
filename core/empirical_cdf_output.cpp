@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "empirical_cdf_output.hpp"
 #include <boost/lexical_cast.hpp>
 #include <stdexcept>

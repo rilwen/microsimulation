@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "markov_model.hpp"
 #include "core/dates.hpp"
 #include "core/discrete_distribution.hpp"

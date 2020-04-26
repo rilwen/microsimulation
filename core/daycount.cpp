@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "daycount.hpp"
 #include "dates.hpp"
 #include "math_utils.hpp"

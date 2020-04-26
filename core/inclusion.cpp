@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "inclusion.hpp"
 #include <ostream>
 #include <boost/format.hpp>

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #pragma once
 #include "../migration_generator.hpp"
 #include "emigrant_selector.hpp"

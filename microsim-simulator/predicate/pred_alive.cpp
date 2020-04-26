@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "pred_alive.hpp"
 #include "pred_or.hpp"
 #include "../person.hpp"

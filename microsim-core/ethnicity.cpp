@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "ethnicity.hpp"
 #include <boost/format.hpp>
 #include <ostream>

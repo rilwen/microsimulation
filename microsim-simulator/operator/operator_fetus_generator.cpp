@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator_fetus_generator.hpp"
 #include "operator_conception.hpp"
 #include "../contexts.hpp"

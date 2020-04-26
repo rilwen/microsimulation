@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __AVERISERA_TESTING_RNG_PRECALC_H
 #define __AVERISERA_TESTING_RNG_PRECALC_H
 #include "core/rng.hpp"

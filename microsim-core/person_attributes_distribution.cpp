@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "person_attributes_distribution.hpp"
 #include "person_attributes.hpp"
 #include "core/generic_distribution.hpp"

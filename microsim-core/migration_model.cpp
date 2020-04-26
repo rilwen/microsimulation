@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "migration_model.hpp"
 #include "core/brent.hpp"
 #include "core/daycount.hpp"

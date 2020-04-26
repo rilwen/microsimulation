@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "beta_distribution.hpp"
 #include <stdexcept>
 

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator_conception.hpp"
 #include "../person.hpp"
 #include "../person_data.hpp"

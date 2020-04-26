@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator_incrementer.hpp"
 #include "core/distribution.hpp"
 #include "../person.hpp"

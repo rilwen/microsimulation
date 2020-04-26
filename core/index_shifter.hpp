@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __RQL_MATH_INDEX_SHIFTER_H
 #define __RQL_MATH_INDEX_SHIFTER_H
 

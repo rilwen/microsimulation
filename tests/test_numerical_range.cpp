@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/numerical_range.hpp"
 #include <boost/lexical_cast.hpp>

@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #ifndef __AVERISERA_COPULA_GAUSSIAN_H
 #define __AVERISERA_COPULA_GAUSSIAN_H
 

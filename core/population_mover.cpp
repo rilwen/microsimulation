@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "data_exception.hpp"
 #include "discrete_distribution.hpp"
 #include "distribution_empirical.hpp"

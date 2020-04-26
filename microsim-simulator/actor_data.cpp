@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "actor_data.hpp"
 #include "core/stl_utils.hpp"
 #include <algorithm>

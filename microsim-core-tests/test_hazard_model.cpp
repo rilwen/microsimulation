@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "microsim-core/anchored_hazard_curve.hpp"
 #include "microsim-core/hazard_curve.hpp"
 #include "microsim-core/hazard_curve_factory.hpp"

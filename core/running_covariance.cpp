@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "running_covariance.hpp"
 #include <cmath>
 #include <limits>

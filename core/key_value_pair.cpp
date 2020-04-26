@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "key_value_pair.hpp"
 
 namespace averisera {

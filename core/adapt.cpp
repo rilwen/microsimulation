@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "adapt.hpp"
 #include "log.hpp"
 #include "math_utils.hpp"

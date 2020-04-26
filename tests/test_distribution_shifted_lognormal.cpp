@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/distribution_shifted_lognormal.cpp"
 #include "core/adapt_1d.hpp"

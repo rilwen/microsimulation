@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "empirical_cdf_calc.hpp"
 #include "empirical_cdf.hpp"
 #include <algorithm>

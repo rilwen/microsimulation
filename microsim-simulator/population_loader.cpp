@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "contexts.hpp"
 #include "history_factory.hpp"
 #include "history_factory_registry.hpp"

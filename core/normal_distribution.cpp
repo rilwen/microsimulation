@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "normal_distribution.hpp"
 #include "preconditions.hpp"
 #include <cassert>

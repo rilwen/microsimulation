@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <memory>
 #include "helpers.hpp"
 #include "testing/rng_precalc.hpp"

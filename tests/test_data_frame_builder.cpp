@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/data_frame_builder.hpp"
 #include "core/data_frame.hpp"

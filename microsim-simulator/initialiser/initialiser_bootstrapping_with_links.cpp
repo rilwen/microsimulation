@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "../contexts.hpp"
 #include "initialiser_bootstrapping_with_links.hpp"
 #include "../mutable_context.hpp"

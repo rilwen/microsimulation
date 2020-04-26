@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "operator.hpp"
 
 namespace averisera {

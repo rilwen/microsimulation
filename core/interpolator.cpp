@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "interpolator.hpp"
 #include "interpolator_impl.hpp"
 #include "preconditions.hpp"

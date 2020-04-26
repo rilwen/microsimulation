@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/population_mover_slope_calculator.hpp"
 #include "core/stl_utils.hpp"

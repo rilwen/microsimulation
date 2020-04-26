@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "object_vector.hpp"
 #include <cassert>
 #include <stdexcept>

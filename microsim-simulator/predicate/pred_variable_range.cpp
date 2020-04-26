@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "pred_variable_range.hpp"
 #include "../actor.hpp"
 #include "../contexts.hpp"

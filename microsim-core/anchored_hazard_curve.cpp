@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "anchored_hazard_curve.hpp"
 #include "hazard_curve.hpp"
 #include "hazard_curve_factory.hpp"

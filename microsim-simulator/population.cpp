@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "contexts.hpp"
 #include "immutable_context.hpp"
 #include "person.hpp"

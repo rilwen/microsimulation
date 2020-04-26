@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __AVERISERA_KEY_VALUE_PAIR_H
 #define __AVERISERA_KEY_VALUE_PAIR_H
 

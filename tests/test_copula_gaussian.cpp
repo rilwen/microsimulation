@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/copula_gaussian.hpp"
 #include "core/multivariate_distribution_gaussian.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/multi_index_multisize.hpp"
 #include <Eigen/Core>

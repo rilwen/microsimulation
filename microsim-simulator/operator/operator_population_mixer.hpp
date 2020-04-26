@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #pragma once
 #include "../history_user_simple.hpp"
 #include "../operator.hpp"

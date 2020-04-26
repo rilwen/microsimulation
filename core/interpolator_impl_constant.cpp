@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "interpolator_impl_constant.hpp"
 #include <limits>
 

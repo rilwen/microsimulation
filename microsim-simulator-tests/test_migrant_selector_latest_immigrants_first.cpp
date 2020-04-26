@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/migration/migrant_selector_latest_immigrants_first.hpp"
 #include "microsim-simulator/person.hpp"

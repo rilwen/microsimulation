@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "migration_generator.hpp"
 #include "mutable_context.hpp"
 #include "person.hpp"

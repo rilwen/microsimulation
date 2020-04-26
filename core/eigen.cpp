@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "eigen.hpp"
 #include "csv_file_reader.hpp"
 

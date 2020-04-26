@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/multivariate_distribution_gaussian_simple.hpp"
 #include "core/rng_impl.hpp"

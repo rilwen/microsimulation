@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "column_filter.hpp"
 #include "csv_file_reader.hpp"
 #include "data_output.hpp"

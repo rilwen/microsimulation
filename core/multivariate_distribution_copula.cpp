@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "multivariate_distribution_copula.hpp"
 #include "copula.hpp"
 #include "distribution.hpp"

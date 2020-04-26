@@ -1,3 +1,6 @@
+/*
+(C) Averisera Ltd 2014-2020
+*/
 #include "copula_multifactor.hpp"
 #include <algorithm>
 #include <stdexcept>

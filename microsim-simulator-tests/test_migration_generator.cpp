@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-simulator/migration_generator.hpp"
 #include "microsim-simulator/person.hpp"

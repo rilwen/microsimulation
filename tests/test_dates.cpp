@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "core/dates.hpp"
 #include "core/period.hpp"
 #include <gtest/gtest.h>

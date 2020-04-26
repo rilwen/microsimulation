@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #ifndef __AVERISERA_DATA_OUTPUT
 #define __AVERISERA_DATA_OUTPUT
 

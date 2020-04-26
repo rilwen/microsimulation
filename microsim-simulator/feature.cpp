@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "feature.hpp"
 #include "core/log.hpp"
 #include "core/stl_utils.hpp"

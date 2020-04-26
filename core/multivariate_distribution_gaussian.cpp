@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "multivariate_distribution_gaussian.hpp"
 #include "moore_penrose.hpp"
 #include <algorithm>

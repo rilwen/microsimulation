@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #pragma once
 #include "csv_file_reader.hpp"
 #include "eigen.hpp"

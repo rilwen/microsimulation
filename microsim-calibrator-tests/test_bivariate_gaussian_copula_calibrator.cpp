@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "microsim-calibrator/bivariate_gaussian_copula_calibrator.hpp"
 #include "core/distribution_linear_interpolated.hpp"

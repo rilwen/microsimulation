@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "interpolator_impl_factory.hpp"
 #include "interpolator_impl_piecewise_cubic.hpp"
 #include "interpolator_impl_piecewise_constant.hpp"

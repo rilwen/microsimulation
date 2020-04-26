@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/running_statistics.hpp"
 #include "core/sacado_scalar.hpp"

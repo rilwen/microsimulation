@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "multivariate_distribution_gaussian_simple.hpp"
 #include "rng.hpp"
 #include "normal_distribution.hpp"

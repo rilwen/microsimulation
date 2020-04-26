@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #pragma once
 #include "sampling_distribution.hpp"
 #include "generic_distribution.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/csm_utils.hpp"
 #include "core/markov.hpp"

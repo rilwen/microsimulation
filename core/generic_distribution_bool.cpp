@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "generic_distribution_bool.hpp"
 #include "rng.hpp"
 

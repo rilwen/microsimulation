@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #pragma once
 #include "sex.hpp"
 #include "core/time_series.hpp"

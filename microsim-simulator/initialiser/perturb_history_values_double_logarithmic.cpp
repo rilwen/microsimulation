@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "perturb_history_values_double_logarithmic.hpp"
 #include "../contexts.hpp"
 #include "../history_data.hpp"

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include <gtest/gtest.h>
 #include "core/fritsch_butland_approximation.hpp"
 #include "core/interpolator_impl_piecewise_cubic.hpp"

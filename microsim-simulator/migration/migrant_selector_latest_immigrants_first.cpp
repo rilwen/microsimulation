@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "migrant_selector_latest_immigrants_first.hpp"
 #include "../person.hpp"
 #include <algorithm>

@@ -1,3 +1,4 @@
+// (C) Averisera Ltd 2014-2020
 #include "date_distribution_from_real.hpp"
 #include "daycount.hpp"
 
