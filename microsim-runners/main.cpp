@@ -6,8 +6,13 @@
 #include <iostream>
 #include <stdexcept>
 
+/** Actual main function, responsible for interpreting user arguments. */
 void do_main(const averisera::UserArguments& ua);
 
+/** Main function template which sets up logging and trapping errors.
+
+Reads user arguments from provided parameter file.
+*/
 int main(int argc, char* argv[]) {
 	if (argc <= 1) {
 		std::cerr << "Usage: " << argv[0] << " parameter_file" << std::endl;

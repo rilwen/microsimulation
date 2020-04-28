@@ -65,6 +65,14 @@ const double POST_PREGNANCY_ZERO_FERTILITY_YEAR_FRACTION = static_cast<double>(P
 typedef uint8_t bmi_cat_type; /**< Type used to represent BMI categories. */
 
 /** Loads mortality rates from data file.
+
+@see MortalityCalibrator
+
+@param mortality_rates_file Path to the data file.
+@param schedule Simulation schedule.
+@param max_age Maximum age allowed in the simulation.
+
+@return Vector of mortality curves for every year of birth possible in the simulation.
 */
 static std::vector<std::unique_ptr<AnchoredHazardCurve>> load_mortality_data(const std::string& mortality_rates_file, const Schedule& schedule, const RateCalibrator::age_type max_age) {
 	CSVFileReader rates(mortality_rates_file, DELIM, CSV::QuoteCharacter::DOUBLE_QUOTE);
@@ -73,7 +81,14 @@ static std::vector<std::unique_ptr<AnchoredHazardCurve>> load_mortality_data(con
 	return MortalityCalibrator::calc_mortality_curves(rates, min_year_of_birth, max_year_of_birth);
 }
 
-/** Builds operators applying mortality to people.
+/** Builds operators applying mortality to a segment of the population.
+
+@param mortality_rates_file Path to the data file with mortality rates for the segment of the population.
+@param schedule Simulation schedule.
+@param max_age Maximum age allowed in the simulation.
+@param predicate Predicate (@see Predicate) selecting persons belonging to this segment of the population.
+
+@return Vector of operators (@see Operator).
 */
 static std::vector<std::unique_ptr<Operator<Person>>> build_mortality_operators(const std::string& mortality_rates_file, const Schedule& schedule, const RateCalibrator::age_type max_age, const std::shared_ptr<const Predicate<Person>>& predicate) {
 	auto vec = Mortality::build_operators(std::move(load_mortality_data(mortality_rates_file, schedule, max_age)), nullptr, predicate);
@@ -83,6 +98,13 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_mortality_operators(
 }
 
 /** Returns multipliers correcting fertility rates for ethnic groups.
+
+@param filename Path to file with total fertility rates for different ethnic groups (and entire population) and year ranges.
+@param ethnicity_classification Name of the ethnicity classification scheme used (@see EthnicityClassficationsEnglandWales).
+
+@return ethnicity_classification
+
+@throw DataException If the file does not contain total fertility rates for the entire population.
 */
 static std::unique_ptr<const HazardRateMultiplierProvider<Person>> get_total_fertility_rates_multipliers(const std::string& filename, const std::string& ethnicity_classification) {
 	CSVFileReader reader(filename, DELIM);	
@@ -118,7 +140,12 @@ static std::unique_ptr<const HazardRateMultiplierProvider<Person>> get_total_fer
 
 /** Builds operators handling conceiving babies.
 
-@param multiplicity_distros Vector of TimeSeries (age, multiplicity distribution) indexed by years
+@param birth_rates_file Path to data file with birth rates.
+@param birth_rate_basis Basis for the birth rates in the file.
+@param multiplicity_distros Vector of TimeSeries (age, multiplicity distribution) indexed by years, describing how birth multiplicities (e.g. probability of having twins) depend on time.
+@param hrm_provider Provides multipliers for conception "hazard rates" correcting them for different ethnic groups.
+
+@return Vector of conception operators.
 */
 static std::vector<std::unique_ptr<Operator<Person>>> build_conception_operators(const std::string& birth_rates_file, const double birth_rate_basis, const Conception::mdistr_multi_series_type& multiplicity_distros, const std::unique_ptr<const HazardRateMultiplierProvider<Person>>& hrm_provider) {	
 	CSVFileReader reader(birth_rates_file, DELIM);
@@ -151,7 +178,12 @@ static std::vector<std::unique_ptr<Operator<Person>>> build_conception_operators
 	return operators;
 }
 
-/** Builds operators handling creating fetuses after conception (gender ratios). */
+/** Builds operators handling creating fetuses after conception (gender ratios). 
+
+@param birth_gender_ratios_file Path to data file with gender ratios by year.
+
+@return Operator creating fetuses after conception.
+*/
 static std::vector<std::unique_ptr<Operator<Person>>> build_fetus_generator_operators(const std::string& birth_gender_ratios_file) {
 	CSVFileReader reader(birth_gender_ratios_file, DELIM);
 	const auto gender_rates = ProcreationCalibrator::load_gender_rates(reader, 0);

@@ -14,7 +14,7 @@ namespace averisera {
 		class AnchoredHazardCurve;
 		template <class G> struct MortalityRate;
 
-		/** Methods to calibrate mortality curves from data 
+		/** Methods to calibrate mortality curves from data.
 		*/
 		namespace MortalityCalibrator {
 			using namespace CalibrationTypes;
@@ -24,9 +24,11 @@ namespace averisera {
 			Mortality curves for cohorts born before the first cohort with data are back-filled by translating the first available curve to the 1 January of the new year of birth.
 			@param mortality_rates Vector of mortality rates observed in given years and for given age groups
 			@param min_year_of_birth Minimum year of birth (floored by Date::MIN_YEAR)
-			@param min_year_of_birth Maximum year of birth (ceiled by Date::MAX_YEAR)
+			@param min_year_of_birth Maximum year of birth (ceiled by Date::MAX_YEAR)			
+
+			@return Vector of mortality curves for every year of birth considered.
+
 			@throw std::runtime_error If age group in a mortality rate has boundaries in wrong order or if there are duplicate data for (year, year of birth) pair.
-			@return Vector of mortality curves 
 			*/
 			std::vector<std::unique_ptr<AnchoredHazardCurve>> calc_mortality_curves(const std::vector<MortalityRate<age_group_type>>& mortality_rates, Date::year_type min_year_of_birth, Date::year_type max_year_of_birth);
 
@@ -39,6 +41,9 @@ namespace averisera {
 			@param ref_pop_size Reference population size (rates(r, c) is the number of people out of 
 			@param min_year_of_birth Minimum year of birth (floored by Date::MIN_YEAR)
 			@param max_year_of_birth Maximum year of birth (ceiled by Date::MAX_YEAR)
+
+			@return Vector of mortality curves for every year of birth considered.
+
 			@throw std::domain_error If rates has wrong dimensions. If years or age_groups is empty.
 			@throw std::runtime_error If age group in a mortality rate has boundaries in wrong order. If age groups are overlapping.
 			*/
@@ -48,6 +53,8 @@ namespace averisera {
 			@param reader CSV file reader CSV file reader for mortality rates in age groups in given years
 			@param min_year_of_birth Minimum year of birth (floored by Date::MIN_YEAR)
 			@param max_year_of_birth Maximum year of birth (ceiled by Date::MAX_YEAR)
+
+			@return Vector of mortality curves for every year of birth considered.
 			*/
 			std::vector<std::unique_ptr<AnchoredHazardCurve>> calc_mortality_curves(CSVFileReader& reader, Date::year_type min_year_of_birth, Date::year_type max_year_of_birth);
 
@@ -56,6 +63,8 @@ namespace averisera {
 			@param group_size_reader CSV file reader CSV file reader for age group sizes in given years
 			@param min_year_of_birth Minimum year of birth (floored by Date::MIN_YEAR)
 			@param max_year_of_birth Maximum year of birth (ceiled by Date::MAX_YEAR)
+
+			@return Vector of mortality curves for every year of birth considered.
 			*/
 			std::vector<std::unique_ptr<AnchoredHazardCurve>> calc_mortality_curves(CSVFileReader& death_reader, CSVFileReader& group_size_reader, Date::year_type min_year_of_birth, Date::year_type max_year_of_birth);
 		}
